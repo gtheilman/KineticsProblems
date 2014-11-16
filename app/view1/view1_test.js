@@ -1,16 +1,31 @@
 'use strict';
 
-describe('myApp.view1 module', function() {
+describe('myApp.view1 DatepickerDemoCtrl', function () {
 
-  beforeEach(module('myApp.view1'));
+    beforeEach(module('myApp.view1'));
 
-  describe('view1 controller', function(){
-
-    it('should ....', inject(function($controller) {
-      //spec body
-      var view1Ctrl = $controller('View1Ctrl');
-      expect(view1Ctrl).toBeDefined();
+    var ctrl, scope;
+    // inject the $controller and $rootScope services
+    // in the beforeEach block
+    beforeEach(inject(function ($controller, $rootScope) {
+        // Create a new scope that's a child of the $rootScope
+        scope = $rootScope.$new();
+        // Create the controller
+        ctrl = $controller('DatepickerDemoCtrl', {
+            $scope: scope
+        });
     }));
+    it('should exist....',
+        function () {
+            //spec body
+            expect(ctrl).toBeDefined();
+        });
 
-  });
+    it('should have $scope.minDate',
+        function () {
+            expect(scope.minDate).toBeDefined();
+        });
+
 });
+
+
