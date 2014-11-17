@@ -107,10 +107,22 @@ angular.module('myApp.view2', ['ngRoute'])
             ];
             var race = races[randrange(0, (races.length - 1))];
 
+            var creatinine = 0.9;
+            var renalfailurerisk = randrange(0, 10);
+            if (renalfailurerisk > 5 && renalfailurerisk < 8) {
+                creatinine = Math.floor(creatinine * randrange(10, 30)) / 10;
+            }
+            else if (renalfailurerisk >= 8) {
+                creatinine = Math.floor(creatinine * randrange(10, 100)) / 10;
+            }
+            var BUN = Math.floor(9.5 * creatinine);
+
             return {
                 gender: gender,
                 age: age,
-                race: race
+                race: race,
+                creatinine: creatinine,
+                BUN: BUN
             };
         };
     });
