@@ -33,12 +33,10 @@ angular.module('myApp.view2', ['ngRoute'])
             if (!angular.isNumber(k)) {
                 k = "k_{el}";
             }
-            if (!angular.isNumber(C)) {
+            if (!angular.isNumber(t)) {
                 t = "t";
             }
-
-            var latex = "\\[ " + C + "=" + C0 + "\\cdot e^{-" + k + "\\cdot " + t + "} \\]";
-            return latex;
+            return "\\[ " + C + "=" + C0 + "\\cdot e^{-" + k + "\\cdot " + t + "} \\]";
 
         };
         this.firstOrderSlope = function (C, C0, k, t) {
@@ -51,18 +49,40 @@ angular.module('myApp.view2', ['ngRoute'])
             if (!angular.isNumber(k)) {
                 k = "k_{el}";
             }
-            if (!angular.isNumber(C)) {
+            if (!angular.isNumber(t)) {
                 t = "t";
             }
-            var latex = "\\[-" + k + " = {\\frac{{\\ln " + C + " - \\ln " + C0 + "}}{\\Delta " + t + "}} \\]"
-            return latex;
+            return "\\[-" + k + " = {\\frac{{\\ln " + C + " - \\ln " + C0 + "}}{\\Delta " + t + "}} \\]";
         };
     })
 
 
-    .controller('View2Ctrl', function ($scope, LatexService) {
-        $scope.firstorder = LatexService.firstOrderElimination(2, 10, "k", 8);
+    .service('GentVariableService', function () {
+        this.C_unknown = function () {
+            var RandomC = Math.floor((Math.random() * 4) + 1);
+            var RandomC0 = Math.floor((Math.random() * 8) + RandomC);
+            var RandomHalfLife = Math.floor((Math.random() * 5) + 1);
+            var RandomK = Math.round(0.693 / RandomHalfLife * 1000) / 1000;
+            var RandomT = Math.floor((Math.random() * 10) + 1);
+            var C = RandomC0 * (Math.exp(-1 * RandomK * RandomT));
+            C = Math.round(C * 10) / 10;
+            return {
+                C: C,
+                C0: RandomC0,
+                k: RandomK,
+                t: RandomT
+            };
+        };
+    })
+
+
+    .controller('View2Ctrl', function ($scope, LatexService, GentVariableService) {
+        var constants = GentVariableService.C_unknown();
+        console.log(constants);
+        $scope.firstorder = LatexService.firstOrderElimination(constants.C, constants.C0, constants.k, 't');
+        /* (C, C0, k, t )*/
         $scope.firstorderslope = LatexService.firstOrderSlope(2, 10, "k", "t");
+        /* (C, C0, k, t )*/
 
 
     });
