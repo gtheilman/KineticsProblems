@@ -23,11 +23,23 @@ angular.module('myApp.view2', ['ngRoute'])
             }]
         };
     })
-    .controller('View2Ctrl', function ($scope) {
+
+
+    .service('LatexService', function () {
+        this.firstOrderElimination = function () {
+            return "\\[ C=C_0\\cdot e^{-k_{el}\\cdot t} \\]";
+        };
+    })
+
+
+    .
+    controller('View2Ctrl', function ($scope, LatexService) {
 
         var firstnumber = 21;
         $scope.CKDEPI = "\\[    GFR \\approx ClCr \\approx" + firstnumber + "\\times SrCr^{-1.154}\\times Age^{-0.203}\\times [1.210 \\; if \\; Black] \\times [0.742 \\; if \\; female]     \\]";
         $scope.child = "\\[    GFR \\approx ClCr \\approx  \\frac{k\\times Height}{SrCr}    \\]";
+        $scope.firstorder = LatexService.firstOrderElimination();
+
 
     });
 
