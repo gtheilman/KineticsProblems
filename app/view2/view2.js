@@ -1,7 +1,5 @@
 'use strict';
 
-MathJax.Hub.Config({skipStartupTypeset: true});
-MathJax.Hub.Configured();
 
 
 angular.module('myApp.view2', ['ngRoute'])
@@ -24,21 +22,47 @@ angular.module('myApp.view2', ['ngRoute'])
         };
     })
 
-
     .service('LatexService', function () {
-        this.firstOrderElimination = function () {
-            return "\\[ C=C_0\\cdot e^{-k_{el}\\cdot t} \\]";
+        this.firstOrderElimination = function (C, C0, k, t) {
+            if (!angular.isNumber(C)) {
+                C = "C";
+            }
+            if (!angular.isNumber(C0)) {
+                C0 = "C_0";
+            }
+            if (!angular.isNumber(k)) {
+                k = "k_{el}";
+            }
+            if (!angular.isNumber(C)) {
+                t = "t";
+            }
+
+            var latex = "\\[ " + C + "=" + C0 + "\\cdot e^{-" + k + "\\cdot " + t + "} \\]";
+            return latex;
+
+        };
+        this.firstOrderSlope = function (C, C0, k, t) {
+            if (!angular.isNumber(C)) {
+                C = "C";
+            }
+            if (!angular.isNumber(C0)) {
+                C0 = "C_0";
+            }
+            if (!angular.isNumber(k)) {
+                k = "k_{el}";
+            }
+            if (!angular.isNumber(C)) {
+                t = "t";
+            }
+            var latex = "\\[-" + k + " = {\\frac{{\\ln " + C + " - \\ln " + C0 + "}}{\\Delta " + t + "}} \\]"
+            return latex;
         };
     })
 
 
-    .
-    controller('View2Ctrl', function ($scope, LatexService) {
-
-        var firstnumber = 21;
-        $scope.CKDEPI = "\\[    GFR \\approx ClCr \\approx" + firstnumber + "\\times SrCr^{-1.154}\\times Age^{-0.203}\\times [1.210 \\; if \\; Black] \\times [0.742 \\; if \\; female]     \\]";
-        $scope.child = "\\[    GFR \\approx ClCr \\approx  \\frac{k\\times Height}{SrCr}    \\]";
-        $scope.firstorder = LatexService.firstOrderElimination();
+    .controller('View2Ctrl', function ($scope, LatexService) {
+        $scope.firstorder = LatexService.firstOrderElimination(2, 10, "k", 8);
+        $scope.firstorderslope = LatexService.firstOrderSlope(2, 10, "k", "t");
 
 
     });
