@@ -1,6 +1,9 @@
 'use strict';
 
 
+function randrange(minimum, maximum) {
+    return Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
+}
 
 angular.module('myApp.view2', ['ngRoute'])
 
@@ -21,6 +24,18 @@ angular.module('myApp.view2', ['ngRoute'])
             }]
         };
     })
+
+
+    .controller('View2Ctrl', function ($scope, LatexService, GentVariableService, CreatePatient) {
+        var constants = GentVariableService.C_unknown();
+        console.log(constants);
+        /* (C, C0, k, t )*/
+        $scope.firstorder = LatexService.firstOrderElimination(constants.C, constants.C0, constants.k, 't');
+        /* (C, C0, k, t )*/
+        $scope.firstorderslope = LatexService.firstOrderSlope(2, 10, "k", "t");
+        $scope.adultpatient = CreatePatient.adult();
+    })
+
 
     .service('LatexService', function () {
         this.firstOrderElimination = function (C, C0, k, t) {
@@ -56,7 +71,6 @@ angular.module('myApp.view2', ['ngRoute'])
         };
     })
 
-
     .service('GentVariableService', function () {
         this.C_unknown = function () {
             var RandomC = Math.floor((Math.random() * 4) + 1);
@@ -76,15 +90,29 @@ angular.module('myApp.view2', ['ngRoute'])
     })
 
 
-    .controller('View2Ctrl', function ($scope, LatexService, GentVariableService) {
-        var constants = GentVariableService.C_unknown();
-        console.log(constants);
-        $scope.firstorder = LatexService.firstOrderElimination(constants.C, constants.C0, constants.k, 't');
-        /* (C, C0, k, t )*/
-        $scope.firstorderslope = LatexService.firstOrderSlope(2, 10, "k", "t");
-        /* (C, C0, k, t )*/
+    .service('CreatePatient', function () {
+        this.adult = function () {
+            if (randrange(0, 10) < 5) {
+                var gender = 'male'
+            } else {
+                var gender = 'female';
+            }
+            var age = randrange(18, 85);
 
+            var races = [
+                "white",
+                "African-American",
+                "Asian",
+                "Hispanic"
+            ];
+            var race = races[randrange(0, (races.length - 1))];
 
+            return {
+                gender: gender,
+                age: age,
+                race: race
+            };
+        };
     });
 
 
