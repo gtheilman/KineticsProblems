@@ -91,6 +91,20 @@ angular.module('myApp.view2', ['ngRoute'])
 
 
     .service('CreatePatient', function () {
+
+        /* Comes up with a random lab value within a range */
+        function randLab(lower, upper) {
+            var labMean = (lower + upper) / 2;
+            var labRange = upper - lower;
+            var randLab = 0;
+            if (randrange(0, 10) <= 5) {
+                randLab = labMean + Math.random() * labRange / 2;
+            } else {
+                randLab = labMean - Math.random() * labRange / 2;
+            }
+            return randLab
+        }
+
         this.adult = function () {
             if (randrange(0, 10) < 5) {
                 var gender = 'male'
@@ -107,9 +121,13 @@ angular.module('myApp.view2', ['ngRoute'])
             ];
             var race = races[randrange(0, (races.length - 1))];
 
+            /* Renal Function */
             var creatinine = 0.9;
             var renalfailurerisk = randrange(0, 10);
-            if (renalfailurerisk > 5 && renalfailurerisk < 8) {
+            if (renalfailurerisk <= 5) {
+                creatinine = Math.floor(creatinine * randrange(25, 75) / 5) / 10;
+            }
+            else if (renalfailurerisk > 5 && renalfailurerisk < 8) {
                 creatinine = Math.floor(creatinine * randrange(10, 30)) / 10;
             }
             else if (renalfailurerisk >= 8) {
@@ -117,12 +135,25 @@ angular.module('myApp.view2', ['ngRoute'])
             }
             var BUN = Math.floor(9.5 * creatinine);
 
+
+            /* Background Normal Labs */
+            var Na = Math.floor(randLab(136, 146));
+            var K = Math.floor(randLab(3.5, 5.1) * 10) / 10;
+            var Cl = Math.floor(randLab(98, 108));
+            var C02 = Math.floor(randLab(18, 30));
+            var glucose = Math.floor(randLab(74, 106));
+
             return {
                 gender: gender,
                 age: age,
                 race: race,
                 creatinine: creatinine,
-                BUN: BUN
+                BUN: BUN,
+                Na: Na,
+                K: K,
+                Cl: Cl,
+                C02: C02,
+                glucose: glucose
             };
         };
     });

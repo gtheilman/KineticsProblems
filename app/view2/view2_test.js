@@ -63,3 +63,22 @@ describe("LatexService service", function () {
 });
 
 
+describe("CreatePatient service", function () {
+    var CreatePatient;
+
+    beforeEach(module('myApp.view2'));
+
+    beforeEach(inject(function (_CreatePatient_) {
+        CreatePatient = _CreatePatient_;
+    }));
+
+    describe("adult function", function () {
+        it("should return a patient age",
+            function () {
+                expect(CreatePatient.adult().age).toBeGreaterThan(17);
+            });
+    });
+
+});
+
+
