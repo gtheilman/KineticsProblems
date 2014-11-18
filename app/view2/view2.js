@@ -49,7 +49,7 @@ angular.module('myApp.view2', ['ngRoute'])
         $scope.adultpatient = CreatePatient.adult();
 
         /* age, weight, creatinine, gender */
-        $scope.gentParams = PopulationParams.aminoglycoside(47, 70, 1.1, 'female');
+        $scope.gentParams = PopulationParams.aminoglycoside($scope.adultpatient.age, $scope.adultpatient.weight, $scope.adultpatient.creatinine, $scope.adultpatient.gender);
     })
 
 
