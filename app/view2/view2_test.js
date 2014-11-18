@@ -81,6 +81,24 @@ describe("CreatePatient service", function () {
 
 });
 
+describe("Solver service", function () {
+    var SolverService;
+
+    beforeEach(module('myApp.view2'));
+
+    beforeEach(inject(function (_SolverService_) {
+        SolverService = _SolverService_;
+    }));
+
+    describe("firstorderelimination function", function () {
+        it("should return kel",
+            function () {
+                expect(SolverService.FirstOrderElimination(2, 10, "k", 8).k).toEqual(0.201);
+            });
+    });
+
+});
+
 
 describe("PopulationParams service", function () {
     var PopulationParams;

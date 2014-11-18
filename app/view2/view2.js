@@ -41,13 +41,14 @@ angular.module('myApp.view2', ['ngRoute'])
     })
 
 
-    .controller('View2Ctrl', function ($scope, LatexService, GentVariableService, CreatePatient, PopulationParams) {
+    .controller('View2Ctrl', function ($scope, LatexService, GentVariableService, CreatePatient, PopulationParams, SolverService) {
         var constants = GentVariableService.C_unknown();
         console.log(constants);
         /* (C, C0, k, t )*/
         $scope.firstorder = LatexService.firstOrderElimination(constants.C, constants.C0, constants.k, 't');
         /* (C, C0, k, t )*/
         $scope.firstorderslope = LatexService.firstOrderSlope(2, 10, "k", "t");
+        $scope.solver = SolverService.FirstOrderElimination(2, 10, "k", 8);
         $scope.adultpatient = CreatePatient.adult();
 
         /* age, weight, creatinine, gender */
@@ -87,6 +88,33 @@ angular.module('myApp.view2', ['ngRoute'])
                 t = "t";
             }
             return "\\[-" + k + " = {\\frac{{\\ln " + C + " - \\ln " + C0 + "}}{\\Delta " + t + "}} \\]";
+        };
+    })
+
+    .service('SolverService', function () {
+        this.FirstOrderElimination = function (C, C0, k, t) {
+            if (!angular.isNumber(C)) {
+                C = C0 * (Math.exp(-1 * k * t));
+                C = Math.round(C * 10) / 10;
+            }
+            if (!angular.isNumber(C0)) {
+                C0 = C / (Math.exp(-1 * k * t));
+                C0 = Math.round(C0 * 10) / 10;
+            }
+            if (!angular.isNumber(k)) {
+                k = (Math.log(C / C0)) / t * (-1);
+                k = Math.round(k * 1000) / 1000;
+            }
+            if (!angular.isNumber(t)) {
+                t = (Math.log(C / C0)) / k * (-1);
+                t = Math.round(t * 10) / 10;
+            }
+            return {
+                C: C,
+                C0: C0,
+                k: k,
+                t: t
+            };
         };
     })
 
