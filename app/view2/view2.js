@@ -5,6 +5,19 @@ function randrange(minimum, maximum) {
     return Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
 }
 
+function randLab(lower, upper) {
+    var labMean = (lower + upper) / 2;
+    var labRange = upper - lower;
+    var randLab = 0;
+    if (randrange(0, 10) <= 5) {
+        randLab = labMean + Math.random() * labRange / 2;
+    } else {
+        randLab = labMean - Math.random() * labRange / 2;
+    }
+    return randLab
+}
+
+
 angular.module('myApp.view2', ['ngRoute'])
 
     .config(['$routeProvider', function ($routeProvider) {
@@ -26,7 +39,7 @@ angular.module('myApp.view2', ['ngRoute'])
     })
 
 
-    .controller('View2Ctrl', function ($scope, LatexService, GentVariableService, CreatePatient) {
+    .controller('View2Ctrl', function ($scope, LatexService, GentVariableService, CreatePatient, PopulationParams) {
         var constants = GentVariableService.C_unknown();
         console.log(constants);
         /* (C, C0, k, t )*/
@@ -34,6 +47,9 @@ angular.module('myApp.view2', ['ngRoute'])
         /* (C, C0, k, t )*/
         $scope.firstorderslope = LatexService.firstOrderSlope(2, 10, "k", "t");
         $scope.adultpatient = CreatePatient.adult();
+
+        /* age, weight, creatinine, gender */
+        $scope.gentParams = PopulationParams.aminoglycoside(47, 70, 1.1, 'female');
     })
 
 
@@ -89,28 +105,51 @@ angular.module('myApp.view2', ['ngRoute'])
         };
     })
 
+    .service('PopulationParams', function () {
+        this.aminoglycoside = function (age, weight, Scr, gender) {
+            var ClCr = (140 - age) * weight / 72 / Scr;
+            if (gender == 'female') {
+                ClCr = 0.85 * ClCr;
+            }
+            ClCr = Math.round(ClCr);
+
+            var Vd = randLab((0.21 * weight), (0.27 * weight));
+            Vd = Math.round(Vd * 10) / 10;
+
+            var kel = 0.00285 * ClCr + 0.015;
+            kel = randLab((kel * 0.8), (kel * 1.2));
+            kel = Math.round(kel * 1000) / 1000;
+
+            var halflife = 0.693 / kel;
+            halflife = Math.round(halflife * 10) / 10;
+            return {
+                kel: kel,
+                Vd: Vd,
+                halflife: halflife,
+                ClCr: ClCr
+            };
+        };
+    })
+
 
     .service('CreatePatient', function () {
 
         /* Comes up with a random lab value within a range */
-        function randLab(lower, upper) {
-            var labMean = (lower + upper) / 2;
-            var labRange = upper - lower;
-            var randLab = 0;
-            if (randrange(0, 10) <= 5) {
-                randLab = labMean + Math.random() * labRange / 2;
-            } else {
-                randLab = labMean - Math.random() * labRange / 2;
-            }
-            return randLab
-        }
 
         this.adult = function () {
             if (randrange(0, 10) < 5) {
-                var gender = 'male'
+                var gender = 'male';
+                var height = randLab(65, 75);
+                var weight = 50 + 2.3 * (height - 60);
             } else {
                 var gender = 'female';
+                var height = randLab(62, 72);
+                var weight = 45.5 + 2.3 * (height - 60);
             }
+            height = Math.round(height * 10) / 10;
+            weight = randLab(weight * 0.9, weight * 1.1);
+            weight = Math.round(weight);
+
             var age = randrange(18, 85);
 
             var races = [
@@ -153,7 +192,9 @@ angular.module('myApp.view2', ['ngRoute'])
                 K: K,
                 Cl: Cl,
                 C02: C02,
-                glucose: glucose
+                glucose: glucose,
+                height: height,
+                weight: weight
             };
         };
     });

@@ -82,3 +82,23 @@ describe("CreatePatient service", function () {
 });
 
 
+describe("PopulationParams service", function () {
+    var PopulationParams;
+
+    beforeEach(module('myApp.view2'));
+
+    beforeEach(inject(function (_PopulationParams_) {
+        PopulationParams = _PopulationParams_;
+    }));
+
+    describe("aminoglycoside function", function () {
+        it("should return creatinine clearance",
+            function () {
+                expect(PopulationParams.aminoglycoside(47, 70, 1.1, 'female').ClCr).toEqual(70);
+            });
+    });
+
+});
+
+
+
