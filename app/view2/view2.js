@@ -2,10 +2,12 @@
 
 
 function randrange(minimum, maximum) {
+    /* Comes up with a integer value within a range */
     return Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
 }
 
 function randLab(lower, upper) {
+    /* Comes up with a random lab value of mean +/- random value */
     var labMean = (lower + upper) / 2;
     var labRange = upper - lower;
     var randLab = 0;
@@ -54,6 +56,7 @@ angular.module('myApp.view2', ['ngRoute'])
 
 
     .service('LatexService', function () {
+        /* pass variables to create equations. If not a number, puts in variable */
         this.firstOrderElimination = function (C, C0, k, t) {
             if (!angular.isNumber(C)) {
                 C = "C";
@@ -106,6 +109,7 @@ angular.module('myApp.view2', ['ngRoute'])
     })
 
     .service('PopulationParams', function () {
+        /* given patient params,calculates population average and then introduces some variablity */
         this.aminoglycoside = function (age, weight, Scr, gender) {
             var ClCr = (140 - age) * weight / 72 / Scr;
             if (gender == 'female') {
@@ -133,9 +137,6 @@ angular.module('myApp.view2', ['ngRoute'])
 
 
     .service('CreatePatient', function () {
-
-        /* Comes up with a random lab value within a range */
-
         this.adult = function () {
             if (randrange(0, 10) < 5) {
                 var gender = 'male';
