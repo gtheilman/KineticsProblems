@@ -41,18 +41,20 @@ angular.module('myApp.view2', ['ngRoute'])
     })
 
 
-    .controller('View2Ctrl', function ($scope, LatexService, GentVariableService, CreatePatient, PopulationParams, SolverService) {
-        var constants = GentVariableService.C_unknown();
-        console.log(constants);
-        /* (C, C0, k, t )*/
-        $scope.firstorder = LatexService.firstOrderElimination(constants.C, constants.C0, constants.k, 't');
-        /* (C, C0, k, t )*/
-        $scope.firstorderslope = LatexService.firstOrderSlope(2, 10, "k", "t");
+    .controller('View2Ctrl', function ($scope, LatexService, CreatePatient, PopulationParams, SolverService) {
+
         $scope.solver = SolverService.FirstOrderElimination(2, 10, "k", 8);
         $scope.adultpatient = CreatePatient.adult();
 
         /* age, weight, creatinine, gender */
         $scope.gentParams = PopulationParams.aminoglycoside($scope.adultpatient.age, $scope.adultpatient.weight, $scope.adultpatient.creatinine, $scope.adultpatient.gender);
+        /* (C, C0, k, t )*/
+        $scope.solver = SolverService.FirstOrderElimination(2, 10, $scope.gentParams.k, 't');
+        /* (C, C0, k, t )*/
+        $scope.firstorder = LatexService.firstOrderElimination(2, 10, $scope.gentParams.k, $scope.solver.t);
+        /* (C, C0, k, t )*/
+        $scope.firstorderslope = LatexService.firstOrderSlope(2, 10, "k", "t");
+
     })
 
 
@@ -118,23 +120,7 @@ angular.module('myApp.view2', ['ngRoute'])
         };
     })
 
-    .service('GentVariableService', function () {
-        this.C_unknown = function () {
-            var RandomC = Math.floor((Math.random() * 4) + 1);
-            var RandomC0 = Math.floor((Math.random() * 8) + RandomC);
-            var RandomHalfLife = Math.floor((Math.random() * 5) + 1);
-            var RandomK = Math.round(0.693 / RandomHalfLife * 1000) / 1000;
-            var RandomT = Math.floor((Math.random() * 10) + 1);
-            var C = RandomC0 * (Math.exp(-1 * RandomK * RandomT));
-            C = Math.round(C * 10) / 10;
-            return {
-                C: C,
-                C0: RandomC0,
-                k: RandomK,
-                t: RandomT
-            };
-        };
-    })
+
 
     .service('PopulationParams', function () {
         /* given patient params,calculates population average and then introduces some variablity */
@@ -148,14 +134,14 @@ angular.module('myApp.view2', ['ngRoute'])
             var Vd = randLab((0.21 * weight), (0.27 * weight));
             Vd = Math.round(Vd * 10) / 10;
 
-            var kel = 0.00285 * ClCr + 0.015;
-            kel = randLab((kel * 0.8), (kel * 1.2));
-            kel = Math.round(kel * 1000) / 1000;
+            var k = 0.00285 * ClCr + 0.015;
+            k = randLab((k * 0.8), (k * 1.2));
+            k = Math.round(k * 1000) / 1000;
 
-            var halflife = 0.693 / kel;
+            var halflife = 0.693 / k;
             halflife = Math.round(halflife * 10) / 10;
             return {
-                kel: kel,
+                k: k,
                 Vd: Vd,
                 halflife: halflife,
                 ClCr: ClCr
