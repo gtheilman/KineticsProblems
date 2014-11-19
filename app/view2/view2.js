@@ -41,11 +41,11 @@ angular.module('myApp.view2', ['ngRoute'])
     })
 
 
-    .controller('View2Ctrl', function ($scope, LatexService, CreatePatient, PopulationParams, SolverService) {
+    .controller('View2Ctrl', function ($scope, LatexService, CreatePatient, PopulationParams, SolverService, AddDisease, AddDrug) {
 
-        $scope.solver = SolverService.FirstOrderElimination(2, 10, "k", 8);
         $scope.adultpatient = CreatePatient.adult();
-
+        $scope.disease = AddDisease.gramNegative();
+        $scope.drug = AddDrug.genttobra();
         /* age, weight, creatinine, gender */
         $scope.gentParams = PopulationParams.aminoglycoside($scope.adultpatient.age, $scope.adultpatient.weight, $scope.adultpatient.creatinine, $scope.adultpatient.gender);
         /* (C, C0, k, t )*/
@@ -121,35 +121,6 @@ angular.module('myApp.view2', ['ngRoute'])
     })
 
 
-
-    .service('PopulationParams', function () {
-        /* given patient params,calculates population average and then introduces some variablity */
-        this.aminoglycoside = function (age, weight, Scr, gender) {
-            var ClCr = (140 - age) * weight / 72 / Scr;
-            if (gender == 'female') {
-                ClCr = 0.85 * ClCr;
-            }
-            ClCr = Math.round(ClCr);
-
-            var Vd = randLab((0.21 * weight), (0.27 * weight));
-            Vd = Math.round(Vd * 10) / 10;
-
-            var k = 0.00285 * ClCr + 0.015;
-            k = randLab((k * 0.8), (k * 1.2));
-            k = Math.round(k * 1000) / 1000;
-
-            var halflife = 0.693 / k;
-            halflife = Math.round(halflife * 10) / 10;
-            return {
-                k: k,
-                Vd: Vd,
-                halflife: halflife,
-                ClCr: ClCr
-            };
-        };
-    })
-
-
     .service('CreatePatient', function () {
         this.adult = function () {
             if (randrange(0, 10) < 5) {
@@ -212,7 +183,90 @@ angular.module('myApp.view2', ['ngRoute'])
                 weight: weight
             };
         };
+    })
+
+
+    .service('AddDisease', function () {
+        this.gramNegative = function () {
+            var temp = Math.round(randrange(100.5, 103) * 10) / 10;
+            var WBC = Math.round(randrange(10.5, 15) * 10) / 10;
+            var resp = randrange(15, 30);
+            var diagnoses = [
+                "sepsis",
+                "pneumonia"
+            ];
+            var diagnosis = diagnoses[randrange(0, (diagnoses.length - 1))];
+
+            return {
+                temp: temp,
+                WBC: WBC,
+                resp: resp,
+                diagnosis: diagnosis
+            };
+        };
+    })
+
+
+    .service('AddDrug', function () {
+        this.genttobra = function () {
+            var drugs = [
+                "gentamicin",
+                "tobramycin",
+                "netilmicin"
+            ];
+            var drug = drugs[randrange(0, (drugs.length - 1))];
+
+            return {
+                drug: drug
+            };
+        };
+        this.amikacinkanamycin = function () {
+            var drugs = [
+                "amikacin",
+                "kanamycin"
+            ];
+            var drug = drugs[randrange(0, (drugs.length - 1))];
+
+            return {
+                drug: drug
+            };
+        };
+
+
+    })
+
+
+    .service('PopulationParams', function () {
+        /* given patient params,calculates population average and then introduces some variablity */
+        this.aminoglycoside = function (age, weight, Scr, gender) {
+            var ClCr = (140 - age) * weight / 72 / Scr;
+            if (gender == 'female') {
+                ClCr = 0.85 * ClCr;
+            }
+            ClCr = Math.round(ClCr);
+
+            var Vd = randLab((0.21 * weight), (0.27 * weight));
+            Vd = Math.round(Vd * 10) / 10;
+
+            var k = 0.00285 * ClCr + 0.015;
+            k = randLab((k * 0.8), (k * 1.2));
+            k = Math.round(k * 1000) / 1000;
+
+            var halflife = 0.693 / k;
+            halflife = Math.round(halflife * 10) / 10;
+            return {
+                k: k,
+                Vd: Vd,
+                halflife: halflife,
+                ClCr: ClCr
+            };
+        };
     });
+
+
+
+
+
 
 
 

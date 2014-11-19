@@ -81,6 +81,45 @@ describe("CreatePatient service", function () {
 
 });
 
+
+describe("AddDisease service", function () {
+    var AddDisease;
+
+    beforeEach(module('myApp.view2'));
+
+    beforeEach(inject(function (_AddDisease_) {
+        AddDisease = _AddDisease_;
+    }));
+
+    describe("gramNegative function", function () {
+        it("should return a respiratory rate",
+            function () {
+                expect(AddDisease.gramNegative().resp).toBeGreaterThan(10);
+            });
+    });
+
+});
+
+
+describe("AddDrug service", function () {
+    var AddDrug;
+
+    beforeEach(module('myApp.view2'));
+
+    beforeEach(inject(function (_AddDrug_) {
+        AddDrug = _AddDrug_;
+    }));
+
+    describe("genttobra function", function () {
+        it("should return a drug",
+            function () {
+                expect(AddDrug.genttobra().drug).not.toBe(null);
+            });
+    });
+
+});
+
+
 describe("Solver service", function () {
     var SolverService;
 
