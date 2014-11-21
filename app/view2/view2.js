@@ -67,8 +67,8 @@ angular.module('myApp.view2', ['ngRoute', 'n3-line-chart'])
 
         $scope.data = [
             {x: new Date("October 13, 2014 06:00:00"), value: .5},
-            {x: new Date("October 13, 2014 07:00:00"), value: 8},
-            {x: new Date("October 13, 2014 08:00:00"), value: 7},
+            {x: new Date("October 13, 2014 06:30:00"), value: 8},
+            {x: new Date("October 13, 2014 07:00:00"), value: 7},
             {x: new Date("October 13, 2014 11:00:00"), value: 1}
 
         ];
@@ -86,7 +86,8 @@ angular.module('myApp.view2', ['ngRoute', 'n3-line-chart'])
                 formatter: function (x, y, series) {
                     return moment(x).format("HH:mm") + ', ' + y + ' mg/L';
                 }
-            }
+            },
+            lineMode: 'cardinal'
 
         }
 
