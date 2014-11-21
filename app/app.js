@@ -6,8 +6,8 @@ angular.module('myApp', [
     'myApp.view1',
     'myApp.view2',
     'myApp.version',
-    'ui.bootstrap',
-    'nvd3ChartDirectives'
+    'ui.bootstrap'
+
 ]).
     config(['$routeProvider', function ($routeProvider) {
         $routeProvider.otherwise({redirectTo: '/view1'});

@@ -1,28 +1,23 @@
 <div ng-controller="View2Ctrl">
 
-  <span>{{adultpatient}}</span>
-  <br>
-  <span>{{disease}}</span>
-  <br>
-  <span>{{drug}}</span>
-  <br>
-  <span>{{gentParams}}</span>
-  <br>
-  <span>{{solver}}</span>
-  <br>
-  <span mathjax-bind="firstorder"></span>
-  <br>
-  <span mathjax-bind="firstorderslope"></span>
+    <span>{{adultpatient}}</span>
+    <br>
+    <span>{{disease}}</span>
+    <br>
+    <span>{{drug}}</span>
+    <br>
+    <span>{{gentParams}}</span>
+    <br>
+    <span>{{solver}}</span>
+    <br>
+    <span mathjax-bind="firstorder"></span>
+    <br>
+    <span mathjax-bind="firstorderslope"></span>
 
 
-  <nvd3-line-chart
-          data="exampleData"
-          showXAxis="true"
-          showYAxis="true"
-          tooltips="true"
-          interactive="true">
-  </nvd3-line-chart>
-
+    <div style="width: 25%">
+        <linechart data="data" options="options"></linechart>
+    </div>
 
 </div>
  
