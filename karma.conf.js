@@ -9,7 +9,8 @@ module.exports = function (config) {
             'app/bower_components/angular-mocks/angular-mocks.js',
             'app/bower_components/n3-line-chart/dist/line-chart.js',
             'app/components/**/*.js',
-            'app/view*/**/*.js'
+            'app/menu*/**/*.js',
+            'app/case*/**/*.js'
         ],
 
         autoWatch: true,

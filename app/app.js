@@ -1,14 +1,14 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', [
+angular.module('kinetics-problems', [
     'ngRoute',
-    'myApp.view1',
-    'myApp.view2',
-    'myApp.version',
+    'kinetics-problems.menu',
+    'kinetics-problems.case',
+    'kinetics-problems.version',
     'ui.bootstrap'
 
-]).
-    config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.otherwise({redirectTo: '/view1'});
+])
+    .config(['$routeProvider', function ($routeProvider) {
+        $routeProvider.otherwise({redirectTo: '/menu'});
     }]);

@@ -1,8 +1,8 @@
 'use strict';
 
-describe('myApp.view2 View2Ctrl', function () {
+describe('kinetics-problems.case caseCtrl', function () {
 
-    beforeEach(module('myApp.view2'));
+    beforeEach(module('kinetics-problems.case'));
 
     var ctrl, scope;
     // inject the $controller and $rootScope services
@@ -11,7 +11,7 @@ describe('myApp.view2 View2Ctrl', function () {
         // Create a new scope that's a child of the $rootScope
         scope = $rootScope.$new();
         // Create the controller
-        ctrl = $controller('View2Ctrl', {
+        ctrl = $controller('CaseCtrl', {
             $scope: scope
         });
     }));
@@ -26,7 +26,7 @@ describe('myApp.view2 View2Ctrl', function () {
 describe("LatexService service", function () {
     var LatexService;
 
-    beforeEach(module('myApp.view2'));
+    beforeEach(module('kinetics-problems.case'));
 
     beforeEach(inject(function (_LatexService_) {
         LatexService = _LatexService_;
@@ -66,7 +66,7 @@ describe("LatexService service", function () {
 describe("CreatePatient service", function () {
     var CreatePatient;
 
-    beforeEach(module('myApp.view2'));
+    beforeEach(module('kinetics-problems.case'));
 
     beforeEach(inject(function (_CreatePatient_) {
         CreatePatient = _CreatePatient_;
@@ -85,7 +85,7 @@ describe("CreatePatient service", function () {
 describe("AddDisease service", function () {
     var AddDisease;
 
-    beforeEach(module('myApp.view2'));
+    beforeEach(module('kinetics-problems.case'));
 
     beforeEach(inject(function (_AddDisease_) {
         AddDisease = _AddDisease_;
@@ -104,7 +104,7 @@ describe("AddDisease service", function () {
 describe("AddDrug service", function () {
     var AddDrug;
 
-    beforeEach(module('myApp.view2'));
+    beforeEach(module('kinetics-problems.case'));
 
     beforeEach(inject(function (_AddDrug_) {
         AddDrug = _AddDrug_;
@@ -123,7 +123,7 @@ describe("AddDrug service", function () {
 describe("Solver service", function () {
     var SolverService;
 
-    beforeEach(module('myApp.view2'));
+    beforeEach(module('kinetics-problems.case'));
 
     beforeEach(inject(function (_SolverService_) {
         SolverService = _SolverService_;
@@ -142,7 +142,7 @@ describe("Solver service", function () {
 describe("PopulationParams service", function () {
     var PopulationParams;
 
-    beforeEach(module('myApp.view2'));
+    beforeEach(module('kinetics-problems.case'));
 
     beforeEach(inject(function (_PopulationParams_) {
         PopulationParams = _PopulationParams_;

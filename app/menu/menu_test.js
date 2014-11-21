@@ -1,8 +1,8 @@
 'use strict';
 
-describe('myApp.view1 DatepickerDemoCtrl', function () {
+describe('kinetics-problems.menu DatepickerDemoCtrl', function () {
 
-    beforeEach(module('myApp.view1'));
+    beforeEach(module('kinetics-problems.menu'));
 
     var ctrl, scope;
     // inject the $controller and $rootScope services

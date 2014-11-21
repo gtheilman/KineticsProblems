@@ -20,12 +20,12 @@ function randLab(lower, upper) {
 }
 
 
-angular.module('myApp.view2', ['ngRoute', 'n3-line-chart'])
+angular.module('kinetics-problems.case', ['ngRoute', 'n3-line-chart'])
 
     .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/view2', {
-            templateUrl: 'view2/view2.html',
-            controller: 'View2Ctrl'
+        $routeProvider.when('/case', {
+            templateUrl: 'case/case.html',
+            controller: 'CaseCtrl'
         });
     }])
     .directive("mathjaxBind", function () {
@@ -41,7 +41,7 @@ angular.module('myApp.view2', ['ngRoute', 'n3-line-chart'])
     })
 
 
-    .controller('View2Ctrl', function ($scope, LatexService, CreatePatient, PopulationParams, SolverService, AddDisease, AddDrug) {
+    .controller('CaseCtrl', function ($scope, LatexService, CreatePatient, PopulationParams, SolverService, GraphService, AddDisease, AddDrug) {
 
         $scope.adultpatient = CreatePatient.adult();
         $scope.disease = AddDisease.gramNegative();
@@ -54,43 +54,42 @@ angular.module('myApp.view2', ['ngRoute', 'n3-line-chart'])
         $scope.firstorder = LatexService.firstOrderElimination(2, 10, $scope.gentParams.k, $scope.solver.t);
         /* (C, C0, k, t )*/
         $scope.firstorderslope = LatexService.firstOrderSlope(2, 10, "k", "t");
-        $scope.exampleData = [
-            {
-                "key": "Series 1",
-                "values": [
-                    [1, 1],
-                    [2, 8],
-                    [3, 7],
-                    [8, 1]
-                ]
-            }];
+
 
         $scope.data = [
-            {x: new Date("October 13, 2014 06:00:00"), value: .5},
-            {x: new Date("October 13, 2014 06:30:00"), value: 8},
-            {x: new Date("October 13, 2014 07:00:00"), value: 7},
-            {x: new Date("October 13, 2014 11:00:00"), value: 1}
+            {x: new Date("October 13, 2014 06:00:00"), value: 0.5, tipLabel: "C"},
+            {x: new Date("October 13, 2014 06:30:00"), value: 8, tipLabel: ""},
+            {x: new Date("October 13, 2014 07:00:00"), value: 7, tipLabel: "C0"},
+            {x: new Date("October 13, 2014 11:00:00"), value: 0.5, tipLabel: "C"}
 
         ];
 
-        $scope.options = {
-            axes: {
-                x: {key: 'x', type: 'date'},
-                y: {type: 'linear', min: 0, max: 10, ticks: 5}
-            },
-            series: [
-                {y: 'value', color: 'steelblue', thickness: '2px', type: 'log', label: 'drug', dotSize: 5}
-            ],
-            tooltip: {
-                mode: 'scrubber',
-                formatter: function (x, y, series) {
-                    return moment(x).format("HH:mm") + ', ' + y + ' mg/L';
-                }
-            },
-            lineMode: 'cardinal'
+        $scope.graphOptions = GraphService.concTime('mg/L', 'gentamicin');
 
-        }
+    })
 
+    .service('GraphService', function () {
+        this.concTime = function (units, drug) {
+            var graphOptions = {
+                axes: {
+                    x: {key: 'x', type: 'date'},
+                    y: {type: 'linear', min: 0, max: 10, ticks: 5}
+                },
+                series: [
+                    {y: 'value', color: 'steelblue', thickness: '2px', type: 'log', label: drug, dotSize: 5}
+                ],
+                tooltip: {
+                    mode: 'scrubber',
+                    formatter: function (x, y, series) {
+                        return moment(x).format("HH:mm") + ', ' + y + ' ' + units;
+                    }
+                },
+                lineMode: 'cardinal',
+                drawLegend: 'true'
+
+            };
+            return graphOptions;
+        };
     })
 
 
