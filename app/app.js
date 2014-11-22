@@ -8,6 +8,7 @@ angular.module('kinetics-problems', [
     'kinetics-problems.menu',
     'kinetics-problems.kel',
     'kinetics-problems.case',
+    'kinetics-problems.firstOrderPredict',
     'kinetics-problems.version',
     'ui.bootstrap'
 
@@ -261,8 +262,8 @@ angular.module('kinetics-problems', [
 
     .service('PopulationParams', function () {
         /* given patient params,calculates population average and then introduces some variablity */
-        this.aminoglycoside = function (age, weight, Scr, gender) {
-            var ClCr = (140 - age) * weight / 72 / Scr;
+        this.aminoglycoside = function (age, weight, creatinine, gender) {
+            var ClCr = (140 - age) * weight / 72 / creatinine;
             if (gender == 'female') {
                 ClCr = 0.85 * ClCr;
             }
@@ -284,6 +285,7 @@ angular.module('kinetics-problems', [
 
 
         };
+
     });
 
 

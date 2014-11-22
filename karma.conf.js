@@ -14,6 +14,7 @@ module.exports = function (config) {
             'app/menu*/**/*.js',
             'app/case*/**/*.js',
             'app/kel*/**/*.js',
+            'app/firstOrderPredict*/**/*.js',
             'app/*.js'
         ],
 

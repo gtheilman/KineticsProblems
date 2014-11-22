@@ -89,8 +89,6 @@ angular.module('kinetics-problems.kel', ['ngRoute', 'n3-line-chart'])
             var InfusionEnd_conc = C0 * (Math.exp(-1 * k * (-1 * twait)));
             InfusionEnd_conc = Math.round(InfusionEnd_conc * 10) / 10;
 
-            var a = moment([2007, 0, 29]);
-            var b = moment([2007, 0, 28]);
             var deltaT = C_time.diff(C0_time, 'hours', true);
             deltaT = Math.round(deltaT * 10) / 10;
 

@@ -1,29 +1,6 @@
 <div ng-controller="KelCtrl">
 
-    <p>{{adultpatient.initials}} is a {{adultpatient.age}} yo {{adultpatient.race}} {{adultpatient.gender}}
-        with {{disease.diagnosis}} being treated with {{drug.drug}}.
-    </p>
-    <br>&nbsp;<br>
-
-    <p>
-        VS: {{disease.temp}} &nbsp;&nbsp; {{disease.resp}} &nbsp;&nbsp; {{disease.hr}} &nbsp;&nbsp;
-        {{adultpatient.height}}"
-        &nbsp;&nbsp; {{adultpatient.weight}} kg
-    </p>
-    <br>&nbsp;<br>
-
-    <p>
-        Na: {{adultpatient.Na}} mEq/L<br>
-        K: {{adultpatient.K}} mEq/L<br>
-        Cl: {{adultpatient.Cl}} mmol/L<br>
-        C02: {{adultpatient.C02}} mmol/L<br>
-        BUN: {{adultpatient.BUN}} mg/dL<br>
-        Creatinine: {{adultpatient.creatinine}} mg/dL<br>
-        Glucose: {{adultpatient.glucose}} mg/dL<br>
-        <br>&nbsp;<br>
-        WBC: {{disease.WBC}}
-    </P>
-
+    <span ng-include="'common/case1.html'"></span>
     <p>
         The patient has been receiving {{drug.drug}} {{Problem.dose}} mg every {{Problem.tau}} hours intravenously.
         The most recent dose was infused starting at {{Problem.InfusionBegin_time | date:'HH:mm'}} and the infusion was

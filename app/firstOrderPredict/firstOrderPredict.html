@@ -1,0 +1,86 @@
+<div ng-controller="firstOrderPredictCtrl">
+
+    <span ng-include="'common/case1.html'"></span>
+
+    <p>
+        The patient has been receiving {{drug.drug}} {{firstOrderPredictProblem.dose}} mg every
+        {{firstOrderPredictProblem.tau}} hours intravenously.
+        The most recent dose was infused starting at {{firstOrderPredictProblem.InfusionBegin_time | date:'HH:mm'}} and
+        the infusion was
+        completed at {{firstOrderPredictProblem.InfusionEnd_time | date:'HH:mm' }}. The patient's elimination rate
+        constant for
+        {{drug.drug}}
+        had previously been calculated as being {{firstOrderPredictPopulationParams.k}} per hour.
+    </p>
+    The following concentration was collected:<br>
+    {{drug.drug}} ({{firstOrderPredictProblem.C0_time | date:'yyyy-MM-dd HH:mm'}}) {{firstOrderPredictProblem.C0}} mg/L
+    <br>
+    Because of the supertherapeutic concentration, the {{drug.drug}} was stopped. The plan is to restart the
+    {{drug.drug}}
+    at a lower dose when the concentration reaches {{firstOrderPredictProblem.C}}.
+    <br>
+    <br>
+
+    <p>
+        What is the soonest that the {{drug.drug}} should be restarted??
+    </p>
+
+
+    <p>Draw a picture</p>
+
+    <div style="width: 33%">
+        <linechart data="initialDrawingData" options="initialDrawingOptions"></linechart>
+    </div>
+
+
+    <div style="width: 33%">
+        <linechart data="initialDrawingData" options="initialDrawingOptionsLog"></linechart>
+    </div>
+
+    <p>&nbsp;</p>
+
+    <div style="float: left" mathjax-bind="riserun"></div>
+
+    <p>&nbsp;</p>
+
+    <div style="float: left" mathjax-bind="firstorderslope"></div>
+
+    <p>&nbsp;</p>
+
+
+    <div style="float: left" mathjax-bind="firstorderslope2"></div>
+
+    <p>&nbsp;</p>
+
+    <div style="float: left" mathjax-bind="firstorderslope3"></div>
+
+    <p>&nbsp;</p>
+
+    <div>
+        <p>&nbsp;</p>
+
+        <div style="float: left" mathjax-bind="firstOrderElimination"></div>
+
+        <p>&nbsp;</p>
+
+
+        <div style="float: left" mathjax-bind="firstOrderElimination2"></div>
+
+        <p>&nbsp;</p>
+
+        <div style="float: left" mathjax-bind="firstOrderElimination3"></div>
+
+    </div>
+
+    <div style="" width="50%">
+        <span ng-include="'firstOrderPredict/firstOrderPredict.svg'"></span>
+    </div>
+    <p>
+        We have to wait {{firstOrderPredictProblem.t2 | number:1}} hours, starting from when the concentration was drawn
+        ({{firstOrderPredictProblem.C0_time | date: 'HH:MM'}}).
+    </p>
+    {{goal_time | date:'EEEE, MMMM d, yyyy h:mm a'}}
+
+</div>
+ 
+ 

@@ -13,14 +13,14 @@ describe("LatexService service", function () {
     describe("firstorderelimination function", function () {
         it("should return firstorderelimination symbols latex",
             function () {
-                expect(LatexService.firstOrderElimination('C', 'C0', 'k', 't')).toEqual('\\[ C=C_0\\cdot e^{-k_{el}\\cdot t} \\]');
+                expect(LatexService.firstOrderElimination('C', 'C0', 'k', 't')).toEqual('\\[ C=C_0\\cdot e^{-k_{el}\\cdot \\Delta t} \\]');
             });
     });
 
     describe("firstorderelimination numbers function", function () {
         it("should return firstorderelimination numbers latex",
             function () {
-                expect(LatexService.firstOrderElimination(1, 2, 3, 4)).toEqual('\\[ 1=2\\cdot e^{-3\\cdot 4} \\]');
+                expect(LatexService.firstOrderElimination(1, 2, 3, 4)).toEqual('\\[ 1{\\Tiny\\frac{mg}{L}}=2{\\Tiny\\frac{mg}{L}}\\cdot e^{-3 \\:  hrs^{-1}\\cdot 4\\: hrs} \\]');
             });
     });
 
