@@ -1,3 +1,4 @@
+
 <svg
         xmlns:dc="http://purl.org/dc/elements/1.1/"
         xmlns:cc="http://creativecommons.org/ns#"
@@ -229,33 +230,6 @@
             y="447.47629"/>
     <text
      xml:space="preserve"
-     style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-     x="63.149902"
-     y="418.36813"
-     id="text3937"
-     sodipodi:linespacing="125%"><tspan
-       sodipodi:role="line"
-       id="tspan3939"
-       x="63.149902"
-       y="418.36813"
-       style="font-size:65.00091553%;baseline-shift:sub">t<tspan
-   style="font-size:16px"
-   id="tspan4195">o</tspan></tspan></text>
-  <text
-     xml:space="preserve"
-     style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-     x="474.74286"
-     y="427.15271"
-     id="text3937-3"
-     sodipodi:linespacing="125%"><tspan
-       sodipodi:role="line"
-       id="tspan3939-9"
-       x="474.74286"
-       y="427.15271"
-       style="font-size:65.00091553%;baseline-shift:sub">t<tspan
-   id="tspan3941-9" /></tspan></text>
-  <text
-     xml:space="preserve"
      style="font-size:24px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
      x="89.923111"
      y="92.65554"
@@ -389,4 +363,43 @@
        x="467.67883"
        y="363.66669"
        style="font-size:28px">C ={{Problem.C | number:1}}</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:24px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+     x="253.58635"
+     y="225.95825"
+     id="text4197"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan4199"
+       x="253.58635"
+       y="225.95825">slope=k<tspan
+   style="font-size:65.00091553%;baseline-shift:sub"
+   id="tspan4201">el</tspan></tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:24px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+     x="66.110054"
+     y="431.27512"
+     id="text4203"
+     sodipodi:linespacing="125%"
+     inkscape:transform-center-y="-4.9335863"><tspan
+       sodipodi:role="line"
+       id="tspan4205"
+       x="66.110054"
+       y="431.27512">t<tspan
+   style="font-size:65.00091553%;baseline-shift:sub"
+   id="tspan4207">o</tspan>={{Problem.C0_time | date:'HH:mm'}}</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:24px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+     x="417.98007"
+     y="435.61783"
+     id="text4203-3"
+     sodipodi:linespacing="125%"
+     inkscape:transform-center-y="-4.9335863"><tspan
+       sodipodi:role="line"
+       id="tspan4205-6"
+       x="417.98007"
+       y="435.61783">t={{Problem.C_time | date:'HH:mm'}}</tspan></text>
 </svg>
