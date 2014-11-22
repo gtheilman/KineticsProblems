@@ -34,7 +34,7 @@ describe("LatexService service", function () {
     describe("firstorderslope numbers function", function () {
         it("should return firstorderslope numbers latex",
             function () {
-                expect(LatexService.firstOrderSlope(1, 2, 3, 4)).toEqual('\\[-3 = {\\frac{{\\ln 1 - \\ln 2}}{\\Delta 4}} \\]');
+                expect(LatexService.firstOrderSlope(1, 2, 3, 4)).toEqual('\\[-3 \\:  hrs^{-1} = {\\frac{{\\ln 1\\frac{mg}{L} - \\ln 2\\frac{mg}{L}}}{4\\: hrs}} \\]');
             });
     });
 

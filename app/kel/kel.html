@@ -43,9 +43,30 @@
 
     <p>Draw a picture</p>
 
-    <div style="width: 50%">
-        <linechart data="data" options="graphOptions"></linechart>
+    <div style="width: 33%">
+        <linechart data="initialDrawingData" options="initialDrawingOptions"></linechart>
     </div>
+
+
+    <div style="width: 33%">
+        <linechart data="initialDrawingData" options="initialDrawingOptionsLog"></linechart>
+    </div>
+
+
+    <div style="float: left" mathjax-bind="firstorderslope"></div>
+
+    <p>&nbsp;</p>
+
+
+    <div style="float: left" mathjax-bind="firstorderslope2"></div>
+
+    <p>&nbsp;</p>
+
+    <div style="float: left" mathjax-bind="firstorderslope3"></div>
+
+    <p>&nbsp;</p>
+
+    <div style="float: left" mathjax-bind="kelSolution"></div>
 
 
 </div>

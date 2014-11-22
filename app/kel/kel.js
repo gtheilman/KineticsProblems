@@ -20,7 +20,7 @@ angular.module('kinetics-problems.kel', ['ngRoute', 'n3-line-chart'])
         $scope.PopulationParams = PopulationParams.aminoglycoside($scope.adultpatient.age, $scope.adultpatient.weight, $scope.adultpatient.creatinine, $scope.adultpatient.gender);
         $scope.Problem = Problem.CalculateKel($scope.PopulationParams.k, $scope.PopulationParams.Vd);
 
-        $scope.data = [
+        $scope.initialDrawingData = [
             {
                 x: $scope.Problem.InfusionBegin_time,
                 value: $scope.Problem.InfusionBegin_conc,
@@ -34,11 +34,14 @@ angular.module('kinetics-problems.kel', ['ngRoute', 'n3-line-chart'])
                 value: $scope.Problem.InfusionBegin_conc,
                 tooltip: "Dosing Interval Ends"
             }
-
-
         ];
+        $scope.initialDrawingOptions = GraphService.concTime('mg/L', $scope.drug.drug, 'linear', $scope.initialDrawingData);
+        $scope.initialDrawingOptionsLog = GraphService.concTime('mg/L', $scope.drug.drug, 'log', $scope.initialDrawingData);
+        $scope.firstorderslope = LatexService.firstOrderSlope("C", "C0", "k", "t");
+        $scope.firstorderslope2 = LatexService.firstOrderSlope($scope.Problem.C, $scope.Problem.C0, "k", "t");
+        $scope.firstorderslope3 = LatexService.firstOrderSlope($scope.Problem.C, $scope.Problem.C0, "k", $scope.Problem.deltaT);
+        $scope.kelSolution = LatexService.kelSolution($scope.PopulationParams.k);
 
-        $scope.graphOptions = GraphService.concTime('mg/L', $scope.drug.drug, 'linear', $scope.data);
 
     })
 
@@ -77,11 +80,17 @@ angular.module('kinetics-problems.kel', ['ngRoute', 'n3-line-chart'])
             var InfusionEnd_conc = C0 * (Math.exp(-1 * k * (-1 * twait)));
             InfusionEnd_conc = Math.round(InfusionEnd_conc * 10) / 10;
 
+            var a = moment([2007, 0, 29]);
+            var b = moment([2007, 0, 28]);
+            var deltaT = C_time.diff(C0_time, 'hours', true);
+            deltaT = Math.round(deltaT * 10) / 10;
+
             IntervalEnds_time = moment(IntervalEnds_time).toDate();
             C_time = moment(C_time).toDate();
             C0_time = moment(C0_time).toDate();
             InfusionBegin_time = moment(InfusionBegin_time).toDate();
             InfusionEnd_time = moment(InfusionEnd_time).toDate();
+
 
             return {
                 tinf: tinf,
@@ -97,7 +106,8 @@ angular.module('kinetics-problems.kel', ['ngRoute', 'n3-line-chart'])
                 InfusionBegin_time: InfusionBegin_time,
                 InfusionEnd_conc: InfusionEnd_conc,
                 InfusionBegin_conc: InfusionBegin_conc,
-                IntervalEnds_time: IntervalEnds_time
+                IntervalEnds_time: IntervalEnds_time,
+                deltaT: deltaT
             };
         };
 

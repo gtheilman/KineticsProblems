@@ -103,17 +103,28 @@ angular.module('kinetics-problems', [
         this.firstOrderSlope = function (C, C0, k, t) {
             if (!angular.isNumber(C)) {
                 C = "C";
+            } else {
+                C = C + "\\frac{mg}{L}"
             }
             if (!angular.isNumber(C0)) {
                 C0 = "C_0";
+            } else {
+                C0 = C0 + "\\frac{mg}{L}"
             }
             if (!angular.isNumber(k)) {
                 k = "k_{el}";
+            } else {
+                k = k + " \\:  hrs^{-1}";
             }
             if (!angular.isNumber(t)) {
-                t = "t";
+                t = "\\Delta t";
+            } else {
+                t = t + "\\: hrs"
             }
-            return "\\[-" + k + " = {\\frac{{\\ln " + C + " - \\ln " + C0 + "}}{\\Delta " + t + "}} \\]";
+            return "\\[-" + k + " = {\\frac{{\\ln " + C + " - \\ln " + C0 + "}}{" + t + "}} \\]";
+        };
+        this.kelSolution = function (k) {
+            return "\\[k_{el} = -" + k + " \\:  hrs^{-1}\\]";
         };
     })
 
