@@ -1,28 +1,6 @@
 'use strict';
 
 
-function randrange(minimum, maximum) {
-    /* Comes up with a integer value within a range */
-    return Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
-}
-
-function randLab(lower, upper) {
-    /* Comes up with a random lab value of mean +/- random value */
-    var labMean = (lower + upper) / 2;
-    var labRange = upper - lower;
-    var randLab = 0;
-    if (randrange(0, 10) <= 5) {
-        randLab = labMean + Math.random() * labRange / 2;
-    } else {
-        randLab = labMean - Math.random() * labRange / 2;
-    }
-    return randLab
-}
-
-function randSelect(list) {
-    return list[randrange(0, (list.length - 1))];
-}
-
 
 // Declare app level module which depends on views, and components
 angular.module('kinetics-problems', [
@@ -104,12 +82,12 @@ angular.module('kinetics-problems', [
             if (!angular.isNumber(C)) {
                 C = "C";
             } else {
-                C = C + "\\frac{mg}{L}"
+                C = C + "{\\Tiny\\frac{mg}{L}}"
             }
             if (!angular.isNumber(C0)) {
                 C0 = "C_0";
             } else {
-                C0 = C0 + "\\frac{mg}{L}"
+                C0 = C0 + "{\\Tiny\\frac{mg}{L}}"
             }
             if (!angular.isNumber(k)) {
                 k = "k_{el}";
@@ -123,8 +101,10 @@ angular.module('kinetics-problems', [
             }
             return "\\[-" + k + " = {\\frac{{\\ln " + C + " - \\ln " + C0 + "}}{" + t + "}} \\]";
         };
-        this.kelSolution = function (k) {
-            return "\\[k_{el} = -" + k + " \\:  hrs^{-1}\\]";
+
+        this.LaTeX = function (str) {
+            console.log(str);
+            return "\\[" + str + "\\]";
         };
     })
 
@@ -160,15 +140,15 @@ angular.module('kinetics-problems', [
         this.adult = function () {
             if (randrange(0, 10) < 5) {
                 var gender = 'male';
-                var height = randLab(65, 75);
+                var height = randNormal(70, 2, 0);
                 var weight = 50 + 2.3 * (height - 60);
             } else {
                 var gender = 'female';
-                var height = randLab(62, 72);
+                var height = randNormal(67, 2, 0);
                 var weight = 45.5 + 2.3 * (height - 60);
             }
             height = Math.round(height);
-            weight = randLab(weight * 0.9, weight * 1.1);
+            weight = randNormal(weight, 2, 0);
             weight = Math.round(weight);
 
             var age = randrange(18, 85);
@@ -210,11 +190,11 @@ angular.module('kinetics-problems', [
 
 
             /* Background Normal Labs */
-            var Na = Math.floor(randLab(136, 146));
-            var K = Math.floor(randLab(3.5, 5.1) * 10) / 10;
-            var Cl = Math.floor(randLab(98, 108));
-            var C02 = Math.floor(randLab(18, 30));
-            var glucose = Math.floor(randLab(74, 106));
+            var Na = randNormal(141, 2, 0);
+            var K = randNormal(4.3, 0.2, 1);
+            var Cl = randNormal(103, 2, 0);
+            var C02 = randNormal(24, 5, 0);
+            var glucose = randNormal(90, 8, 0);
 
             return {
                 initials: initials,
@@ -291,15 +271,13 @@ angular.module('kinetics-problems', [
             }
             ClCr = Math.round(ClCr);
 
-            var Vd = randLab((0.21 * weight), (0.27 * weight));
-            Vd = Math.round(Vd * 10) / 10;
+            var Vd = randNormal((0.24 * weight), (0.02 * weight), 1);
 
-            var k = 0.00285 * ClCr + 0.015;
-            k = randLab((k * 0.8), (k * 1.2));
+            var halflife = 0.693 / (0.00285 * ClCr + 0.015);
+            halflife = randNormal(halflife, 0.5, 2);
+
+            var k = 0.693 / halflife;
             k = Math.round(k * 1000) / 1000;
-
-            var halflife = 0.693 / k;
-            halflife = Math.round(halflife * 10) / 10;
             return {
                 k: k,
                 Vd: Vd,

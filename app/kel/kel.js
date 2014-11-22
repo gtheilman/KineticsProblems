@@ -27,8 +27,16 @@ angular.module('kinetics-problems.kel', ['ngRoute', 'n3-line-chart'])
                 tooltip: "Infusion Begins"
             },
             {x: $scope.Problem.InfusionEnd_time, value: $scope.Problem.InfusionEnd_conc, tooltip: "Infusion Ends"},
-            {x: $scope.Problem.C0_time, value: $scope.Problem.C0, tooltip: "C0"},
-            {x: $scope.Problem.C_time, value: $scope.Problem.C, tooltip: "C"},
+            {
+                x: $scope.Problem.C0_time,
+                value: $scope.Problem.C0,
+                tooltip: "C0 = " + $scope.Problem.C0 + " mg/L @ " + moment($scope.Problem.C0_time).format('HH:mm')
+            },
+            {
+                x: $scope.Problem.C_time,
+                value: $scope.Problem.C,
+                tooltip: "C = " + $scope.Problem.C + " mg/L @ " + moment($scope.Problem.C_time).format('HH:mm')
+            },
             {
                 x: $scope.Problem.IntervalEnds_time,
                 value: $scope.Problem.InfusionBegin_conc,
@@ -40,35 +48,33 @@ angular.module('kinetics-problems.kel', ['ngRoute', 'n3-line-chart'])
         $scope.firstorderslope = LatexService.firstOrderSlope("C", "C0", "k", "t");
         $scope.firstorderslope2 = LatexService.firstOrderSlope($scope.Problem.C, $scope.Problem.C0, "k", "t");
         $scope.firstorderslope3 = LatexService.firstOrderSlope($scope.Problem.C, $scope.Problem.C0, "k", $scope.Problem.deltaT);
-        $scope.kelSolution = LatexService.kelSolution($scope.PopulationParams.k);
-
-
+        $scope.kelSolution = LatexService.LaTeX("k_{el} = -" + $scope.PopulationParams.k + " \\:  hrs^{-1}");
+        $scope.riserun = LatexService.LaTeX('slope=\\frac{rise}{run}');
     })
 
 
     .service('Problem', function () {
         this.CalculateKel = function (k, Vd) {
-            var tau = randLab(6, 0.693 / k * 4);
-            tau = Math.round(tau);
+            var tau = randNormal((0.693 / k * 3), 2, 0);
 
             var tinf = randSelect([0.25, 0.5, 0.75, 1]);
 
-            var twait = randLab(0, ((tau - tinf) / 2));
-            var Cmax = Math.round(randLab(5, 12) * 10) / 10;
+            var twait = randrange(0, ((tau - tinf) / 3));
+            var Cmax = Math.round(randrange(5, 12) * 10) / 10;
             var dose = tinf * Cmax * Vd * k / ( (1 - (Math.exp(-1 * k * tinf))) / (1 - (Math.exp(-1 * k * tau))) * (Math.exp(-1 * k * 0)) );
             dose = Math.round(dose / 10) * 10;
 
             var C0 = Cmax * (Math.exp(-1 * k * twait));
             C0 = Math.round(C0 * 10) / 10;
 
-            var t2 = randLab(1, (tau - tinf - twait) / 2);
+            var t2 = randrange(((tau - tinf - twait) / 2), ((tau - tinf - twait) / 1.1));
             var C = C0 * (Math.exp(-1 * k * t2));
             C = Math.round(C * 10) / 10;
 
             var now = moment();
             var labDelay = randSelect([0.75, 1, 1.25, 1.5, 1.75, 2]);
 
-            var InfusionBegin_time = moment().subtract((tau + labDelay), 'hours');
+            var InfusionBegin_time = moment().subtract((tau - t2 + labDelay), 'hours');
             var InfusionEnd_time = moment(InfusionBegin_time).add(tinf, 'hours');
             var C0_time = moment(InfusionEnd_time).add(twait, 'hours');
             var C_time = moment(C0_time).add(t2, 'hours');
