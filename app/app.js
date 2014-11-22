@@ -62,23 +62,7 @@ angular.module('kinetics-problems', [
 
     .service('LatexService', function () {
         /* pass variables to create equations. If not a number, puts in variable */
-        this.firstOrderElimination = function (C, C0, k, t) {
-            if (!angular.isNumber(C)) {
-                C = "C";
-            }
-            if (!angular.isNumber(C0)) {
-                C0 = "C_0";
-            }
-            if (!angular.isNumber(k)) {
-                k = "k_{el}";
-            }
-            if (!angular.isNumber(t)) {
-                t = "t";
-            }
-            return "\\[ " + C + "=" + C0 + "\\cdot e^{-" + k + "\\cdot " + t + "} \\]";
-
-        };
-        this.firstOrderSlope = function (C, C0, k, t) {
+        function checkVariables(C, C0, k, t) {
             if (!angular.isNumber(C)) {
                 C = "C";
             } else {
@@ -99,9 +83,22 @@ angular.module('kinetics-problems', [
             } else {
                 t = t + "\\: hrs"
             }
-            return "\\[-" + k + " = {\\frac{{\\ln " + C + " - \\ln " + C0 + "}}{" + t + "}} \\]";
-        };
+            return {
+                C: C,
+                C0: C0,
+                k: k,
+                t: t
+            };
+        }
 
+        this.firstOrderElimination = function (C, C0, k, t) {
+            var Variables = checkVariables(C, C0, k, t);
+            return "\\[ " + Variables.C + "=" + Variables.C0 + "\\cdot e^{-" + Variables.k + "\\cdot " + Variables.t + "} \\]";
+        };
+        this.firstOrderSlope = function (C, C0, k, t) {
+            var Variables = checkVariables(C, C0, k, t);
+            return "\\[-" + Variables.k + " = {\\frac{{\\ln " + Variables.C + " - \\ln " + Variables.C0 + "}}{" + Variables.t + "}} \\]";
+        };
         this.LaTeX = function (str) {
             console.log(str);
             return "\\[" + str + "\\]";
