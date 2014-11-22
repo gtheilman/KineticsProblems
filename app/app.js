@@ -19,14 +19,16 @@ function randLab(lower, upper) {
     return randLab
 }
 
-
-
+function randSelect(list) {
+    return list[randrange(0, (list.length - 1))];
+}
 
 
 // Declare app level module which depends on views, and components
 angular.module('kinetics-problems', [
     'ngRoute',
     'kinetics-problems.menu',
+    'kinetics-problems.kel',
     'kinetics-problems.case',
     'kinetics-problems.version',
     'ui.bootstrap'
@@ -36,13 +38,24 @@ angular.module('kinetics-problems', [
         $routeProvider.otherwise({redirectTo: '/menu'});
     }])
 
+    .directive("mathjaxBind", function () {
+        return {
+            restrict: "A",
+            controller: ["$scope", "$element", "$attrs", function ($scope, $element, $attrs) {
+                $scope.$watch($attrs.mathjaxBind, function (value) {
+                    $element.text(value == undefined ? "" : value);
+                    MathJax.Hub.Queue(["Typeset", MathJax.Hub, $element[0]]);
+                });
+            }]
+        };
+    })
 
     .service('GraphService', function () {
-        this.concTime = function (units, drug) {
+        this.concTime = function (units, drug, scale, data) {
             var graphOptions = {
                 axes: {
                     x: {key: 'x', type: 'date'},
-                    y: {type: 'linear', min: 0, max: 10, ticks: 5}
+                    y: {type: scale}
                 },
                 series: [
                     {y: 'value', color: 'steelblue', thickness: '2px', type: 'log', label: drug, dotSize: 5}
@@ -50,10 +63,17 @@ angular.module('kinetics-problems', [
                 tooltip: {
                     mode: 'scrubber',
                     formatter: function (x, y, series) {
-                        return moment(x).format("HH:mm") + ', ' + y + ' ' + units;
+                        var row = null;
+                        data.forEach(function (datum) {
+                            if (datum.x == x) {
+                                row = datum;
+                                return
+                            }
+                        });
+                        return row.tooltip; // moment(x).format("HH:mm") + ', ' + y + ' ' + units;
                     }
                 },
-                lineMode: 'cardinal',
+                lineMode: 'linear',
                 drawLegend: 'true'
 
             };
@@ -136,19 +156,32 @@ angular.module('kinetics-problems', [
                 var height = randLab(62, 72);
                 var weight = 45.5 + 2.3 * (height - 60);
             }
-            height = Math.round(height * 10) / 10;
+            height = Math.round(height);
             weight = randLab(weight * 0.9, weight * 1.1);
             weight = Math.round(weight);
 
             var age = randrange(18, 85);
 
-            var races = [
+            function makeinitials() {
+                var text = "";
+                var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+                for (var i = 0; i < 2; i++)
+                    text += possible.charAt(Math.floor(Math.random() * possible.length)) + '.';
+
+                return text;
+            }
+
+            var initials = makeinitials();
+
+            var race = randSelect([
                 "white",
                 "African-American",
                 "Asian",
-                "Hispanic"
-            ];
-            var race = races[randrange(0, (races.length - 1))];
+                "Hispanic",
+                "Amerindian"
+            ]);
+
 
             /* Renal Function */
             var creatinine = 0.9;
@@ -173,6 +206,7 @@ angular.module('kinetics-problems', [
             var glucose = Math.floor(randLab(74, 106));
 
             return {
+                initials: initials,
                 gender: gender,
                 age: age,
                 race: race,
@@ -194,18 +228,18 @@ angular.module('kinetics-problems', [
         this.gramNegative = function () {
             var temp = Math.round(randrange(100.5, 103) * 10) / 10;
             var WBC = Math.round(randrange(10.5, 15) * 10) / 10;
+            var hr = Math.round(randrange(90, 110));
             var resp = randrange(15, 30);
-            var diagnoses = [
+            var diagnosis = randSelect([
                 "sepsis",
                 "pneumonia"
-            ];
-            var diagnosis = diagnoses[randrange(0, (diagnoses.length - 1))];
-
+            ]);
             return {
                 temp: temp,
                 WBC: WBC,
                 resp: resp,
-                diagnosis: diagnosis
+                diagnosis: diagnosis,
+                hr: hr
             };
         };
     })
@@ -213,23 +247,20 @@ angular.module('kinetics-problems', [
 
     .service('AddDrug', function () {
         this.genttobra = function () {
-            var drugs = [
+            var drug = randSelect([
                 "gentamicin",
                 "tobramycin",
                 "netilmicin"
-            ];
-            var drug = drugs[randrange(0, (drugs.length - 1))];
-
+            ]);
             return {
                 drug: drug
             };
         };
         this.amikacinkanamycin = function () {
-            var drugs = [
+            var drug = randSelect([
                 "amikacin",
                 "kanamycin"
-            ];
-            var drug = drugs[randrange(0, (drugs.length - 1))];
+            ]);
 
             return {
                 drug: drug
@@ -264,6 +295,8 @@ angular.module('kinetics-problems', [
                 halflife: halflife,
                 ClCr: ClCr
             };
+
+
         };
     });
 

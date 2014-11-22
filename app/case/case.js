@@ -9,17 +9,6 @@ angular.module('kinetics-problems.case', ['ngRoute', 'n3-line-chart'])
             controller: 'CaseCtrl'
         });
     }])
-    .directive("mathjaxBind", function () {
-        return {
-            restrict: "A",
-            controller: ["$scope", "$element", "$attrs", function ($scope, $element, $attrs) {
-                $scope.$watch($attrs.mathjaxBind, function (value) {
-                    $element.text(value == undefined ? "" : value);
-                    MathJax.Hub.Queue(["Typeset", MathJax.Hub, $element[0]]);
-                });
-            }]
-        };
-    })
 
 
     .controller('CaseCtrl', function ($scope, LatexService, CreatePatient, PopulationParams, SolverService, GraphService, AddDisease, AddDrug) {
