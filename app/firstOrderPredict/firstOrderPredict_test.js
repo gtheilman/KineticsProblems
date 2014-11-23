@@ -22,3 +22,21 @@ describe('kinetics-problems.firstOrderPredict firstOrderPredictCtrl', function (
         });
 });
 
+
+describe("firstOrderPredictProblem service", function () {
+    var firstOrderPredictProblem;
+
+    beforeEach(module('kinetics-problems'));
+
+    beforeEach(inject(function (_firstOrderPredictProblem_) {
+        firstOrderPredictProblem = _firstOrderPredictProblem_;
+    }));
+
+    describe("Calculate Kel function", function () {
+        it("should return a patient age",
+            function () {
+                expect(firstOrderPredictProblem.CalculateKel(0.1, 25).dose).toBeGreaterThan(1);
+            });
+    });
+
+});

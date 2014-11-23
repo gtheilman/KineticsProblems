@@ -101,7 +101,6 @@ angular.module('kinetics-problems', [
             return "\\[-" + Variables.k + " = {\\frac{{\\ln " + Variables.C + " - \\ln " + Variables.C0 + "}}{" + Variables.t + "}} \\]";
         };
         this.LaTeX = function (str) {
-            console.log(str);
             return "\\[" + str + "\\]";
         };
     })

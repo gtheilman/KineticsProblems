@@ -12,7 +12,18 @@ angular.module('kinetics-problems.kel', ['ngRoute', 'n3-line-chart'])
 
 
     .controller('KelCtrl', function ($scope, LatexService, CreatePatient, PopulationParams, Problem,
-                                     SolverService, GraphService, AddDisease, AddDrug) {
+                                     SolverService, GraphService, AddDisease, AddDrug, $timeout) {
+        $scope.hidePatient = false;
+        $scope.hideStep1 = false;
+        $timeout(function () {
+            $scope.hideStep1 = true;
+        }, 500);
+        $scope.hideStep2 = true;
+        $scope.hideStep3 = true;
+        $scope.hideStep4 = true;
+        $scope.hideStep5 = true;
+
+
         $scope.adultpatient = CreatePatient.adult();
         $scope.disease = AddDisease.gramNegative();
         $scope.drug = AddDrug.genttobra();
@@ -53,6 +64,11 @@ angular.module('kinetics-problems.kel', ['ngRoute', 'n3-line-chart'])
         $scope.firstOrderElimination = LatexService.firstOrderElimination("C", "C0", "k", "t");
         $scope.firstOrderElimination2 = LatexService.firstOrderElimination($scope.Problem.C, $scope.Problem.C0, "k", "t");
         $scope.firstOrderElimination3 = LatexService.firstOrderElimination($scope.Problem.C, $scope.Problem.C0, "k", $scope.Problem.deltaT);
+        $scope.halflifeEquation = LatexService.LaTeX('t_{\\frac{1}{2}}=\\frac{0.693}{k_{el}}');
+        $scope.halflifeSolution = LatexService.LaTeX($scope.Problem.halflife + '=t_{\\frac{1}{2}}=\\frac{0.693}{' + $scope.PopulationParams.k + '}');
+
+
+
     })
 
 
@@ -92,6 +108,9 @@ angular.module('kinetics-problems.kel', ['ngRoute', 'n3-line-chart'])
             var deltaT = C_time.diff(C0_time, 'hours', true);
             deltaT = Math.round(deltaT * 10) / 10;
 
+            var halflife = 0.693 / k;
+            halflife = Math.round(halflife * 10) / 10;
+
             IntervalEnds_time = moment(IntervalEnds_time).toDate();
             C_time = moment(C_time).toDate();
             C0_time = moment(C0_time).toDate();
@@ -114,7 +133,8 @@ angular.module('kinetics-problems.kel', ['ngRoute', 'n3-line-chart'])
                 InfusionEnd_conc: InfusionEnd_conc,
                 InfusionBegin_conc: InfusionBegin_conc,
                 IntervalEnds_time: IntervalEnds_time,
-                deltaT: deltaT
+                deltaT: deltaT,
+                halflife: halflife
             };
         };
 

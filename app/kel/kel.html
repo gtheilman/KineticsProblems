@@ -1,78 +1,416 @@
-<div ng-controller="KelCtrl">
-
-    <span ng-include="'common/case1.html'"></span>
-    <p>
-        The patient has been receiving {{drug.drug}} {{Problem.dose}} mg every {{Problem.tau}} hours intravenously.
-        The most recent dose was infused starting at {{Problem.InfusionBegin_time | date:'HH:mm'}} and the infusion was
-        completed at {{Problem.InfusionEnd_time | date:'HH:mm' }}.
-    </p>
-    The following concentrations were collected:<br>
-    {{drug.drug}} ({{Problem.C0_time | date:'yyyy-MM-dd HH:mm'}}) {{Problem.C0}} mg/L
-    <br>
-    {{drug.drug}} ({{Problem.C_time | date:'yyyy-MM-dd HH:mm'}}) {{Problem.C}} mg/L
-    <br>
-    <br>
-
-    <p>
-        What is this patient's elimination rate constant for {{drug.drug}}?
-    </p>
+<style>
+    .stepHeader {
+        font: bold;
+        font-size: large;
+    }
+</style>
 
 
-    <p>Draw a picture</p>
+<div class="container">
+    <div class="page-header">
+        <h2>Solving for the elimination rate constant (Kel)</h2>
 
-    <div style="width: 33%">
-        <linechart data="initialDrawingData" options="initialDrawingOptions"></linechart>
+        <p class="lead">Given two concentrations, find out how fast the patient is eliminating the drug.</p>
     </div>
 
 
-    <div style="width: 33%">
-        <linechart data="initialDrawingData" options="initialDrawingOptionsLog"></linechart>
+    <div ng-controller="KelCtrl">
+
+        <div class="row">
+            <div class="col-md-8"></div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hidePatient = !hidePatient">Toggle patient case</button>
+            </div>
+        </div>
+
+        <div collapse="hidePatient">
+
+            <span ng-include="'common/case1.html'"></span>
+
+            <p>
+                The patient has been receiving {{drug.drug}} {{Problem.dose}} mg every {{Problem.tau}} hours
+                intravenously.
+                The most recent dose was infused starting at {{Problem.InfusionBegin_time | date:'HH:mm'}} and the
+                infusion was
+                completed at {{Problem.InfusionEnd_time | date:'HH:mm' }}.
+            </p>
+
+            <p>
+                The following concentrations were collected:
+                <br>
+                {{drug.drug}} ({{Problem.C0_time | date:'yyyy-MM-dd HH:mm'}}) {{Problem.C0}} mg/L
+                <br>
+                {{drug.drug}} ({{Problem.C_time | date:'yyyy-MM-dd HH:mm'}}) {{Problem.C}} mg/L
+            </p>
+
+            <p>
+                What is this patient's elimination rate constant for {{drug.drug}}?
+            </p>
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+        </div>
+        <!--collapse hide patient-->
+
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 1: Draw a picture.</span>
+                </p>
+
+                <p>
+                    Use the information in the patient case to create a concentration-time plot. Show what we know so
+                    far about what the drug concentrations are doing.
+                </p>
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep1 = !hideStep1">Toggle Step 1</button>
+            </div>
+        </div>
+
+
+        <div collapse="hideStep1">
+
+            <div class="row">
+                <div class="col-md-6" style="height: 300px">.
+                    <linechart data="initialDrawingData" options="initialDrawingOptions"></linechart>
+                </div>
+                <div class="col-md-6">
+                    Text about linear chart
+                </div>
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6" style="height:300px">.
+                    <linechart data="initialDrawingData" options="initialDrawingOptionsLog"></linechart>
+                </div>
+                <div class="col-md-6">
+                    Text about log chart
+                </div>
+            </div>
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+        </div>
+        <!--collapse hide step 1-->
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 2: Predict answer.</span>
+                </p>
+
+                <p>
+                    In the time it took us to draw the graphs, it's possible we may have forgotten what the question
+                    was asking. Go back and look at the question again. Answer these two questions:
+                <ul>
+                    <li>What is the answer going to look like (units)?</li>
+                    <li>What ballpark number are we expecting as out answer?</li>
+                </ul>
+                Click the button to the right when you have answered these questions.
+                </p>
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep2 = !hideStep2">Toggle Step 2</button>
+            </div>
+        </div>
+
+
+        <div collapse="hideStep2">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <p>
+                        Looking back at our question, we see that it is asking for an elimination rate constant (Kel).
+                        We know that the units for Kel is usually <b>per hour</b> (sometimes written as hr
+                        <superscript>-1</superscript>
+                        ).
+                        If we cross out units and don't end up with <b>per hour</b>, we've done something wrong.
+                    </p>
+                    <p>
+                        This is going to be the elimination rate constant for {{drug.drug}}. We can look up the
+                        <a href="http://europepmc.org/backend/ptpmcrender.fcgi?accid=PMC175054&blobtype=pdf"
+                           target="_blank">predicted value</a>
+                        for the Kel of {{drug.drug}}. If our answer is not a number somewhat similar to the
+                        population average, we've probably done something wrong.
+                    </p>
+
+                    <p>
+                        In this case, we are expecting a number that is probably between 0.001 and 0.300. If we end up
+                        with
+                        our answer being "57" or "0.00000034", we need to go back and check our calculations.
+                    </p>
+                </div>
+
+            </div>
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+        </div>
+        <!--collapse hide step 2-->
+
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 3: Select your tools.</span>
+                </p>
+
+                <p>
+                    Think about what equations help describe the situation. Which one are you going to use?
+                </p>
+
+                <p>Click the button to the right when you have an equation in mind.</p>
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep3 = !hideStep3">Toggle Step 3</button>
+            </div>
+        </div>
+
+
+        <div collapse="hideStep3">
+
+            <div class="row">
+                <div class="col-md-6">.
+
+                    <div ng-include="'kel/kel.svg'"></div>
+
+                </div>
+                <div class="col-md-6">
+                    Text about chart
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="riserun"></div>
+                </div>
+                <div class="col-md-6">
+                    Text about rise/run
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="firstorderslope"></div>
+                </div>
+                <div class="col-md-6">
+                    Text about slope equation.
+                </div>
+            </div>
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+        </div>
+        <!--collapse hide step 3-->
+
+
     </div>
 
-    <p>&nbsp;</p>
-
-    <div style="float: left" mathjax-bind="riserun"></div>
-
-    <p>&nbsp;</p>
-    <div style="float: left" mathjax-bind="firstorderslope"></div>
 
     <p>&nbsp;</p>
 
-
-    <div style="float: left" mathjax-bind="firstorderslope2"></div>
+    <p>&nbsp;</p>
 
     <p>&nbsp;</p>
 
-    <div style="float: left" mathjax-bind="firstorderslope3"></div>
+    <div class="row">
+        <div class="col-md-8">
+            <p>
+                <span class="stepHeader">Step 4: Do the math.</span>
+            </p>
 
-    <p>&nbsp;</p>
+            <p>
+                Set up your equations and solve for the unknown (Kel).
+            </p>
 
-    <div style="float: left" mathjax-bind="kelSolution"></div>
-
-    <div>
-        <p>&nbsp;</p>
-
-        <div style="float: left" mathjax-bind="firstOrderElimination"></div>
-
-        <p>&nbsp;</p>
-
-
-        <div style="float: left" mathjax-bind="firstOrderElimination2"></div>
-
-        <p>&nbsp;</p>
-
-        <div style="float: left" mathjax-bind="firstOrderElimination3"></div>
-
-        <p>&nbsp;</p>
-
-        <div style="float: left" mathjax-bind="kelSolution"></div>
+            <p>Click the button to the right when you have a result.</p>
+        </div>
+        <div class="col-md-4">.
+            <button class="btn btn-default" ng-click="hideStep4 = !hideStep4">Toggle Step 4</button>
+        </div>
     </div>
 
-    <div style="" width="50%">
-        <span ng-include="'kel/kel.svg'"></span>
+
+    <div collapse="hideStep4">
+
+
+        <div class="row">
+            <div class="col-md-6">.
+                <div mathjax-bind="firstorderslope2"></div>
+            </div>
+            <div class="col-md-6">
+                Text about firstorderslope2
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">.
+                <div mathjax-bind="firstorderslope3"></div>
+            </div>
+            <div class="col-md-6">
+                Text about slope equation.
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">.
+                <div mathjax-bind="kelSolution"></div>
+            </div>
+            <div class="col-md-6">
+                Text about slope equation.
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">.
+                <div mathjax-bind="firstOrderElimination"></div>
+            </div>
+            <div class="col-md-6">
+                Text about slope equation.
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">.
+                <div mathjax-bind="firstOrderElimination2"></div>
+            </div>
+            <div class="col-md-6">
+                Text about slope equation.
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">.
+                <div mathjax-bind="firstOrderElimination3"></div>
+            </div>
+            <div class="col-md-6">
+                Text about slope equation.
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">.
+                <div mathjax-bind="kelSolution"></div>
+            </div>
+            <div class="col-md-6">
+                Text about slope equation.
+            </div>
+        </div>
+
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
     </div>
+    <!--collapse hide step 4-->
+
+
+    <p>&nbsp;</p>
+
+    <p>&nbsp;</p>
+
+    <p>&nbsp;</p>
+
+    <div class="row">
+        <div class="col-md-8">
+            <p>
+                <span class="stepHeader">Step 5: Does my answer make sense?.</span>
+            </p>
+
+            <p>
+                Go back to Step 2. Does you answer look the way you expected it to?
+            <ul>
+                <li>Are the units what was expected?</li>
+                <li>Is the number in the same general range for the population predictions?</li>
+            </ul>
+            </p>
+
+            <p>Click the button to the right for an additional tip.</p>
+        </div>
+        <div class="col-md-4">.
+            <button class="btn btn-default" ng-click="hideStep5 = !hideStep5">Toggle Step 5</button>
+        </div>
+    </div>
+
+
+    <div collapse="hideStep5">
+
+
+        <div class="row">
+            <div class="col-md-6">.
+                <div mathjax-bind="kelSolution"></div>
+            </div>
+            <div class="col-md-6">
+                Text about per hours
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">.
+                <div mathjax-bind="halflifeEquation"></div>
+            </div>
+            <div class="col-md-6">
+                Text about converting to half-life.
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">.
+                <div mathjax-bind="halflifeSolution"></div>
+            </div>
+            <div class="col-md-6">
+                Convert to half life.
+            </div>
+        </div>
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+    </div>
+    <!--collapse hide step 5-->
+
+    <p>&nbsp;</p>
+
+    <p>&nbsp;</p>
+
+    <p>&nbsp;</p>
+
+    <p>&nbsp;</p>
+
+    <p>&nbsp;</p>
 
 
 </div>
- 
- 
+<!-- /container -->

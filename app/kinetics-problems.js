@@ -14,4 +14,3 @@ function randNormal(mean, stdev, mantissa) {
 function randSelect(list) {
     return list[randrange(0, (list.length - 1))];
 }
-
