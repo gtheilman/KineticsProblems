@@ -195,7 +195,54 @@ angular.module('kinetics-problems', [
             var Hgb = randNormal(13, 1, 1);
             var Hct = randNormal(39, 2, 0);
             var platelets = randNormal(275, 75, 0);
-            ;
+
+            var childhoodIllnesses = randSelect([
+                "No significant childhood illnesses",
+                "Attention-deficit hyperactivity disorder",
+                "Acne vulgaris"
+            ]);
+
+            var trauma = randSelect([
+                "No significant trauma or surgeries",
+                "Open-facture of left leg two years ago due to a fishing accident.  No long-term complications",
+                "Appendectomy five years ago"
+            ]);
+
+            var travel = randSelect([
+                "None outside continental U.S.",
+                "Mission trip to Honduras three years ago.",
+                "Recently returned from Liberia"
+            ]);
+
+            var habits = randSelect([
+                "Occasional alcohol",
+                "1-2 ppd smoker",
+                "2-3 cups of coffee per day",
+                "Occasional recreational marijuana use"
+            ]);
+
+            var immunizations = randSelect([
+                "UTD",
+                "Completed usual childhood vaccines",
+                "Flu shot last October",
+                "Tetanus booster earlier this year following cut on hand"
+            ]);
+
+            var familyHistory = randSelect([
+                "Father died at age 57 of MI.  Mother with diabetes.",
+                "Mother and father in good health.  Sister with major depressive disorder.",
+                "Family history of colon cancer.  Brother with HTN.",
+                "Has a twin brother with asthma.  Father with COPD."
+            ]);
+            var socialHistory = randSelect([
+                "Works as a bus driver.  Health insurance through employer.",
+                "Currently unemployed.   Receiving Social Security benefits",
+                "Employed by the State.   Blue Cross and Blue Shield insurance.",
+                "Plays jazz trumpet in a band.  Self-insured."
+            ]);
+
+
+
 
             return {
                 initials: initials,
@@ -213,7 +260,14 @@ angular.module('kinetics-problems', [
                 weight: weight,
                 Hgb: Hgb,
                 Hct: Hct,
-                platelets: platelets
+                platelets: platelets,
+                childhoodIllnesses: childhoodIllnesses,
+                trauma: trauma,
+                travel: travel,
+                habits: habits,
+                immunizations: immunizations,
+                familyHistory: familyHistory,
+                socialHistory: socialHistory
             };
         };
     })

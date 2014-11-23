@@ -9,11 +9,10 @@
     <div ng-controller="KelCtrl">
 
         <div class="row">
-            <div class="col-md-8"></div>
+            <div class="col-md-8"><span class="stepHeader">Patient Case</span></div>
             <div class="col-md-4">.
                 <button class="btn btn-default" ng-click="hidePatient = !hidePatient">Toggle patient case</button>
             </div>
-            <p>&nbsp;</p>
         </div>
 
         <div collapse="hidePatient">
@@ -21,20 +20,21 @@
             <span ng-include="'common/case1.html'"></span>
 
             <p>
-                The patient has been receiving {{drug.drug}} {{Problem.dose}} mg every {{Problem.tau}} hours
-                intravenously.
-                The most recent dose was infused starting at {{Problem.InfusionBegin_time | date:'HH:mm'}} and the
-                infusion was
-                completed at {{Problem.InfusionEnd_time | date:'HH:mm' }}.
-            </p>
-
-            <p>
-                The following concentrations were collected:
                 <br>
                 {{drug.drug}} ({{Problem.C0_time | date:'yyyy-MM-dd HH:mm'}}) {{Problem.C0}} mg/L
                 <br>
                 {{drug.drug}} ({{Problem.C_time | date:'yyyy-MM-dd HH:mm'}}) {{Problem.C}} mg/L
             </p>
+
+            <p>&nbsp;</p>
+            <p>
+                The patient has been receiving {{drug.drug}} {{Problem.dose}} mg every {{Problem.tau}} hours
+                intravenously.<br>
+                The most recent dose was infused starting at {{Problem.InfusionBegin_time | date:'HH:mm'}} and the
+                infusion was completed at {{Problem.InfusionEnd_time | date:'HH:mm' }}.
+            </p>
+
+            <p>&nbsp;</p>
 
             <p>
                 What is this patient's elimination rate constant for {{drug.drug}}?
