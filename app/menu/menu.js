@@ -4,42 +4,48 @@ angular.module('kinetics-problems.menu', ['ngRoute'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/menu', {
             templateUrl: 'menu/menu.html',
-            controller: 'DatepickerDemoCtrl'
+            controller: 'menuCtrl'
         });
     }])
 
-    .controller('DatepickerDemoCtrl', function ($scope) {
-        $scope.today = function () {
-            $scope.dt = new Date();
-        };
-        $scope.today();
+    .controller('menuCtrl', function ($scope) {
+        $scope.oneAtATime = false;
 
-        $scope.clear = function () {
-            $scope.dt = null;
-        };
-
-        // Disable weekend selection
-        $scope.disabled = function (date, mode) {
-            return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-        };
-
-        $scope.toggleMin = function () {
-            $scope.minDate = $scope.minDate ? null : new Date();
-        };
-        $scope.toggleMin();
-
-        $scope.open = function ($event) {
-            $event.preventDefault();
-            $event.stopPropagation();
-
-            $scope.opened = true;
-        };
-
-        $scope.dateOptions = {
-            formatYear: 'yy',
-            startingDay: 1
-        };
-
-        $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-        $scope.format = $scope.formats[0];
+        $scope.menugroups =
+            [
+                {
+                    "name": "First-order Elimination",
+                    "problems": [
+                        {
+                            "title": "Solving for the Elimination Rate Constant (Kel)",
+                            "url": "kel"
+                        },
+                        {
+                            "title": "Predicting Concentrations of First-order Drugs",
+                            "url": "firstOrderPredict"
+                        },
+                        {
+                            "title": "Postdicting Concentrations of First-order Drugs",
+                            "url": "firstOrderPostdict"
+                        }
+                    ]
+                },
+                {
+                    "name": "Quantifying Renal Function",
+                    "problems": [
+                        {
+                            "title": "Measured Creatinine Clearance",
+                            "url": "measuredCrCl"
+                        },
+                        {
+                            "title": "Cockroft-Gault",
+                            "url": "cockroftGault"
+                        },
+                        {
+                            "title": "MDRD",
+                            "url": "mdrd"
+                        }
+                    ]
+                }
+            ]
     });
