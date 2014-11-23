@@ -9,10 +9,12 @@
         xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
         height="520"
         width="608"
+        viewBox="0 0 {{608/svgScale}} {{520/svgScale}}"
+        preserveAspectRatio="xMinYMin meet"
         id="svg3084"
         version="1.1"
         inkscape:version="0.48.4 r9939"
-        sodipodi:docname="testSVG.svg">
+        sodipodi:docname="kel.svg">
     <metadata
             id="metadata3143">
         <rdf:RDF>

@@ -67,6 +67,8 @@ angular.module('kinetics-problems.kel', ['ngRoute', 'n3-line-chart'])
         $scope.halflifeEquation = LatexService.LaTeX('t_{\\frac{1}{2}}=\\frac{0.693}{k_{el}}');
         $scope.halflifeSolution = LatexService.LaTeX($scope.Problem.halflife + '=t_{\\frac{1}{2}}=\\frac{0.693}{' + $scope.PopulationParams.k + '}');
 
+        $scope.svgScale = 0.8;
+
 
 
     })

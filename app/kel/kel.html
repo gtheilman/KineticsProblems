@@ -13,6 +13,7 @@
             <div class="col-md-4">.
                 <button class="btn btn-default" ng-click="hidePatient = !hidePatient">Toggle patient case</button>
             </div>
+            <p>&nbsp;</p>
         </div>
 
         <div collapse="hidePatient">
@@ -72,6 +73,8 @@
                     <linechart data="initialDrawingData" options="initialDrawingOptions"></linechart>
                 </div>
                 <div class="col-md-6">
+                    <p>&nbsp;</p>
+
                     <p>
                         Here is the information from the patient case plotted on a linear-linear graph. Both the X-axis
                         (time) and the Y-axis (concentration) are linear. Since {{drug.drug}} is a first-order drug,
@@ -97,6 +100,8 @@
                     <linechart data="initialDrawingData" options="initialDrawingOptionsLog"></linechart>
                 </div>
                 <div class="col-md-6">
+                    <p>&nbsp;</p>
+
                     <p>
                         Curves are difficult to work with mathematically. Straight lines are easy. Changing the
                         Y-axis from linear to logarithmic changes the curves to straight lines. The important thing
