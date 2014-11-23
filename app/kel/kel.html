@@ -47,14 +47,14 @@
                 What is this patient's elimination rate constant for {{drug.drug}}?
             </p>
 
-            <p>&nbsp;</p>
-
-            <p>&nbsp;</p>
-
-            <p>&nbsp;</p>
         </div>
         <!--collapse hide patient-->
 
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
 
         <div class="row">
             <div class="col-md-8">
@@ -80,7 +80,21 @@
                     <linechart data="initialDrawingData" options="initialDrawingOptions"></linechart>
                 </div>
                 <div class="col-md-6">
-                    Text about linear chart
+                    <p>
+                        Here is the information from the patient case plotted on a linear-linear graph. Both the X-axis
+                        (time) and the Y-axis (concentration) are linear. Since {{drug.drug}} is a first-order drug,
+                        we end up with a curved plot.
+                    </p>
+
+                    <p>
+                        Let your mouse rest over the various points on the graph to see what each one represents.
+                    </p>
+
+                    <p>
+                        Even though there are five different points plotted, we really only know the concentrations for
+                        the inner-most two (Co and C). The other points are just estimated based on what was
+                        described in the case.
+                    </p>
                 </div>
 
             </div>
@@ -91,7 +105,12 @@
                     <linechart data="initialDrawingData" options="initialDrawingOptionsLog"></linechart>
                 </div>
                 <div class="col-md-6">
-                    Text about log chart
+                    <p>
+                        Curves are difficult to work with mathematically. Straight lines are easy. Changing the
+                        Y-axis from linear to logarithmic changes the curves to straight lines. The important thing
+                        to keep in mind is that the Y-axis no longer represents 'concentration'. It now represents
+                        <b>ln concentration</b>. The X-axis (time) is still linear.
+                    </p>
                 </div>
             </div>
 
@@ -104,9 +123,7 @@
         <!--collapse hide step 1-->
 
         <p>&nbsp;</p>
-
         <p>&nbsp;</p>
-
         <p>&nbsp;</p>
 
         <div class="row">
@@ -120,7 +137,7 @@
                     was asking. Go back and look at the question again. Answer these two questions:
                 <ul>
                     <li>What is the answer going to look like (units)?</li>
-                    <li>What ballpark number are we expecting as out answer?</li>
+                <li>What "ballpark" number are we expecting as our answer?</li>
                 </ul>
                 Click the button to the right when you have answered these questions.
                 </p>
@@ -135,23 +152,27 @@
 
             <div class="row">
                 <div class="col-md-12">
+                    <p>&nbsp;</p>
+
+                    <p>&nbsp;</p>
                     <p>
                         Looking back at our question, we see that it is asking for an elimination rate constant (Kel).
                         We know that the units for Kel is usually <b>per hour</b> (sometimes written as hr
-                        <superscript>-1</superscript>
+                        <sup>-1</sup>
                         ).
                         If we cross out units and don't end up with <b>per hour</b>, we've done something wrong.
                     </p>
                     <p>
-                        This is going to be the elimination rate constant for {{drug.drug}}. We can look up the
+                        We are calculating this patient's elimination rate constant for {{drug.drug}}. We can look up
+                        the
                         <a href="http://europepmc.org/backend/ptpmcrender.fcgi?accid=PMC175054&blobtype=pdf"
                            target="_blank">predicted value</a>
-                        for the Kel of {{drug.drug}}. If our answer is not a number somewhat similar to the
+                        for the Kel of {{drug.drug}}. If our answer is not a number at least somewhat similar to the
                         population average, we've probably done something wrong.
                     </p>
 
                     <p>
-                        In this case, we are expecting a number that is probably between 0.001 and 0.300. If we end up
+                        In this case, we are expecting a number that is probably between 0.01 and 0.400. If we end up
                         with
                         our answer being "57" or "0.00000034", we need to go back and check our calculations.
                     </p>
@@ -201,7 +222,10 @@
 
                 </div>
                 <div class="col-md-6">
-                    Text about chart
+                    <p>
+                        Here is the same information from the patient case. The elimination rate constant (Kel) is
+                        going to be the slope of the line on which Co and C lie.
+                    </p>
                 </div>
             </div>
 
@@ -211,7 +235,11 @@
                     <div mathjax-bind="riserun"></div>
                 </div>
                 <div class="col-md-6">
-                    Text about rise/run
+                    <p>
+                        Slope is sometimes thought of as "rise over run". That is, it is the change in the value of
+                        the Y-axis portion of the the coordinate (ln concentration) over the value of the X-axis portion
+                        (time).
+                    </p>
                 </div>
             </div>
             <div class="row">
@@ -219,7 +247,11 @@
                     <div mathjax-bind="firstorderslope"></div>
                 </div>
                 <div class="col-md-6">
-                    Text about slope equation.
+                    <p>
+                        Here is our "rise over run" with the coordinates of our points filled-in. The numerator
+                        represents the difference in the <b>ln concentrations</b> of the points, while the denominator
+                        represents the change in time.
+                    </p>
                 </div>
             </div>
 
@@ -267,7 +299,10 @@
                 <div mathjax-bind="firstorderslope2"></div>
             </div>
             <div class="col-md-6">
-                Text about firstorderslope2
+                <p>
+                    We've filled in the two concentration values. It's important to remember that we have to take
+                    the natural log of each concentration before subtracting.
+                </p>
             </div>
         </div>
 
@@ -276,7 +311,9 @@
                 <div mathjax-bind="firstorderslope3"></div>
             </div>
             <div class="col-md-6">
-                Text about slope equation.
+                <p>
+                    We add in the difference in time between the two concentrations.
+                </p>
             </div>
         </div>
 
@@ -285,7 +322,11 @@
                 <div mathjax-bind="kelSolution"></div>
             </div>
             <div class="col-md-6">
-                Text about slope equation.
+                <p>
+                    We then solve for Kel. Note that since the line is sloping "down", the slope is a negative number.
+                    However, we usually express Kel in terms of it's absolute value, even though (by definition) it
+                    always represents a negative slope.
+                </p>
             </div>
         </div>
 
@@ -294,7 +335,11 @@
                 <div mathjax-bind="firstOrderElimination"></div>
             </div>
             <div class="col-md-6">
-                Text about slope equation.
+                <p>
+                    Rearranging the Kel equation gives us this version. It's the exact same equation. I tend to find
+                    this
+                    version easier to use. However, the first version makes the nature of the Kel more clear.
+                </p>
             </div>
         </div>
 
@@ -303,7 +348,10 @@
                 <div mathjax-bind="firstOrderElimination2"></div>
             </div>
             <div class="col-md-6">
-                Text about slope equation.
+                <p>
+                    Just as before, we put in the values for our concentrations. In this case, we don't need to
+                    take the natural logs of the concentrations first.
+                </p>
             </div>
         </div>
 
@@ -312,7 +360,9 @@
                 <div mathjax-bind="firstOrderElimination3"></div>
             </div>
             <div class="col-md-6">
-                Text about slope equation.
+                <p>
+                    Then we add in the change in time.
+                </p>
             </div>
         </div>
 
@@ -321,7 +371,11 @@
                 <div mathjax-bind="kelSolution"></div>
             </div>
             <div class="col-md-6">
-                Text about slope equation.
+                <p>
+
+                <p>&nbsp;</p>
+                Both equations give us the same answer for Kel.
+                </p>
             </div>
         </div>
 
@@ -371,7 +425,16 @@
                 <div mathjax-bind="kelSolution"></div>
             </div>
             <div class="col-md-6">
-                Text about per hours
+                <p>
+                    It's hard to think in "per hours". It doesn't make intuitive sense to have a value with no units
+                    in the numerator.
+                </p>
+
+                <p>
+                    It's also difficult to think in numbers less than one. Humans work best with numbers between
+                    about 1 and 20. It's hard for use to visualize {{PopulationParams.k}} of something.
+                </p>
+
             </div>
         </div>
 
@@ -380,7 +443,10 @@
                 <div mathjax-bind="halflifeEquation"></div>
             </div>
             <div class="col-md-6">
-                Text about converting to half-life.
+                <p>
+                    In order to better determine if the answer we got "makes sense", it may be helpful to convert the
+                    Kel into half-life.
+                </p>
             </div>
         </div>
 
@@ -389,7 +455,13 @@
                 <div mathjax-bind="halflifeSolution"></div>
             </div>
             <div class="col-md-6">
-                Convert to half life.
+                <p>
+                    It's easier to think about {{PopulationParams.halflife | number:1}} hours rather than
+                    {{PopulationParams.k}} per
+                    hours. We can more easily understand that a half-life of {{PopulationParams.halflife | number:1}}
+                    hours
+                    "makes sense" for {{drug.drug}}.
+                </p>
             </div>
         </div>
 
