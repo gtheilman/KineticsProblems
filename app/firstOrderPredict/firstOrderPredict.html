@@ -9,7 +9,7 @@
     <div ng-controller="firstOrderPredictCtrl">
 
         <div class="row">
-            <div class="col-md-8"></div>
+            <div class="col-md-8"><span class="stepHeader">Patient Case</span></div>
             <div class="col-md-4">.
                 <button class="btn btn-default" ng-click="hidePatient = !hidePatient">Toggle patient case</button>
             </div>
@@ -20,32 +20,28 @@
 
             <span ng-include="'common/case1.html'"></span>
 
+            <p>&nbsp;</p>
+
+            <p>
+                {{drug.drug | capitalize}} ({{firstOrderPredictProblem.C0_time | date:'yyyy-MM-dd HH:mm'}})
+                {{firstOrderPredictProblem.C0}} mg/L
+            </p>
+
 
             <p>
                 The patient has been receiving {{drug.drug}} {{firstOrderPredictProblem.dose}} mg every
-                {{firstOrderPredictProblem.tau}} hours intravenously.
+                {{firstOrderPredictProblem.tau}} hours intravenously.<br>
                 The most recent dose was infused starting at {{firstOrderPredictProblem.InfusionBegin_time |
-                date:'HH:mm'}} and
-                the infusion was
-                completed at {{firstOrderPredictProblem.InfusionEnd_time | date:'HH:mm' }}. The patient's elimination
-                rate
-                constant for {{drug.drug}}
+                date:'HH:mm'}} and the infusion was
+                completed at {{firstOrderPredictProblem.InfusionEnd_time | date:'HH:mm' }}. <br>
+                The patient's elimination rate constant for {{drug.drug}}
                 had previously been calculated as being {{firstOrderPredictPopulationParams.k}} per hour.
             </p>
 
-            <p>
-                The following concentration was collected:<br>
-
-            <p>
-                {{drug.drug}} ({{firstOrderPredictProblem.C0_time | date:'yyyy-MM-dd HH:mm'}})
-                {{firstOrderPredictProblem.C0}} mg/L
-            </p>
-            <br>
 
             <p>
                 Because of the supertherapeutic concentration, the {{drug.drug}} was stopped. The plan is to restart the
-                {{drug.drug}}
-                at a lower dose when the concentration reaches {{firstOrderPredictProblem.C}} mg/L.
+                {{drug.drug}} at a lower dose when the concentration reaches {{firstOrderPredictProblem.C}} mg/L.
             </p>
             <br>
             <br>

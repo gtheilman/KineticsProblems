@@ -14,3 +14,14 @@ function randNormal(mean, stdev, mantissa) {
 function randSelect(list) {
     return list[randrange(0, (list.length - 1))];
 }
+
+
+$('#calculator').click(function () {
+    var calculatorWindow = new Window({
+        template: $('#popupcalculator').html(),
+        title: "",
+        bodyContent: "<iframe width='320' height='390' src='common/calculator.html' scrolling='no' style='border: 1px solid #silver; '></iframe>"
+    });
+
+});
+

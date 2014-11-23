@@ -13,6 +13,7 @@
     "html5-boilerplate": "~4.3.0",
     "angular-bootstrap": "~0.11.2",
     "n3-line-chart": "~1.1.3",
-    "moment": "~2.8.4"
+    "moment": "~2.8.4",
+    "bootstrap-window": "~0.2.2"
   }
 }

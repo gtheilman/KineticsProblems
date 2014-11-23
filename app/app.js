@@ -29,6 +29,14 @@ angular.module('kinetics-problems', [
         };
     })
 
+    .filter('capitalize', function () {
+        return function (input, scope) {
+            if (input != null)
+                input = input.toLowerCase();
+            return input.substring(0, 1).toUpperCase() + input.substring(1);
+        }
+    })
+
     .service('GraphService', function () {
         this.concTime = function (units, drug, scale, data) {
             var graphOptions = {

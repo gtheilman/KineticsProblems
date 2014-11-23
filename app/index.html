@@ -16,13 +16,16 @@
     <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap-window/dist/css/bootstrap-window.css">
     <link rel="stylesheet" href="app.css">
-    <link rel="stylesheet" href="bower_components/nvd3/nv.d3.css"/>
     <link rel="stylesheet" href="kinetics-problems.css"/>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
 </head>
 <body>
 <ul class="menu">
     <li><a href="#/menu"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+    <li><span id="calculator"><i class="fa fa-calculator"></i></span></li>
 </ul>
 
 <!--[if lt IE 7]>
@@ -36,6 +39,7 @@
 <!-- In production use:
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
 -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
@@ -47,6 +51,7 @@
 <script src="bower_components/d3/d3.js"></script>
 <script src="bower_components/n3-line-chart/dist/line-chart.js"></script>
 <script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/bootstrap-window/dist/js/bootstrap-window.min.js"></script>
 <script src='kinetics-problems.js'></script>
 <script src="app.js"></script>
 <script src="menu/menu.js"></script>
@@ -59,7 +64,20 @@
 </html>
 
 
+<!--Put these here because they are weird third-party plugins that seem to need to go on the main page-->
+
 <script>
     MathJax.Hub.Config({skipStartupTypeset: true});
     MathJax.Hub.Configured();
+</script>
+
+<script type="template/text" id="popupcalculator">
+    <div class="window">
+        <div class="window-header">
+            <button type="button" class="close" data-dismiss="window" aria-hidden="true">x</button>
+            <h4 class="window-title">Calculator</h4>
+        </div>
+        <div class="window-body">
+        </div>
+    </div>
 </script>
