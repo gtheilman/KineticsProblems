@@ -12,7 +12,18 @@ angular.module('kinetics-problems.firstOrderPredict', ['ngRoute', 'n3-line-chart
 
 
     .controller('firstOrderPredictCtrl', function ($scope, LatexService, CreatePatient, PopulationParams, firstOrderPredictProblem,
-                                                   SolverService, GraphService, AddDisease, AddDrug) {
+                                                   SolverService, GraphService, AddDisease, AddDrug, $timeout) {
+        $scope.hidePatient = false;
+        $scope.hideStep1 = false;
+        $timeout(function () {
+            $scope.hideStep1 = true;
+        }, 500);
+        $scope.hideStep2 = true;
+        $scope.hideStep3 = true;
+        $scope.hideStep4 = true;
+        $scope.hideStep5 = true;
+
+
         $scope.adultpatient = CreatePatient.adult();
         $scope.adultpatient.creatinine = randrange(2.5, 8);
         $scope.adultpatient.BUN = randNormal(($scope.adultpatient.creatinine * 10), 3, 0);
@@ -100,6 +111,7 @@ angular.module('kinetics-problems.firstOrderPredict', ['ngRoute', 'n3-line-chart
             C0_time = moment(C0_time).toDate();
             InfusionBegin_time = moment(InfusionBegin_time).toDate();
             InfusionEnd_time = moment(InfusionEnd_time).toDate();
+            now = moment(now).toDate();
 
 
             return {
@@ -116,7 +128,8 @@ angular.module('kinetics-problems.firstOrderPredict', ['ngRoute', 'n3-line-chart
                 InfusionBegin_time: InfusionBegin_time,
                 InfusionEnd_conc: InfusionEnd_conc,
                 InfusionBegin_conc: InfusionBegin_conc,
-                deltaT: deltaT
+                deltaT: deltaT,
+                now: now
             };
         };
 

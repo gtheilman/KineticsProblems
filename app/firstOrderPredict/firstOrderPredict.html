@@ -1,86 +1,486 @@
-<div ng-controller="firstOrderPredictCtrl">
+<div class="container">
+    <div class="page-header">
+        <h2>Predicting Concentrations of First-Order Drugs</h2>
 
-    <span ng-include="'common/case1.html'"></span>
-
-    <p>
-        The patient has been receiving {{drug.drug}} {{firstOrderPredictProblem.dose}} mg every
-        {{firstOrderPredictProblem.tau}} hours intravenously.
-        The most recent dose was infused starting at {{firstOrderPredictProblem.InfusionBegin_time | date:'HH:mm'}} and
-        the infusion was
-        completed at {{firstOrderPredictProblem.InfusionEnd_time | date:'HH:mm' }}. The patient's elimination rate
-        constant for
-        {{drug.drug}}
-        had previously been calculated as being {{firstOrderPredictPopulationParams.k}} per hour.
-    </p>
-    The following concentration was collected:<br>
-    {{drug.drug}} ({{firstOrderPredictProblem.C0_time | date:'yyyy-MM-dd HH:mm'}}) {{firstOrderPredictProblem.C0}} mg/L
-    <br>
-    Because of the supertherapeutic concentration, the {{drug.drug}} was stopped. The plan is to restart the
-    {{drug.drug}}
-    at a lower dose when the concentration reaches {{firstOrderPredictProblem.C}}.
-    <br>
-    <br>
-
-    <p>
-        What is the soonest that the {{drug.drug}} should be restarted??
-    </p>
-
-
-    <p>Draw a picture</p>
-
-    <div style="width: 33%">
-        <linechart data="initialDrawingData" options="initialDrawingOptions"></linechart>
+        <p class="lead">Given a concentration and a Kel, predict future concentrations.</p>
     </div>
 
 
-    <div style="width: 33%">
-        <linechart data="initialDrawingData" options="initialDrawingOptionsLog"></linechart>
-    </div>
+    <div ng-controller="firstOrderPredictCtrl">
 
-    <p>&nbsp;</p>
+        <div class="row">
+            <div class="col-md-8"></div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hidePatient = !hidePatient">Toggle patient case</button>
+            </div>
+        </div>
 
-    <div style="float: left" mathjax-bind="riserun"></div>
+        <div collapse="hidePatient">
 
-    <p>&nbsp;</p>
-
-    <div style="float: left" mathjax-bind="firstorderslope"></div>
-
-    <p>&nbsp;</p>
+            <span ng-include="'common/case1.html'"></span>
 
 
-    <div style="float: left" mathjax-bind="firstorderslope2"></div>
+            <p>
+                The patient has been receiving {{drug.drug}} {{firstOrderPredictProblem.dose}} mg every
+                {{firstOrderPredictProblem.tau}} hours intravenously.
+                The most recent dose was infused starting at {{firstOrderPredictProblem.InfusionBegin_time |
+                date:'HH:mm'}} and
+                the infusion was
+                completed at {{firstOrderPredictProblem.InfusionEnd_time | date:'HH:mm' }}. The patient's elimination
+                rate
+                constant for {{drug.drug}}
+                had previously been calculated as being {{firstOrderPredictPopulationParams.k}} per hour.
+            </p>
 
-    <p>&nbsp;</p>
+            <p>
+                The following concentration was collected:<br>
 
-    <div style="float: left" mathjax-bind="firstorderslope3"></div>
+            <p>
+                {{drug.drug}} ({{firstOrderPredictProblem.C0_time | date:'yyyy-MM-dd HH:mm'}})
+                {{firstOrderPredictProblem.C0}} mg/L
+            </p>
+            <br>
+            Because of the supertherapeutic concentration, the {{drug.drug}} was stopped. The plan is to restart the
+            {{drug.drug}}
+            at a lower dose when the concentration reaches {{firstOrderPredictProblem.C}} mg/L.
+            <br>
+            <br>
+            </p>
 
-    <p>&nbsp;</p>
+            <p>
+                When is the soonest that the {{drug.drug}} should be restarted??
+            </p>
 
-    <div>
-        <p>&nbsp;</p>
-
-        <div style="float: left" mathjax-bind="firstOrderElimination"></div>
+        </div>
+        <!--collapse hide patient-->
 
         <p>&nbsp;</p>
 
-
-        <div style="float: left" mathjax-bind="firstOrderElimination2"></div>
+        <p>&nbsp;</p>
 
         <p>&nbsp;</p>
 
-        <div style="float: left" mathjax-bind="firstOrderElimination3"></div>
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 1: Draw a picture.</span>
+                </p>
+
+                <p>
+                    Use the information in the patient case to create a concentration-time plot. Show what we know so
+                    far about what the drug concentrations are doing.
+                </p>
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep1 = !hideStep1">Toggle Step 1</button>
+            </div>
+        </div>
+
+
+        <div collapse="hideStep1">
+
+            <div class="row">
+                <div class="col-md-6" style="height: 300px">.
+                    <linechart data="initialDrawingData" options="initialDrawingOptions"></linechart>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        This case is somewhat contrived in that one usually does not already know the elimination
+                        rate constant for a specific patient. In a patient who has not yet had at least two
+                        concentration collected, we usually have to rely on
+                        <a href="http://europepmc.org/backend/ptpmcrender.fcgi?accid=PMC175054&blobtype=pdf"
+                           target="_blank">predicted values</a>.
+                        But let's say this is a patient that we had been consulted on previously and we have already
+                        <a href="index.html#kel">calculated their Kel</a>.
+                    </p>
+
+                    <p>
+                        Let your mouse rest over the various points on the graph to see what each one represents.
+                    </p>
+
+                    <p>
+                        Even though there are several different points plotted, we really only know the concentrations
+                        for
+                        one (Co). The other points are just estimated based on what was described in the case.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6" style="height:300px">.
+                    <linechart data="initialDrawingData" options="initialDrawingOptionsLog"></linechart>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        So that we can work with straight lines rather than curves, we can plot the data on a semi-log
+                        chart where the Y-axis is actually <b>ln concentration</b>.
+                    </p>
+
+                    <p>
+                        Looking at this you might find
+                        yourself saying "Dr. Theilman, I can see the point on the graph where
+                        the concentration crosses {{firstOrderPredictProblem.C}} mg/L. We don't need to do all this
+                        math, we can just read the answer off the graph!"
+                    </p>
+
+                    <p>
+                        You are quite correct. As a matter of fact, before electronic calculators were available
+                        that's how many people solved pharmacokinetic problems. They would plot the patient data on
+                        <a href="http://www.rit.edu/~w-uphysi/graphing/badsemilog.gif" target="_blank">
+                            semi-log paper</a>, draw a straight line with a ruler, and then read the answer
+                        off the graph.
+                    </p>
+                </div>
+            </div>
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+        </div>
+        <!--collapse hide step 1-->
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 2: Predict answer.</span>
+                </p>
+
+                <p>
+                    In the time it took us to draw the graphs, it's possible we may have forgotten what the question
+                    was asking. Go back and look at the question again. Answer these two questions:
+                <ul>
+                    <li>What is the answer going to look like?</li>
+                    <li>What value are we expecting as our answer?</li>
+                </ul>
+                Click the button to the right when you have answered these questions.
+                </p>
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep2 = !hideStep2">Toggle Step 2</button>
+            </div>
+        </div>
+
+
+        <div collapse="hideStep2">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <p>&nbsp;</p>
+
+                    <p>&nbsp;</p>
+
+                    <p>
+                        Looking back at our question, we see that it is asking for a <b>time of day</b>. The answer
+                        that will result from our calculations will likely be in <b>hours</b>. If we answer in "hours",
+                        we will not have completed the problem. Hours from when?
+                    </p>
+
+                    <p>
+                        We also know that the answer will be sometime in the future. If we get a time of day that has
+                        already passed, we've probably done something wrong.
+                    </p>
+                </div>
+
+            </div>
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+        </div>
+        <!--collapse hide step 2-->
+
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 3: Select your tools.</span>
+                </p>
+
+                <p>
+                    Think about what equations help describe the situation. Which one are you going to use?
+                </p>
+
+                <p>Click the button to the right when you have an equation in mind.</p>
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep3 = !hideStep3">Toggle Step 3</button>
+            </div>
+        </div>
+
+
+        <div collapse="hideStep3">
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div ng-include="'firstOrderPredict/firstOrderPredict.svg'"></div>
+
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        Here is the same information from the patient case. We need to figure out how much time must
+                        elapse (delta t) from ({irs{ftOrderPredictProblem.C0_time | date:'HH:mm'}} to get to our goal
+                        concentration ({{firstOrderPredictProblem.C}} mg/L).
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="riserun"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        Slope is sometimes thought of as "rise over run".
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="firstorderslope"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        We have the slope (Kel). We have the "rise" (change in the ln concentration).
+                        We need to figure out the "run" (change in time).
+                    </p>
+                </div>
+            </div>
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+        </div>
+        <!--collapse hide step 3-->
+
+
+
+
+
+    <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+    <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 4: Do the math.</span>
+                </p>
+
+                <p>
+                    Set up your equations and solve for the unknown (Kel).
+                </p>
+
+                <p>Click the button to the right when you have a result.</p>
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep4 = !hideStep4">Toggle Step 4</button>
+            </div>
+        </div>
+
+
+        <div collapse="hideStep4">
+
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="firstorderslope2"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        Here is our "rise over run" with the what we already know filled-in. The numerator
+                        represents the difference in the <b>ln concentrations</b> of the points, while the denominator
+                        represents the change in time.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="firstorderslope3"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        We just use algebra to solve for the denominator.
+                    </p>
+
+                    <p>
+                        Note that I didn't rearrange the equation to get delta t by itself on the left-side of the
+                        equation. I think it gets confusing for students when they see different forms of the same
+                        equation
+                        rearranged to put the "unknown" on the left. So, I'll be trying to use the same arrangement
+                        of the equation consistently and will leave it to you to solve for whatever value is unknown.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="firstOrderElimination"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        Having said that, I'm going to immediately contradict myself and show you a rearranged version
+                        of the same equation. The first version makes the nature of what we are doing more clear.
+                        However,
+                        you are going to see this arrangement used in other problems.
+                    </p>
+
+                    <p>
+                        If you have to only memorize one form of this equation, this is the one you should memorize.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="firstOrderElimination2"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        Just as before, we put in the values for our concentrations and our value for Kel.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="firstOrderElimination3"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        Both equations give us the same answer for delta t.
+                    </p>
+                </div>
+            </div>
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+        </div>
+        <!--collapse hide step 4-->
+
+
+    <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+    <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 5: Does my answer make sense?.</span>
+                </p>
+
+                <p>
+                    Go back to Step 2. Does you answer look the way you expected it to?
+                </p>
+
+                <p>Click the button to the right when you have answered.</p>
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep5 = !hideStep5">Toggle Step 5</button>
+            </div>
+        </div>
+
+
+        <div collapse="hideStep5">
+        <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <p>
+                        The question is asking us for a <b>time of day</b>. The answer we calculated was
+                        {{firstOrderPredictProblem.t2 | number:1}} <b>hours</b>. That's not what the question wanted.
+                    </p>
+
+                    <p>
+                        Our answer indicates that we have to wait {{firstOrderPredictProblem.t2 | number:1}} hours.
+                        Starting
+                        when? When the infusion was started ({{firstOrderPredictProblem.InfusionBegin_time |
+                        date:'HH:mm'}})?
+                        Starting when the infusion ended ({{firstOrderPredictProblem.InfusionEnd_time | date:'HH:mm'}})?
+                        Starting when we got the question ({{firstOrderPredictProblem.now | date:'HH:mm'}})?
+                    </p>
+
+                    <p>
+                        Looking back at Step 3, we can see that we are counting hours starting from the time the
+                        concentration
+                        was drawn ({{firstOrderPredictProblem.C0_time | date:'HH:mm'}}). This is why I always recommend
+                        drawing pictures. It makes it easy to go back and figure out what we are supposed to do.
+                    </p>
+
+                    <p>
+                        We have to count {{firstOrderPredictProblem.t2 | number:1}} hours forward from
+                        {{firstOrderPredictProblem.C0_time | date:'EEEE, MMMM d, yyyy h:mm a'}}.
+                    </p>
+
+                    <p>
+                        The {{drug.drug}} concentration will fall to {{firstOrderPredictProblem.C}} mg/L at
+                        {{goal_time | date:'EEEE, MMMM d, yyyy h:mm a'}}. That's when we can restart the {{drug.drug}}
+                        at
+                        a lower dose.
+                    </p>
+
+                    <p>
+                        Figuring out that dose is a different problem.
+                    </p>
+
+
+                </div>
+
+            </div>
+
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+    </div>
+        <!--collapse hide step 5-->
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
 
     </div>
-
-    <div style="" width="50%">
-        <span ng-include="'firstOrderPredict/firstOrderPredict.svg'"></span>
-    </div>
-    <p>
-        We have to wait {{firstOrderPredictProblem.t2 | number:1}} hours, starting from when the concentration was drawn
-        ({{firstOrderPredictProblem.C0_time | date: 'HH:MM'}}).
-    </p>
-    {{goal_time | date:'EEEE, MMMM d, yyyy h:mm a'}}
-
-</div>
- 
- 
+    <!-- /container -->
