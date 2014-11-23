@@ -41,7 +41,7 @@ angular.module('kinetics-problems.kel', ['ngRoute', 'n3-line-chart'])
             {
                 x: $scope.Problem.C0_time,
                 value: $scope.Problem.C0,
-                tooltip: "C0 = " + $scope.Problem.C0 + " mg/L @ " + moment($scope.Problem.C0_time).format('HH:mm')
+                tooltip: "Co = " + $scope.Problem.C0 + " mg/L @ " + moment($scope.Problem.C0_time).format('HH:mm')
             },
             {
                 x: $scope.Problem.C_time,

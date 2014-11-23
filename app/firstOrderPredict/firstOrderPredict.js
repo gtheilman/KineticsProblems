@@ -47,7 +47,7 @@ angular.module('kinetics-problems.firstOrderPredict', ['ngRoute', 'n3-line-chart
             {
                 x: $scope.firstOrderPredictProblem.C0_time,
                 value: $scope.firstOrderPredictProblem.C0,
-                tooltip: "C0 = " + $scope.firstOrderPredictProblem.C0 + " mg/L @ " + moment($scope.firstOrderPredictProblem.C0_time).format('HH:mm')
+                tooltip: "Co = " + $scope.firstOrderPredictProblem.C0 + " mg/L @ " + moment($scope.firstOrderPredictProblem.C0_time).format('HH:mm')
             },
             {
                 x: $scope.firstOrderPredictProblem.C_time,

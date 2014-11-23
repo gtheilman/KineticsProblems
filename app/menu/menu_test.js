@@ -11,7 +11,7 @@ describe('kinetics-problems.menu MenuCtrl', function () {
         // Create a new scope that's a child of the $rootScope
         scope = $rootScope.$new();
         // Create the controller
-        ctrl = $controller('MenuCtrl', {
+        ctrl = $controller('menuCtrl', {
             $scope: scope
         });
     }));
