@@ -195,6 +195,7 @@ angular.module('kinetics-problems', [
             var Hgb = randNormal(13, 1, 1);
             var Hct = randNormal(39, 2, 0);
             var platelets = randNormal(275, 75, 0);
+            ;
 
             return {
                 initials: initials,
@@ -228,12 +229,17 @@ angular.module('kinetics-problems', [
                 "sepsis",
                 "pneumonia"
             ]);
+
+            var systolic = randNormal(120, 10, 0);
+            var diastolic = randNormal(80, 7.5, 0)
             return {
                 temp: temp,
                 WBC: WBC,
                 resp: resp,
                 diagnosis: diagnosis,
-                hr: hr
+                hr: hr,
+                systolic: systolic,
+                diastolic: diastolic
             };
         };
     })

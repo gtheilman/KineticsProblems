@@ -4,16 +4,16 @@
 <br>&nbsp;<br>
 
 <p>
-    VS: {{disease.temp}} &nbsp;&nbsp; {{disease.resp}} &nbsp;&nbsp; {{disease.hr}} &nbsp;&nbsp;
+    VS: &nbsp;&nbsp; {{disease.systolic}}/{{disease.diastolic}} &nbsp;&nbsp; {{disease.temp}} &nbsp;&nbsp;
+    {{disease.resp}} &nbsp;&nbsp; {{disease.hr}} &nbsp;&nbsp;
     {{adultpatient.height}}"
     &nbsp;&nbsp; {{adultpatient.weight}} kg
 </p>
 <br>&nbsp;<br>
 
+<div>
 
-<div>
-    <div ng-include="'common/chem7.svg'"></div>
-</div>
-<div>
-    <div ng-include="'common/CBC.svg'"></div>
+    <span ng-include="'common/chem7.svg'"></span> &nbsp;&nbsp; <span ng-include="'common/CBC.svg'"> </span>
+
+
 </div>
