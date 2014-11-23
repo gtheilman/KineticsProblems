@@ -40,12 +40,15 @@
                 {{firstOrderPredictProblem.C0}} mg/L
             </p>
             <br>
-            Because of the supertherapeutic concentration, the {{drug.drug}} was stopped. The plan is to restart the
-            {{drug.drug}}
-            at a lower dose when the concentration reaches {{firstOrderPredictProblem.C}} mg/L.
-            <br>
-            <br>
+
+            <p>
+                Because of the supertherapeutic concentration, the {{drug.drug}} was stopped. The plan is to restart the
+                {{drug.drug}}
+                at a lower dose when the concentration reaches {{firstOrderPredictProblem.C}} mg/L.
             </p>
+            <br>
+            <br>
+
 
             <p>
                 When is the soonest that the {{drug.drug}} should be restarted??
@@ -158,11 +161,13 @@
                 <p>
                     In the time it took us to draw the graphs, it's possible we may have forgotten what the question
                     was asking. Go back and look at the question again. Answer these two questions:
+                </p>
                 <ul>
                     <li>What is the answer going to look like?</li>
                     <li>What value are we expecting as our answer?</li>
                 </ul>
-                Click the button to the right when you have answered these questions.
+                <p>
+                    Click the button to the right when you have answered these questions.
                 </p>
             </div>
             <div class="col-md-4">.
@@ -236,7 +241,7 @@
                 <div class="col-md-6">
                     <p>
                         Here is the same information from the patient case. We need to figure out how much time must
-                        elapse (delta t) from ({irs{ftOrderPredictProblem.C0_time | date:'HH:mm'}} to get to our goal
+                        elapse (△t) from ({{firstOrderPredictProblem.C0_time | date:'HH:mm'}} to get to our goal
                         concentration ({{firstOrderPredictProblem.C}} mg/L).
                     </p>
                 </div>
@@ -253,6 +258,7 @@
                     </p>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-md-6">.
                     <div mathjax-bind="firstorderslope"></div>
@@ -274,14 +280,11 @@
         <!--collapse hide step 3-->
 
 
-
-
-
-    <p>&nbsp;</p>
+        <p>&nbsp;</p>
 
         <p>&nbsp;</p>
 
-    <p>&nbsp;</p>
+        <p>&nbsp;</p>
 
         <div class="row">
             <div class="col-md-8">
@@ -327,7 +330,7 @@
                     </p>
 
                     <p>
-                        Note that I didn't rearrange the equation to get delta t by itself on the left-side of the
+                        Note that I didn't rearrange the equation to get △t by itself on the left-side of the
                         equation. I think it gets confusing for students when they see different forms of the same
                         equation
                         rearranged to put the "unknown" on the left. So, I'll be trying to use the same arrangement
@@ -372,10 +375,11 @@
                 </div>
                 <div class="col-md-6">
                     <p>
-                        Both equations give us the same answer for delta t.
+                        Both equations give us the same answer for △t.
                     </p>
                 </div>
             </div>
+
 
             <p>&nbsp;</p>
 
@@ -386,11 +390,11 @@
         <!--collapse hide step 4-->
 
 
-    <p>&nbsp;</p>
+        <p>&nbsp;</p>
 
         <p>&nbsp;</p>
 
-    <p>&nbsp;</p>
+        <p>&nbsp;</p>
 
         <div class="row">
             <div class="col-md-8">
@@ -411,11 +415,11 @@
 
 
         <div collapse="hideStep5">
-        <p>&nbsp;</p>
+            <p>&nbsp;</p>
 
             <p>&nbsp;</p>
 
-        <p>&nbsp;</p>
+            <p>&nbsp;</p>
 
 
             <div class="row">
@@ -468,7 +472,7 @@
             <p>&nbsp;</p>
 
             <p>&nbsp;</p>
-    </div>
+        </div>
         <!--collapse hide step 5-->
 
         <p>&nbsp;</p>
