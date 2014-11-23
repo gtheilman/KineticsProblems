@@ -190,8 +190,11 @@ angular.module('kinetics-problems', [
             var Na = randNormal(141, 2, 0);
             var K = randNormal(4.3, 0.2, 1);
             var Cl = randNormal(103, 2, 0);
-            var C02 = randNormal(24, 5, 0);
+            var CO2 = randNormal(24, 5, 0);
             var glucose = randNormal(90, 8, 0);
+            var Hgb = randNormal(13, 1, 1);
+            var Hct = randNormal(39, 2, 0);
+            var platelets = randNormal(275, 75, 0);
 
             return {
                 initials: initials,
@@ -203,10 +206,13 @@ angular.module('kinetics-problems', [
                 Na: Na,
                 K: K,
                 Cl: Cl,
-                C02: C02,
+                CO2: CO2,
                 glucose: glucose,
                 height: height,
-                weight: weight
+                weight: weight,
+                Hgb: Hgb,
+                Hct: Hct,
+                platelets: platelets
             };
         };
     })

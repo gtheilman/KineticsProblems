@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:cc="http://creativecommons.org/ns#"
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:svg="http://www.w3.org/2000/svg"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+        xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+        width="145.18979"
+        height="44.28125"
+        id="svg2"
+        version="1.1"
+        inkscape:version="0.48.4 r9939"
+        sodipodi:docname="chem7.svg">
+    <defs
+            id="defs4"/>
+    <sodipodi:namedview
+            id="base"
+            pagecolor="#ffffff"
+            bordercolor="#666666"
+            borderopacity="1.0"
+            inkscape:pageopacity="0.0"
+            inkscape:pageshadow="2"
+            inkscape:zoom="1.21"
+            inkscape:cx="-17.522766"
+            inkscape:cy="-75.362183"
+            inkscape:document-units="px"
+            inkscape:current-layer="layer1"
+            showgrid="false"
+            inkscape:window-width="1094"
+            inkscape:window-height="854"
+            inkscape:window-x="459"
+            inkscape:window-y="177"
+            inkscape:window-maximized="0"
+            fit-margin-top="0"
+            fit-margin-left="0"
+            fit-margin-right="0"
+            fit-margin-bottom="0"/>
+    <metadata
+            id="metadata7">
+        <rdf:RDF>
+            <cc:Work
+                    rdf:about="">
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type
+                        rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+                <dc:title></dc:title>
+            </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <g
+            inkscape:label="Layer 1"
+            inkscape:groupmode="layer"
+            id="layer1"
+            transform="translate(-115.94513,-412.71875)">
+        <path
+                style="fill:none;stroke:#000000;stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                d="m 126.4343,432.06914 c 104.13315,1.66613 104.13315,0.83306 104.13315,0.83306 23.32583,-19.99356 18.32744,-15.82824 18.32744,-15.82824"
+                id="path2995"
+                inkscape:connector-curvature="0"
+                sodipodi:nodetypes="ccc"/>
+        <path
+                style="fill:none;stroke:#000000;stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                d="m 229.1,432.6676 c 16.6613,13.32904 17.49437,13.32904 17.49437,13.32904"
+                id="path2997"
+                inkscape:connector-curvature="0"/>
+        <path
+                style="fill:none;stroke:#000000;stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                d="m 185.12579,414.52518 c 0,42.48632 0,42.48632 0,42.48632"
+                id="path2999"
+                inkscape:connector-curvature="0"/>
+        <path
+                style="fill:none;stroke:#000000;stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                d="m 147.74139,412.71055 c 0,42.48632 0,42.48632 0,42.48632"
+                id="path2999-0"
+                inkscape:connector-curvature="0"/>
+        <text
+       xml:space="preserve"
+       style="font-size:24px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="68.31134"
+       y="420.89877"
+       id="text3019"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3021"
+         x="68.31134"
+         y="420.89877" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="115.94513"
+       y="429.53384"
+       id="text3023"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3025"
+         x="115.94513"
+         y="429.53384"> {{adultpatient.Na}}    {{adultpatient.Cl}}     {{adultpatient.BUN}}</tspan><tspan
+         sodipodi:role="line"
+         x="115.94513"
+         y="444.53384"
+         id="tspan3029">  {{adultpatient.K}}     {{adultpatient.CO2}}      {{adultpatient.creatinine}}</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="239.42007"
+       y="437.44083"
+       id="text3031"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3033"
+         x="239.42007"
+         y="437.44083">{{adultpatient.glucose}}</tspan></text>
+    </g>
+</svg>
