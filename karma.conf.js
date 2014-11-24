@@ -10,6 +10,7 @@ module.exports = function (config) {
             'app/bower_components/n3-line-chart/dist/line-chart.js',
             'app/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
             'app/bower_components/moment/moment.js',
+            'app/bower_components/jquery/dist/jquery.js',
             'app/components/**/*.js',
             'app/menu*/**/*.js',
             'app/case*/**/*.js',

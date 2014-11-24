@@ -11,6 +11,8 @@
         xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
         width="111.86"
         height="31.09375"
+        viewBox="0 0 111.86 31.09375"
+        preserveAspectRatio="xMinYMin meet"
         id="svg2"
         version="1.1"
         inkscape:version="0.48.4 r9939"
@@ -24,9 +26,9 @@
             borderopacity="1.0"
             inkscape:pageopacity="0.0"
             inkscape:pageshadow="2"
-            inkscape:zoom="1.21"
-            inkscape:cx="-60.31607"
-            inkscape:cy="-82.643433"
+            inkscape:zoom="1.5674954"
+            inkscape:cx="-60.312797"
+            inkscape:cy="-82.638947"
             inkscape:document-units="px"
             inkscape:current-layer="layer1"
             showgrid="false"
@@ -82,7 +84,7 @@
          sodipodi:role="line"
          id="tspan3025"
          x="193.94513"
-         y="429.53384"> {{adultpatient.Hgb}}</tspan><tspan
+         y="429.53384"> {{AddDisease.WBC}}</tspan><tspan
          sodipodi:role="line"
          x="193.94513"
          y="444.53384"
@@ -97,7 +99,7 @@
          sodipodi:role="line"
          id="tspan3033"
          x="157.42007"
-         y="437.44083">{{disease.WBC}}              {{adultpatient.platelets}}</tspan></text>
+         y="437.44083">{{adultpatient.Hgb}}</tspan></text>
         <path
                 style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
                 d="m 73.553719,19.487862 c 39.669421,0 39.669421,0 39.669421,0"
@@ -124,5 +126,17 @@
                 inkscape:connector-curvature="0"
                 transform="translate(115.94513,412.71875)"
                 sodipodi:nodetypes="cc"/>
+        <text
+       xml:space="preserve"
+       style="font-size:24px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="239.8624"
+       y="436.84271"
+       id="text3083"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3085"
+         x="239.8624"
+         y="436.84271"
+         style="font-size:12px">{{adultpatient.platelets}}</tspan></text>
     </g>
 </svg>

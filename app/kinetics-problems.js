@@ -16,7 +16,7 @@ function randSelect(list) {
 }
 
 
-$('#calculator').click(function () {
+jQuery('#calculator').click(function () {
     var calculatorWindow = new Window({
         template: $('#popupcalculator').html(),
         title: "",

@@ -10,29 +10,29 @@ describe("LatexService service", function () {
         LatexService = _LatexService_;
     }));
 
-    describe("firstorderelimination function", function () {
-        it("should return firstorderelimination symbols latex",
+    describe("First-order elimination LaTex symbols function", function () {
+        it("should return a LaTex version of first-order elimination equation with just symbols",
             function () {
                 expect(LatexService.firstOrderElimination('C', 'C0', 'k', 't')).toEqual('\\[ C=C_0\\cdot e^{-k_{el}\\cdot \\Delta t} \\]');
             });
     });
 
-    describe("firstorderelimination numbers function", function () {
-        it("should return firstorderelimination numbers latex",
+    describe("First-order elimination LaTex numbers function", function () {
+        it("should return a LaTex version of first-order elimination equation with numbers",
             function () {
                 expect(LatexService.firstOrderElimination(1, 2, 3, 4)).toEqual('\\[ 1{\\Tiny\\frac{mg}{L}}=2{\\Tiny\\frac{mg}{L}}\\cdot e^{-3 \\:  hrs^{-1}\\cdot 4\\: hrs} \\]');
             });
     });
 
-    describe("firstorderslope function", function () {
-        it("should return firstorderslope symbols latex",
+    describe("First-order slope LaTex symbols function", function () {
+        it("should return a LaTex version of first-order slope equation with just symbols",
             function () {
                 expect(LatexService.firstOrderSlope('C', 'C0', 'k', 't')).toEqual('\\[-k_{el} = {\\frac{{\\ln C - \\ln C_0}}{\\Delta t}} \\]');
             });
     });
 
-    describe("firstorderslope numbers function", function () {
-        it("should return firstorderslope numbers latex",
+    describe("First-order slope LaTex numbers function", function () {
+        it("should return a LaTex version of first-order slope equation with actual numbers",
             function () {
                 expect(LatexService.firstOrderSlope(1, 2, 3, 4)).toEqual('\\[-3 \\:  hrs^{-1} = {\\frac{{\\ln 1{\\Tiny\\frac{mg}{L}} - \\ln 2{\\Tiny\\frac{mg}{L}}}}{4\\: hrs}} \\]');
             });
@@ -88,7 +88,7 @@ describe("AddDrug service", function () {
         AddDrug = _AddDrug_;
     }));
 
-    describe("genttobra function", function () {
+    describe("AddDrug.genttobra function", function () {
         it("should return a drug",
             function () {
                 expect(AddDrug.genttobra().drug).not.toBe(null);
@@ -107,7 +107,7 @@ describe("Solver service", function () {
         SolverService = _SolverService_;
     }));
 
-    describe("firstorderelimination function", function () {
+    describe("Solver.FirstOrderElimination function", function () {
         it("should return kel",
             function () {
                 expect(SolverService.FirstOrderElimination(2, 10, "k", 8).k).toEqual(0.201);
@@ -126,8 +126,8 @@ describe("PopulationParams service", function () {
         PopulationParams = _PopulationParams_;
     }));
 
-    describe("aminoglycoside function", function () {
-        it("should return creatinine clearance",
+    describe("PopulationParams.aminoglycoside function", function () {
+        it("should return correctly calculated creatinine clearance",
             function () {
                 expect(PopulationParams.aminoglycoside(47, 70, 1.1, 'female').ClCr).toEqual(70);
             });

@@ -9,8 +9,10 @@
         xmlns="http://www.w3.org/2000/svg"
         xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
         xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-        width="145.18979"
-        height="44.28125"
+        width="160"
+        height="45"
+        viewBox="0 0 160 45"
+        preserveAspectRatio="xMinYMin meet"
         id="svg2"
         version="1.1"
         inkscape:version="0.48.4 r9939"
@@ -47,7 +49,7 @@
                 <dc:format>image/svg+xml</dc:format>
                 <dc:type
                         rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-                <dc:title></dc:title>
+                <dc:title/>
             </cc:Work>
         </rdf:RDF>
     </metadata>
@@ -96,13 +98,9 @@
        id="text3023"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         id="tspan3025"
          x="115.94513"
-         y="429.53384"> {{adultpatient.Na}}    {{adultpatient.Cl}}     {{adultpatient.BUN}}</tspan><tspan
-         sodipodi:role="line"
-         x="115.94513"
-         y="444.53384"
-         id="tspan3029">  {{adultpatient.K}}     {{adultpatient.CO2}}      {{adultpatient.creatinine}}</tspan></text>
+         y="429.53384"
+         id="tspan3029" /></text>
     <text
        xml:space="preserve"
        style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
@@ -113,6 +111,90 @@
          sodipodi:role="line"
          id="tspan3033"
          x="239.42007"
-         y="437.44083">{{adultpatient.glucose}}</tspan></text>
+         y="437.44083" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:24px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="119.73026"
+       y="427.3551"
+       id="text3105"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3107"
+         x="119.73026"
+         y="427.3551"
+         style="font-size:12px">{{adultpatient.Na}}</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:24px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="119.60287"
+       y="447.62766"
+       id="text3105-4"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3107-3"
+         x="119.60287"
+         y="447.62766"
+         style="font-size:12px">{{adultpatient.K | number:1}}</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:24px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="156.09874"
+       y="446.47061"
+       id="text3105-3"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3107-5"
+         x="156.09874"
+         y="446.47061"
+         style="font-size:12px">{{adultpatient.CO2}}</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:24px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="152.09874"
+       y="427.29706"
+       id="text3105-2"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3107-2"
+         x="152.09874"
+         y="427.29706"
+         style="font-size:12px">{{adultpatient.Cl}}</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:24px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="192.5946"
+       y="428.12354"
+       id="text3105-6"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3107-31"
+         x="192.5946"
+         y="428.12354"
+         style="font-size:12px">{{adultpatient.BUN}}</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:24px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="191.76816"
+       y="447.47891"
+       id="text3105-0"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3107-53"
+         x="191.76816"
+         y="447.47891"
+         style="font-size:12px">{{adultpatient.creatinine | number:1}}</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:24px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="230"
+       y="437.26401"
+       id="text3105-5"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3107-7"
+         x="230"
+         y="437.26401"
+         style="font-size:12px">{{adultpatient.glucose}}</tspan></text>
     </g>
 </svg>

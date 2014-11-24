@@ -38,12 +38,25 @@ angular.module('kinetics-problems.menu', ['ngRoute'])
                             "url": "measuredCrCl"
                         },
                         {
-                            "title": "Cockroft-Gault",
+                            "title": "Estimating GFR with Cockroft-Gault",
                             "url": "cockroftGault"
                         },
                         {
-                            "title": "MDRD",
+                            "title": "Estimating GFR with MDRD",
                             "url": "mdrd"
+                        }
+                    ]
+                },
+                {
+                    "name": "Volume of Distribution",
+                    "problems": [
+                        {
+                            "title": "Volume of Distribution Population Estimates",
+                            "url": "VdPop"
+                        },
+                        {
+                            "title": "Calculating a Patient's Actual Volume of Distribution",
+                            "url": "VdCalc"
                         }
                     ]
                 }

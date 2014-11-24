@@ -32,8 +32,8 @@ describe("firstOrderPredictProblem service", function () {
         firstOrderPredictProblem = _firstOrderPredictProblem_;
     }));
 
-    describe("Calculate Kel function", function () {
-        it("should return a patient age",
+    describe("Calculate dose function", function () {
+        it("should return a patient dose",
             function () {
                 expect(firstOrderPredictProblem.CalculateKel(0.1, 25).dose).toBeGreaterThan(1);
             });
