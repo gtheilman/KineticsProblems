@@ -23,7 +23,6 @@ angular.module('kinetics-problems.kel', ['ngRoute', 'n3-line-chart'])
         $scope.hideStep4 = true;
         $scope.hideStep5 = true;
 
-
         $scope.adultpatient = CreatePatient.adult();
         $scope.disease = AddDisease.gramNegative();
         $scope.drug = AddDrug.genttobra();
@@ -66,60 +65,42 @@ angular.module('kinetics-problems.kel', ['ngRoute', 'n3-line-chart'])
         $scope.firstOrderElimination3 = LatexService.firstOrderElimination($scope.Problem.C, $scope.Problem.C0, "k", $scope.Problem.deltaT);
         $scope.halflifeEquation = LatexService.LaTeX('t_{\\frac{1}{2}}=\\frac{0.693}{k_{el}}');
         $scope.halflifeSolution = LatexService.LaTeX($scope.Problem.halflife + '=t_{\\frac{1}{2}}=\\frac{0.693}{' + $scope.PopulationParams.k + '}');
-
-        $scope.svgScale = 0.8;
-
-
-
     })
 
 
     .service('Problem', function () {
         this.CalculateKel = function (k, Vd) {
             var tau = randNormal((0.693 / k * 3), 2, 0);
-
             var tinf = randSelect([0.25, 0.5, 0.75, 1]);
-
             var twait = randrange(0, ((tau - tinf) / 3));
             var Cmax = Math.round(randrange(5, 12) * 10) / 10;
             var dose = tinf * Cmax * Vd * k / ( (1 - (Math.exp(-1 * k * tinf))) / (1 - (Math.exp(-1 * k * tau))) * (Math.exp(-1 * k * 0)) );
             dose = Math.round(dose / 10) * 10;
-
             var C0 = Cmax * (Math.exp(-1 * k * twait));
             C0 = Math.round(C0 * 10) / 10;
-
             var t2 = randrange(((tau - tinf - twait) / 2), ((tau - tinf - twait) / 1.1));
             var C = C0 * (Math.exp(-1 * k * t2));
             C = Math.round(C * 10) / 10;
-
             var now = moment();
             var labDelay = randSelect([0.75, 1, 1.25, 1.5, 1.75, 2]);
-
             var InfusionBegin_time = moment().subtract((tau - t2 + labDelay), 'hours');
             var InfusionEnd_time = moment(InfusionBegin_time).add(tinf, 'hours');
             var C0_time = moment(InfusionEnd_time).add(twait, 'hours');
             var C_time = moment(C0_time).add(t2, 'hours');
             var IntervalEnds_time = moment(InfusionBegin_time).add(tau, 'hours');
-
             var InfusionBegin_conc = C0 * (Math.exp(-1 * k * (tau - tinf - twait)));
             InfusionBegin_conc = Math.round(InfusionBegin_conc * 10) / 10;
-
             var InfusionEnd_conc = C0 * (Math.exp(-1 * k * (-1 * twait)));
             InfusionEnd_conc = Math.round(InfusionEnd_conc * 10) / 10;
-
             var deltaT = C_time.diff(C0_time, 'hours', true);
             deltaT = Math.round(deltaT * 10) / 10;
-
             var halflife = 0.693 / k;
             halflife = Math.round(halflife * 10) / 10;
-
             IntervalEnds_time = moment(IntervalEnds_time).toDate();
             C_time = moment(C_time).toDate();
             C0_time = moment(C0_time).toDate();
             InfusionBegin_time = moment(InfusionBegin_time).toDate();
             InfusionEnd_time = moment(InfusionEnd_time).toDate();
-
-
             return {
                 tinf: tinf,
                 twait: twait,
@@ -139,7 +120,6 @@ angular.module('kinetics-problems.kel', ['ngRoute', 'n3-line-chart'])
                 halflife: halflife
             };
         };
-
 
     });
 
