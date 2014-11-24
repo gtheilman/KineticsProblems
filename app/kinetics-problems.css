@@ -6,3 +6,18 @@
 #calculator {
     cursor: pointer;
 }
+
+.v-center {
+    display: table !important;
+    height: 125px;
+}
+
+.v-center div[class*='col-'] {
+    display: table-cell !important;
+    vertical-align: middle;
+    float: none;
+}
+
+.v-center img {
+    max-height: 125px;
+}

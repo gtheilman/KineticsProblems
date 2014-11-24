@@ -1,3 +1,4 @@
+
 <div class="container">
     <div class="page-header">
         <h2>Solving for the Elimination Rate Constant (Kel)</h2>
@@ -43,7 +44,7 @@
         </div>
         <!--collapse hide patient-->
 
-        <p>&nbsp;</p>
+
 
         <p>&nbsp;</p>
 
@@ -68,12 +69,12 @@
 
         <div collapse="hideStep1">
 
-            <div class="row">
+            <div class="row v-center">
                 <div class="col-md-6" style="height: 300px">.
                     <linechart data="initialDrawingData" options="initialDrawingOptions"></linechart>
                 </div>
                 <div class="col-md-6">
-                    <p>&nbsp;</p>
+
 
                     <p>
                         Here is the information from the patient case plotted on a linear-linear graph. Both the X-axis
@@ -95,12 +96,12 @@
             </div>
 
 
-            <div class="row">
+            <div class="row v-center">
                 <div class="col-md-6" style="height:300px">.
                     <linechart data="initialDrawingData" options="initialDrawingOptionsLog"></linechart>
                 </div>
                 <div class="col-md-6">
-                    <p>&nbsp;</p>
+
 
                     <p>
                         Curves are difficult to work with mathematically. Straight lines are easy. Changing the
@@ -115,11 +116,11 @@
 
             <p>&nbsp;</p>
 
-            <p>&nbsp;</p>
+
         </div>
         <!--collapse hide step 1-->
 
-        <p>&nbsp;</p>
+
         <p>&nbsp;</p>
         <p>&nbsp;</p>
 
@@ -147,12 +148,11 @@
 
         <div collapse="hideStep2">
 
-            <div class="row">
+            <div class="row v-center">
                 <div class="col-md-12">
-                    <p>&nbsp;</p>
 
-                    <p>&nbsp;</p>
-                    <p>
+
+                <p>
                         Looking back at our question, we see that it is asking for an elimination rate constant (Kel).
                         We know that the units for Kel is usually <b>per hour</b> (sometimes written as hr
                         <sup>-1</sup>
@@ -177,7 +177,7 @@
 
             </div>
 
-            <p>&nbsp;</p>
+
 
             <p>&nbsp;</p>
 
@@ -186,7 +186,7 @@
         <!--collapse hide step 2-->
 
 
-        <p>&nbsp;</p>
+
 
         <p>&nbsp;</p>
 
@@ -212,7 +212,7 @@
 
         <div collapse="hideStep3">
 
-            <div class="row">
+            <div class="row v-center">
                 <div class="col-md-6">.
 
                     <div ng-include="'kel/kel.svg'"></div>
@@ -227,7 +227,7 @@
             </div>
 
 
-            <div class="row">
+            <div class="row v-center">
                 <div class="col-md-6">.
                     <div mathjax-bind="riserun"></div>
                 </div>
@@ -239,7 +239,7 @@
                     </p>
                 </div>
             </div>
-            <div class="row">
+            <div class="row v-center">
                 <div class="col-md-6">.
                     <div mathjax-bind="firstorderslope"></div>
                 </div>
@@ -252,7 +252,7 @@
                 </div>
             </div>
 
-            <p>&nbsp;</p>
+
 
             <p>&nbsp;</p>
 
@@ -261,7 +261,7 @@
         <!--collapse hide step 3-->
 
 
-    <p>&nbsp;</p>
+
 
     <p>&nbsp;</p>
 
@@ -288,7 +288,7 @@
     <div collapse="hideStep4">
 
 
-        <div class="row">
+        <div class="row v-center">
             <div class="col-md-6">.
                 <div mathjax-bind="firstorderslope2"></div>
             </div>
@@ -300,7 +300,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row v-center">
             <div class="col-md-6">.
                 <div mathjax-bind="firstorderslope3"></div>
             </div>
@@ -311,7 +311,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row v-center">
             <div class="col-md-6">.
                 <div mathjax-bind="kelSolution"></div>
             </div>
@@ -324,7 +324,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row v-center">
             <div class="col-md-6">.
                 <div mathjax-bind="firstOrderElimination"></div>
             </div>
@@ -337,7 +337,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row v-center">
             <div class="col-md-6">.
                 <div mathjax-bind="firstOrderElimination2"></div>
             </div>
@@ -349,7 +349,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row v-center">
             <div class="col-md-6">.
                 <div mathjax-bind="firstOrderElimination3"></div>
             </div>
@@ -360,14 +360,12 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row v-center">
             <div class="col-md-6">.
                 <div mathjax-bind="kelSolution"></div>
             </div>
             <div class="col-md-6">
                 <p>
-
-                <p>&nbsp;</p>
                 Both equations give us the same answer for Kel.
                 </p>
             </div>
@@ -378,14 +376,12 @@
 
         <p>&nbsp;</p>
 
-        <p>&nbsp;</p>
+
     </div>
     <!--collapse hide step 4-->
 
 
-    <p>&nbsp;</p>
-
-    <p>&nbsp;</p>
+        <p>&nbsp;</p>
 
     <p>&nbsp;</p>
 
@@ -397,11 +393,12 @@
 
             <p>
                 Go back to Step 2. Does you answer look the way you expected it to?
+            </p>
             <ul>
                 <li>Are the units what was expected?</li>
                 <li>Is the number in the same general range for the population predictions?</li>
             </ul>
-            </p>
+
 
             <p>Click the button to the right for an additional tip.</p>
         </div>
@@ -414,7 +411,7 @@
     <div collapse="hideStep5">
 
 
-        <div class="row">
+        <div class="row v-center">
             <div class="col-md-6">.
                 <div mathjax-bind="kelSolution"></div>
             </div>
@@ -432,7 +429,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row v-center">
             <div class="col-md-6">.
                 <div mathjax-bind="halflifeEquation"></div>
             </div>
@@ -444,7 +441,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row v-center">
             <div class="col-md-6">.
                 <div mathjax-bind="halflifeSolution"></div>
             </div>
@@ -459,7 +456,6 @@
             </div>
         </div>
 
-        <p>&nbsp;</p>
 
         <p>&nbsp;</p>
 
@@ -467,13 +463,8 @@
     </div>
     <!--collapse hide step 5-->
 
-    <p>&nbsp;</p>
 
-    <p>&nbsp;</p>
-
-    <p>&nbsp;</p>
-
-    <p>&nbsp;</p>
+        <p>&nbsp;</p>
 
     <p>&nbsp;</p>
 
