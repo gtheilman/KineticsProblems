@@ -75,7 +75,12 @@ describe("AddDisease service", function () {
                 expect(AddDisease.gramNegative().resp).toBeGreaterThan(10);
             });
     });
-
+    describe("AddDisease.PMH function", function () {
+        it("should return a disease",
+            function () {
+                expect(AddDisease.PMH().disease).not.toBe(null);
+            });
+    });
 });
 
 
@@ -94,6 +99,7 @@ describe("AddDrug service", function () {
                 expect(AddDrug.genttobra().drug).not.toBe(null);
             });
     });
+
 
 });
 

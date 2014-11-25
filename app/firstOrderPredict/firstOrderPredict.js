@@ -29,6 +29,7 @@ angular.module('kinetics-problems.firstOrderPredict', ['ngRoute', 'n3-line-chart
         $scope.adultpatient.BUN = randNormal(($scope.adultpatient.creatinine * 10), 3, 0);
         $scope.disease = AddDisease.gramNegative();
         $scope.drug = AddDrug.genttobra();
+        $scope.PMH = AddDisease.PMH();
         /* age, weight, creatinine, gender */
         $scope.firstOrderPredictPopulationParams = PopulationParams.aminoglycoside($scope.adultpatient.age, $scope.adultpatient.weight, $scope.adultpatient.creatinine, $scope.adultpatient.gender);
         $scope.firstOrderPredictProblem = firstOrderPredictProblem.CalculateKel($scope.firstOrderPredictPopulationParams.k, $scope.firstOrderPredictPopulationParams.Vd);

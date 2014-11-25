@@ -26,6 +26,7 @@ angular.module('kinetics-problems.kel', ['ngRoute', 'n3-line-chart'])
         $scope.adultpatient = CreatePatient.adult();
         $scope.disease = AddDisease.gramNegative();
         $scope.drug = AddDrug.genttobra();
+        $scope.PMH = AddDisease.PMH();
         /* age, weight, creatinine, gender */
         $scope.PopulationParams = PopulationParams.aminoglycoside($scope.adultpatient.age, $scope.adultpatient.weight, $scope.adultpatient.creatinine, $scope.adultpatient.gender);
         $scope.Problem = Problem.CalculateKel($scope.PopulationParams.k, $scope.PopulationParams.Vd);

@@ -736,6 +736,122 @@ angular.module('kinetics-problems', [
                 diastolic: diastolic
             };
         };
+        this.PMH = function () {
+
+            function pastMeds(disease) {
+                var med = {
+                    'Adult Acne': function () {
+                        return 'Isotretinoin';
+                    },
+                    'Anemia': function () {
+                        return 'Iron';
+                    },
+                    'Arthritis': function () {
+                        return 'Feldene';
+                    },
+                    'Depression': function () {
+                        return 'Fluoxetine';
+                    },
+                    'Duodenal ulcers': function () {
+                        return 'Omeprazole';
+                    },
+                    'Fibromyalgia': function () {
+                        return 'Duloxetine';
+                    },
+                    'GERD': function () {
+                        return 'Prilosec';
+                    },
+                    'Hyperthyroidism': function () {
+                        return 'PTU';
+                    },
+                    'Hypothyroidism': function () {
+                        return 'Levothyroxine 150 mcg po daily';
+                    },
+                    'Irritable Bowel Syndrome': function () {
+                        return 'Loperamide prn';
+                    },
+                    'Lupus erythematosus': function () {
+                        return 'Prednisone';
+                    },
+                    'Ménières disease': function () {
+                        return 'Cyclobenzprine';
+                    },
+                    'Multiple sclerosis': function () {
+                        return 'Inteferon';
+                    },
+                    'Migraine': function () {
+                        return 'Propranolol';
+                    },
+                    'Myasthenia gravis': function () {
+                        return 'Interferon';
+                    },
+                    'Psoriasis': function () {
+                        return 'Coal Tar';
+                    },
+                    'Rheumatoid arthritis': function () {
+                        return 'Methotrexate';
+                    },
+                    'Gastric ulcers': function () {
+                        return 'Cimetidine';
+                    },
+                    'Schizophrenia': function () {
+                        return 'Haldol';
+                    },
+                    'Tuberculosis': function () {
+                        return 'Completed 3-drug regimen';
+                    },
+                    'Ulcerative Colitis': function () {
+                        return 'Betamethasone';
+                    },
+                    'Crohns Disease': function () {
+                        return 'Asacol';
+                    }
+                };
+                return med[disease]();
+            }
+
+            var disease = randSelect([
+                "Adult Acne",
+                "Anemia",
+                "Arthritis",
+                "Depression",
+                "Duodenal ulcers",
+                "Fibromyalgia",
+                "GERD",
+                "Hyperthyroidism",
+                "Hypothyroidism",
+                "Irritable Bowel Syndrome",
+                "Lupus erythematosus",
+                "Ménière's disease",
+                "Migraine",
+                "Multiple sclerosis",
+                "Myasthenia gravis",
+                "Psoriasis",
+                "Rheumatoid arthritis",
+                "Gastric ulcers",
+                "Schizophrenia",
+                "Tuberculosis",
+                "Ulcerative Colitis",
+                "Crohn's Disease"
+            ]);
+
+            var qualifier = randSelect([
+                "controlled by medications",
+                "in remission",
+                "currently asymptomatic",
+                "controlled",
+                "not currently symptomatic"
+            ]);
+
+
+            var pastRegimen = pastMeds(disease);
+
+            return {
+                disease: disease,
+                pastRegimen: pastRegimen,
+                qualifier: qualifier
+            };
+        };
     })
 
 
