@@ -1,7 +1,6 @@
 'use strict';
 
 
-
 // Declare app level module which depends on views, and components
 angular.module('kinetics-problems', [
     'ngRoute',
@@ -17,6 +16,19 @@ angular.module('kinetics-problems', [
         $routeProvider.otherwise({redirectTo: '/menu'});
     }])
 
+    .directive('renderPane', function () {
+        // Trying to figure out how to display SVGs and LaText dynamically
+        return {
+            scope: {
+                image: '@'
+            },
+            require: 'mathjaxBind',
+            replace: true,
+            template: "<span>{{image}}</span>"
+        };
+    })
+
+
     .directive("mathjaxBind", function () {
         return {
             restrict: "A",
@@ -28,7 +40,11 @@ angular.module('kinetics-problems', [
             }]
         };
     })
-
+    .filter("sanitize", ['$sce', function ($sce) {
+        return function (htmlCode) {
+            return $sce.trustAsHtml(htmlCode);
+        }
+    }])
     .filter('capitalize', function () {
         return function (input, scope) {
             if (input != null)
@@ -807,7 +823,7 @@ angular.module('kinetics-problems', [
                         return 'Asacol';
                     }
                 };
-                return med[disease]();
+                return med[disease];
             }
 
             var disease = randSelect([

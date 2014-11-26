@@ -30,6 +30,7 @@ angular.module('kinetics-problems.kel', ['ngRoute', 'n3-line-chart'])
         /* age, weight, creatinine, gender */
         $scope.PopulationParams = PopulationParams.aminoglycoside($scope.adultpatient.age, $scope.adultpatient.weight, $scope.adultpatient.creatinine, $scope.adultpatient.gender);
         $scope.Problem = Problem.CalculateKel($scope.PopulationParams.k, $scope.PopulationParams.Vd);
+        $scope.steps = Problem.tutorial();
 
         $scope.initialDrawingData = [
             {
@@ -120,6 +121,49 @@ angular.module('kinetics-problems.kel', ['ngRoute', 'n3-line-chart'])
                 deltaT: deltaT,
                 halflife: halflife
             };
+        };
+        this.tutorial = function () {
+            return [
+                {
+                    "stepNumber": "1",
+                    "stepTitle": "Draw a picture.",
+                    "stepLead": "Use the information in the patient case to create a concentration-time plot. Show what we know so far about what the drug concentrations are doing.",
+                    "stepCollapse": "hidestep1",
+                    "rows": [
+                        {
+                            "frameStyle": "height:300px",
+                            "leftFrame": "<linechart data='initialDrawingData' options='initialDrawingOptions'></linechart>",
+                            "rightFrame": "<p>Here is the information from the patient case plotted on a linear-linear graph. Both the X-axis (time) and the Y-axis (concentration) are linear. Since {{drug.drug}} is a first-order drug, we end up with a curved plot.</p><p>Let your mouse rest over the various points on the graph to see what each one represents.</p> <p>Even though there are five different points plotted, we really only know the concentrations for the inner-most two (Co and C). The other points are just estimated based on what was described in the case. </p> <p>Here is the information from the patient case plotted on a linear-linear graph. Both the X-axis (time) and the Y-axis (concentration) are linear. Since {{drug.drug}} is a first-order drug, we end up with a curved plot. </p><p>Let your mouse rest over the various points on the graph to see what each one represents. </p> <p>Even though there are five different points plotted, we really only know the concentrations for the inner-most two (Co and C). The other points are just estimated based on what was described in the case.</p>"
+                        },
+                        {
+                            "frameStyle": "",
+                            "leftFrame": "<div ng-include='kel/kel.svg'></div>",
+                            "rightFrame": "<p>Curves are difficult to work with mathematically. Straight lines are easy. Changing the Y-axis from linear to logarithmic changes the curves to straight lines. The important thing to keep in mind is that the Y-axis no longer represents 'concentration'. It now represents <b>ln concentration</b>. The X-axis (time) is still linear. </p>"
+                        }
+                    ]
+                },
+                {
+                    "stepNumber": "2",
+                    "stepTitle": "Second Step.",
+                    "stepLead": "Use the information in the patient case to create a concentration-time plot. Show what we know so far about what the drug concentrations are doing.",
+                    "stepCollapse": "hidestep2",
+                    "rows": [
+                        {
+                            "frameStyle": "height:300px",
+                            "leftFrame": "<div mathjax-bind='firstorderslope2'></div>",
+                            "rightFrame": "<p>Here is the information from the patient case plotted on a linear-linear graph. Both the X-axis (time) and the Y-axis (concentration) are linear. Since {{drug.drug}} is a first-order drug, we end up with a curved plot.</p><p>Let your mouse rest over the various points on the graph to see what each one represents.</p> <p>Even though there are five different points plotted, we really only know the concentrations for the inner-most two (Co and C). The other points are just estimated based on what was described in the case. </p> <p>Here is the information from the patient case plotted on a linear-linear graph. Both the X-axis (time) and the Y-axis (concentration) are linear. Since {{drug.drug}} is a first-order drug, we end up with a curved plot. </p><p>Let your mouse rest over the various points on the graph to see what each one represents. </p> <p>Even though there are five different points plotted, we really only know the concentrations for the inner-most two (Co and C). The other points are just estimated based on what was described in the case.</p>"
+                        },
+                        {
+                            "frameStyle": "",
+                            "leftFrame": "<linechart data='initialDrawingData' options='initialDrawingOptionsLog'></linechart>",
+                            "rightFrame": "<p>Curves are difficult to work with mathematically. Straight lines are easy. Changing the Y-axis from linear to logarithmic changes the curves to straight lines. The important thing to keep in mind is that the Y-axis no longer represents 'concentration'. It now represents <b>ln concentration</b>. The X-axis (time) is still linear. </p>"
+                        }
+                    ]
+                }
+
+
+            ]
+
         };
 
     });
