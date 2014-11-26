@@ -14,11 +14,10 @@
                 <button class="btn btn-default" ng-click="hidePatient = !hidePatient">Toggle patient case</button>
             </div>
         </div>
-
         <div collapse="hidePatient">
 
             <span ng-include="'common/case1.html'"></span>
-            {{AddDisease.WBC}}
+
             <p>
                 <br>
                 {{drug.drug | capitalize}} ({{Problem.C0_time | date:'yyyy-MM-dd HH:mm'}}) {{Problem.C0}} mg/L
@@ -44,17 +43,15 @@
         </div>
         <!--collapse hide patient-->
 
-        <p>&nbsp;</p>
 
         <p>&nbsp;</p>
 
- 
+        <p>&nbsp;</p>
         <div class="row">
             <div class="col-md-8">
                 <p>
                     <span class="stepHeader">Step 1: Draw a picture.</span>
                 </p>
-
                 <p>
                     Use the information in the patient case to create a concentration-time plot. Show what we know so
                     far about what the drug concentrations are doing.
@@ -64,23 +61,17 @@
                 <button class="btn btn-default" ng-click="hideStep1 = !hideStep1">Toggle Step 1</button>
             </div>
         </div>
-
-
         <div collapse="hideStep1">
-
             <div class="row">
                 <div class="col-md-6" style="height: 300px">.
                     <linechart data="initialDrawingData" options="initialDrawingOptions"></linechart>
             </div>
                 <div class="col-md-6">
-
-
                     <p>
                         Here is the information from the patient case plotted on a linear-linear graph. Both the X-axis
                         (time) and the Y-axis (concentration) are linear. Since {{drug.drug}} is a first-order drug,
                         we end up with a curved plot.
                     </p>
-
                     <p>
                         Let your mouse rest over the various points on the graph to see what each one represents.
                     </p>
@@ -93,15 +84,11 @@
                 </div>
 
             </div>
-
-
         <div class="row">
             <div class="col-md-6" style="height:300px">.
                 <linechart data="initialDrawingData" options="initialDrawingOptionsLog"></linechart>
             </div>
             <div class="col-md-6">
-
-
                 <p>
                     Curves are difficult to work with mathematically. Straight lines are easy. Changing the
                     Y-axis from linear to logarithmic changes the curves to straight lines. The important thing
@@ -110,12 +97,8 @@
                 </p>
             </div>
         </div>
-
             <p>&nbsp;</p>
-
             <p>&nbsp;</p>
-
-
         </div>
         <!--collapse hide step 1-->
 
