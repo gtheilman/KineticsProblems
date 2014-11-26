@@ -48,45 +48,7 @@
 
         <p>&nbsp;</p>
 
-
-        <!-- <div tutorial steps="steps"></div>-->
-
-
-        <div ng-repeat='step in steps'>
-            <div class='row'>
-                <div class='col-md-8'>
-                    <p>
-                        <span class='stepHeader'>Step {{step.stepNumber}}: {{step.stepTitle}}</span>
-                    </p>
-                    <p>
-                        {{step.stepLead}}
-                    </p>
-                </div>
-                <div class='col-md-4'>
-                    <button class='btn btn-default'> Toggle Step {{step.stepNumber}}</button>
-                    <!--ng-click='{{step.stepCollapse}} = !{{step.stepCollapse}}'>-->
-                </div>
-            </div>
-            <div collapse='{{step.stepCollapse}}'>
-                <div ng-repeat='row in step.rows'>
-                    <div class='row'>
-                        <div class='col-md-6' style='{{row.frameStyle}}'>
-                            <renderPane>{{row.leftFrame}}</renderPane>
-                        </div>
-                        <div class='col-md-6'>
-                            <div ng-bind-html='row.rightFrame | sanitize'></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <p>&nbsp;</p>
-
-            <p>&nbsp;</p>
-        </div>
-
-
-        ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++<br>
-
+ 
         <div class="row">
             <div class="col-md-8">
                 <p>

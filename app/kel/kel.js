@@ -132,12 +132,12 @@ angular.module('kinetics-problems.kel', ['ngRoute', 'n3-line-chart'])
                     "rows": [
                         {
                             "frameStyle": "height:300px",
-                            "leftFrame": "<linechart data='initialDrawingData' options='initialDrawingOptions'></linechart>",
+                            "leftFrame": "initialDrawingData",
                             "rightFrame": "<p>Here is the information from the patient case plotted on a linear-linear graph. Both the X-axis (time) and the Y-axis (concentration) are linear. Since {{drug.drug}} is a first-order drug, we end up with a curved plot.</p><p>Let your mouse rest over the various points on the graph to see what each one represents.</p> <p>Even though there are five different points plotted, we really only know the concentrations for the inner-most two (Co and C). The other points are just estimated based on what was described in the case. </p> <p>Here is the information from the patient case plotted on a linear-linear graph. Both the X-axis (time) and the Y-axis (concentration) are linear. Since {{drug.drug}} is a first-order drug, we end up with a curved plot. </p><p>Let your mouse rest over the various points on the graph to see what each one represents. </p> <p>Even though there are five different points plotted, we really only know the concentrations for the inner-most two (Co and C). The other points are just estimated based on what was described in the case.</p>"
                         },
                         {
                             "frameStyle": "",
-                            "leftFrame": "<div ng-include='kel/kel.svg'></div>",
+                            "leftFrame": "kel/kel.svg",
                             "rightFrame": "<p>Curves are difficult to work with mathematically. Straight lines are easy. Changing the Y-axis from linear to logarithmic changes the curves to straight lines. The important thing to keep in mind is that the Y-axis no longer represents 'concentration'. It now represents <b>ln concentration</b>. The X-axis (time) is still linear. </p>"
                         }
                     ]

@@ -16,19 +16,6 @@ angular.module('kinetics-problems', [
         $routeProvider.otherwise({redirectTo: '/menu'});
     }])
 
-    .directive('renderPane', function () {
-        // Trying to figure out how to display SVGs and LaText dynamically
-        return {
-            scope: {
-                image: '@'
-            },
-            require: 'mathjaxBind',
-            replace: true,
-            template: "<span>{{image}}</span>"
-        };
-    })
-
-
     .directive("mathjaxBind", function () {
         return {
             restrict: "A",
