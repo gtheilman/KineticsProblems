@@ -1,0 +1,189 @@
+#variable_inputs td {
+    padding-left: 25px;
+}
+
+#slider-k .ui-slider-handle {
+    background: url(../img/k.png) no-repeat;
+    top: -20px;
+    height: 50px;
+    width: 50px;
+    border: none;
+    z-index: 1000;
+}
+
+#slider-C0 .ui-slider-handle {
+    background: url(../img/c0.png) no-repeat;
+    top: -15px;
+    height: 50px;
+    width: 50px;
+    border: none;
+    z-index: 1000;
+}
+
+label {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.ui-widget-content {
+    /* IE10 Consumer Preview */
+    background-image: -ms-linear-gradient(left, #FFFFFF 0%, #126ADE 100%);
+
+    /* Mozilla Firefox */
+    background-image: -moz-linear-gradient(left, #FFFFFF 0%, #126ADE 100%);
+
+    /* Opera */
+    background-image: -o-linear-gradient(left, #FFFFFF 0%, #126ADE 100%);
+
+    /* Webkit (Safari/Chrome 10) */
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #FFFFFF), color-stop(1, #126ADE));
+
+    /* Webkit (Chrome 11+) */
+    background-image: -webkit-linear-gradient(left, #FFFFFF 0%, #126ADE 100%);
+
+    /* W3C Markup, IE10 Release Preview */
+    background-image: linear-gradient(to right, #FFFFFF 0%, #126ADE 100%);
+
+}
+
+.inputbox {
+    color: #f6931f;
+    font-weight: bold;
+    text-align: center;
+
+}
+
+.active {
+    border: 1px solid #006;
+    background: #ffc;
+}
+
+.active:hover {
+    border: 1px solid #f00;
+    background: #ff6;
+}
+
+.inactive {
+    border-color: transparent;
+    background-color: transparent;
+    outline: none;
+    border-style: none;
+    border-width: 0;
+}
+
+.activebutton {
+    border: 1px solid #999999;
+    -webkit-border-radius: 42px;
+    -moz-border-radius: 42px;
+    border-radius: 42px;
+    font-family: arial, helvetica, sans-serif;
+    padding: 5px 15px 5px 15px;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
+    font-weight: bold;
+    text-align: center;
+    color: #000000;
+    background-color: #f2f5f6;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f2f5f6), color-stop(100%, #c8d7dc));
+    background-image: -webkit-linear-gradient(top, #f2f5f6, #c8d7dc);
+    background-image: -moz-linear-gradient(top, #f2f5f6, #c8d7dc);
+    background-image: -ms-linear-gradient(top, #f2f5f6, #c8d7dc);
+    background-image: -o-linear-gradient(top, #f2f5f6, #c8d7dc);
+    background-image: linear-gradient(top, #f2f5f6, #c8d7dc);
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#f2f5f6, endColorstr=#c8d7dc);
+}
+
+.activebutton:hover {
+    border: 1px solid #7A7A7A;
+    background-color: #d4dee1;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #d4dee1), color-stop(100%, #a9c0c8));
+    background-image: -webkit-linear-gradient(top, #d4dee1, #a9c0c8);
+    background-image: -moz-linear-gradient(top, #d4dee1, #a9c0c8);
+    background-image: -ms-linear-gradient(top, #d4dee1, #a9c0c8);
+    background-image: -o-linear-gradient(top, #d4dee1, #a9c0c8);
+    background-image: linear-gradient(top, #d4dee1, #a9c0c8);
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#d4dee1, endColorstr=#a9c0c8);
+}
+
+.inactivebutton {
+    border: 1px solid #999999;
+    -webkit-border-radius: 42px;
+    -moz-border-radius: 42px;
+    border-radius: 42px;
+    font-family: arial, helvetica, sans-serif;
+    padding: 5px 15px 5px 15px;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
+    font-weight: bold;
+    text-align: center;
+    color: #000000;
+    background-color: #d3d3d3;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #d3d3d3), color-stop(100%, #707070));
+    background-image: -webkit-linear-gradient(top, #d3d3d3, #707070);
+    background-image: -moz-linear-gradient(top, #d3d3d3, #707070);
+    background-image: -ms-linear-gradient(top, #d3d3d3, #707070);
+    background-image: -o-linear-gradient(top, #d3d3d3, #707070);
+    background-image: linear-gradient(top, #d3d3d3, #707070);
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#d3d3d3, endColorstr=#707070);
+}
+
+.inactivebutton:hover {
+    border: 1px solid #7A7A7A;
+    background-color: #bababa;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #bababa), color-stop(100%, #575757));
+    background-image: -webkit-linear-gradient(top, #bababa, #575757);
+    background-image: -moz-linear-gradient(top, #bababa, #575757);
+    background-image: -ms-linear-gradient(top, #bababa, #575757);
+    background-image: -o-linear-gradient(top, #bababa, #575757);
+    background-image: linear-gradient(top, #bababa, #575757);
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#bababa, endColorstr=#575757);
+}
+
+.buttonset input[type="radio"] {
+    font-size: 9px;
+    display: none;
+}
+
+.buttonset label {
+    display: inline-block;
+    background-color: #EEE;
+    padding: 2px 5px;
+    font-family: Arial;
+    font-size: 9px;
+    font-weight: lighter;
+    color: #aaa;
+}
+
+.buttonset input[type="radio"]:checked + label {
+    background-color: #aaa;
+    color: black;
+    font-weight: bolder;
+    font-size: 9px;
+}
+
+#specimenBottle {
+    float: right;
+    top: 300px;
+}
+
+#urineCollectionBottle {
+    position: relative;
+    width: 125px;
+    height: 200px;
+    padding: 10px;
+    border: 3px solid black;
+    border-top-color: white;
+    margin: 10px;
+    border-radius: 15px;
+    z-index: 2;
+}
+
+#urine {
+    position: relative;
+    left: 10px;
+
+    top: -75px;
+    height: 65px;
+    opacity: 0.3;
+    width: 150px;
+    background: #FC0;
+    z-index: 1;
+    border-radius: 15px;
+}
