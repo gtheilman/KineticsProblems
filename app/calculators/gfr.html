@@ -1,0 +1,118 @@
+<script src="calculators/js/GFR.js"></script>
+
+
+<!--- Start View --->
+
+<div id="GFRmodes" class="ui-widgets">
+    <button id="measured">Measured GFR</button>
+    <button id="cg">Cockcroft-Gault</button>
+    <button id="mdrd">MDRD</button>
+    <button id="ckdepi">CKD-EPI</button>
+    <button id="children">Children</button>
+</div>
+
+<div id="specimenBottle" class="urineCollection">
+    <div id="urineCollectionBottle" class="urineCollection"></div>
+    <div id="urine" class="urineCollection"></div>
+</div>
+
+<div id="equation_equations" style="width: 100%;">
+    <span id="Equation" style="font-size:24px;float:left;"></span>
+    <br style="clear: left;"/>
+    <span id="EquationResult" style="font-size:24px; color:#906;;float:left;"></span>
+    <br style="clear: left;"/>
+</div>
+
+
+
+<div id="ckdepi_variables">
+    <i>a</i> is -0.329 for females and -0.411 for males
+    <br/>
+    <i>k</i> is 0.7 for females and 0.9 for males
+    <br/>
+</div>
+
+
+<form id="genderSwitch" class="buttonset">
+    <input type="radio" id="genderSwitch1" name="genderSwitch" checked="checked" value="male"/><label
+        for="genderSwitch1">Male</label>
+    <input type="radio" id="genderSwitch2" name="genderSwitch" value="female"/><label for="genderSwitch2">Female</label>
+</form>
+
+<form id="raceSwitch" class="buttonset">
+    <input type="radio" id="raceSwitch2" name="raceSwitch" value="notblack"/><label for="raceSwitch2">Not Black</label>
+    <input type="radio" id="raceSwitch1" name="raceSwitch" checked="checked" value="black"/><label for="raceSwitch1">Black</label>
+</form>
+
+
+<form id="pretermSwitch" class="buttonset">
+    <input type="radio" id="pretermSwitch1" name="pretermSwitch" value="Pre-Term"/><label
+        for="pretermSwitch1">Pre-Term</label>
+    <input type="radio" id="pretermSwitch2" name="pretermSwitch" checked="checked" value="Full-Term"/><label
+        for="pretermSwitch2">Full-Term</label>
+</form>
+
+
+<div id="age_input">
+    <label for="age">Age (years):</label>
+    <input type="text" id="age" style="border: 0; color: #f6931f; font-weight: bold;"/>
+
+    <div id="slider-age"></div>
+</div>
+
+
+<div id="pediatricage_input">
+    <label for="age">Age (years):</label>
+    <input type="text" id="pediatricage" style="border: 0; color: #f6931f; font-weight: bold;"/>
+
+    <div id="slider-pediatricage"></div>
+</div>
+
+
+<div id="scr_input">
+    <label for="scr">Serum Creatinine (mg/dL):</label>
+    <input type="text" id="scr" style="border: 0; color: #f6931f; font-weight: bold;"/>
+
+    <div id="slider-scr"></div>
+</div>
+
+<div id="ibw_input">
+    <label for="ibw">Ideal Body Weight (kg):</label>
+    <input type="text" id="ibw" style="border: 0; color: #f6931f; font-weight: bold;"/>
+
+    <div id="slider-ibw"></div>
+</div>
+
+
+<div id="height_input">
+    <label for="height">Height (cm):</label>
+    <input type="text" id="height" style="border: 0; color: #f6931f; font-weight: bold;"/>
+
+    <div id="slider-height"></div>
+</div>
+
+
+<div id="ucr_input">
+    <label for="height">Urine Creatinine Concentration (mg/dL):</label>
+    <input type="text" id="ucr" style="border: 0; color: #f6931f; font-weight: bold;"/>
+
+    <div id="slider-ucr"></div>
+</div>
+
+
+<div id="time_input">
+    <label for="time">Collection Time (hours):</label>
+    <input type="text" id="time" style="border: 0; color: #f6931f; font-weight: bold;"/>
+
+    <div id="slider-time"></div>
+</div>
+
+
+<div id="urineVolume_input">
+    <label for="urineVolume">Urine Volume (mL):</label>
+    <input type="text" id="urineVolume" style="border: 0; color: #f6931f; font-weight: bold;"/>
+
+    <div id="slider-urineVolume"></div>
+</div>
+ 
+ 

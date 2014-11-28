@@ -1,0 +1,88 @@
+<script src="calculators/js/First_Order_Elimination.js"></script>
+
+
+<div id="modes" class="ui-widgets">
+    <button id="K_Unknown">Kel Unknown</button>
+    <button id="C0_Unknown">Co Unknown</button>
+    <button id="C_Unknown">C Unknown</button>
+    <button id="time_Unknown">Time Unknown</button>
+    <button id="sliders">Sliders</button>
+</div>
+
+<div id="equation_equations">
+    <div style="width: 100%;">
+        <div style="float: left; width: 300px;"><span id="original" style="font-size:24px;">\[ C=C_0\cdot e^{-k_{el}\cdot t} \]</span>
+        </div>
+        <div style="float: left; width: 330px;"><span id="equationmiddle" style="font-size:24px; color:#906;">\[ C=C_0\cdot e^{-k_{el}\cdot t} \]</span>
+        </div>
+        <div style="float: left; width: 300px;"><span id="equation" style="font-size:24px; color:#00F;">\[ C=C_0\cdot e^{-k_{el}\cdot t} \]</span>
+        </div>
+        <br style="clear: left;"/>
+    </div>
+
+
+    <div style="width: 100%;">
+        <div style="float: left; width: 300px;"><span id="original2" style="font-size:24px;">\[-k_{el} = {\frac{{\ln C - \ln C_0}}{\Delta t}} \]</span>
+        </div>
+        <div style="float: left; width: 330px;"><span id="equationmiddle2" style="font-size:24px;color:#906;">\[-k_{el} = {\frac{{\ln C - \ln C_0}}{\Delta t}} \]</span>
+        </div>
+        <div style="float: left; width: 330px;"><span id="equation2" style="font-size:24px; color:#00F;">\[-k_{el} = {\frac{{\ln C - \ln C_0}}{\Delta t}} \]</span>
+        </div>
+        <br style="clear: left;"/>
+    </div>
+</div>
+
+<form id="variable_inputs">
+    <table>
+        <tr>
+            <td><label for="k">Elimination rate constant (per hours):</label></td>
+            <td><input name="k" type="text" id="k" value="0.693" size="4" class="inputbox active"/></td>
+
+            <td><label for="C0">Initial Concentration (mg/L):</label></td>
+            <td><input name="C0" type="text" id="C0" class="inputbox active" value="8" size="3"/></td>
+        </tr>
+        <tr>
+            <td><label for="C">Concentration (mg/L):</label></td>
+            <td><input name="C" type="text" id="C" class="inputbox active" value="4" size="3"/></td>
+
+            <td><label for="time">Time (hours):</label></td>
+            <td><input name="time" type="text" id="time" class="inputbox active" value="1" size="3"/></td>
+        </tr>
+    </table>
+</form>
+
+
+<div id="sliderControls">
+    <label for="k">Elimination rate constant (per hours):</label>
+    <input type="text" id="k" style="border: 0; color: #f6931f; font-weight: bold; visibility:hidden;"/>
+
+    <div id="slider-k"></div>
+
+
+    <span id="sliderequation" style="font-size:24px;">\[ C=C_0\cdot e^{-k_{el}\cdot t} \]</span>
+    <span id="sliderequation2" style="font-size:24px;">\[-k_{el} = {\frac{{\ln C - \ln C_0}}{\Delta t}} \]</span>
+
+
+    <label for="C0">Initial Concentration (mg/L):</label>
+    <input type="text" id="C0" style="border: 0; color: #f6931f; font-weight: bold; visibility:hidden; "/>
+
+    <div id="slider-C0"></div>
+</div>
+
+<form id="yTypeSwitch" class="buttonset">
+    <input type="radio" id="yTypeSwitch1" name="yTypeSwitch" checked="checked" value="linear"/><label
+        for="yTypeSwitch1">Linear</label>
+    <input type="radio" id="yTypeSwitch2" name="yTypeSwitch" value="logarithmic"/><label
+        for="yTypeSwitch2">Logarithmic</label>
+</form>
+
+<div id="container" style="width: 100%; height: 400px"></div>
+
+
+<label for="hrs">Range (hours):</label>
+<input type="text" id="hrs" style="border: 0; color: #f6931f; font-weight: bold;"/>
+<div id="slider-hrs"></div> 
+
+ 
+ 
+ 

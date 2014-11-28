@@ -27,6 +27,10 @@ angular.module('kinetics-problems.menu', ['ngRoute'])
                         {
                             "title": "Postdicting Concentrations of First-order Drugs",
                             "url": "firstOrderPostdict"
+                        },
+                        {
+                            "title": "Sandbox",
+                            "url": "sandboxFirstOrder"
                         }
                     ]
                 },
@@ -44,6 +48,10 @@ angular.module('kinetics-problems.menu', ['ngRoute'])
                         {
                             "title": "Estimating GFR with MDRD",
                             "url": "mdrd"
+                        },
+                        {
+                            "title": "Sandbox",
+                            "url": "sandboxGFR"
                         }
                     ]
                 },
@@ -57,7 +65,12 @@ angular.module('kinetics-problems.menu', ['ngRoute'])
                         {
                             "title": "Calculating a Patient's Actual Volume of Distribution",
                             "url": "VdCalc"
+                        },
+                        {
+                            "title": "Sandbox",
+                            "url": "sandboxMM"
                         }
+
                     ]
                 }
             ]

@@ -13,8 +13,36 @@ angular.module('kinetics-problems', [
 
 ])
     .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.otherwise({redirectTo: '/menu'});
+        $routeProvider.
+            when('/sandboxFirstOrder', {
+                templateUrl: 'calculators/firstOrderElimination.html',
+                // controller: 'calculatorCtrl'
+            }).
+            when('/sandboxGFR', {
+                templateUrl: 'calculators/gfr.html',
+                // controller: 'calculatorCtrl'
+            }).
+            when('/sandboxMM', {
+                templateUrl: 'calculators/michaelisMenten.html',
+                // controller: 'calculatorCtrl'
+            }).
+            when('/sandboxdDigoxin', {
+                templateUrl: 'calculators/digoxin.html',
+                // controller: 'calculatorCtrl'
+            }).
+            when('/sandboxSteadyState', {
+                templateUrl: 'calculators/steadyState.html',
+                // controller: 'calculatorCtrl'
+            }).
+            when('/sandboxTheophylline', {
+                templateUrl: 'calculators/theophylline.html',
+                // controller: 'calculatorCtrl'
+            }).
+            otherwise({
+                redirectTo: '/menu'
+            });
     }])
+
 
     .directive("mathjaxBind", function () {
         return {
