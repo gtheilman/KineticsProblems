@@ -1,104 +1,114 @@
 <script src="calculators/js/MichaelisMenten.js"></script>
 
 
-<!--- Start View --->
+<div class="container">
+    <div class="page-header">
+        <h2>Michaelis-Menten Sandbox</h2>
 
-<div id="MMmodes" class="ui-widgets">
-    <button id="doseButton">Dose Unknown</button>
-    <button id="vmaxButton">Vmax Unknown</button>
-    <button id="cssButton">Css Unknown</button>
-    <button id="kmButton">Km Unknown</button>
-    <button id="loadButton">Loading Dose</button>
-    <button id="tSSButton">Time to SS</button>
-    <button id="2concButton">Two SS Conc</button>
-</div>
+        <span class="lead">Play with numbers to see how results change.</span>
+    </div>
 
 
-
-<div id="equation_equations" style="width: 100%;">
-    <span id="Equation" style="font-size:24px;float:left;"></span>
-    <br style="clear: left;"/>
-    <span id="EquationResult" style="font-size:24px; color:#906;;float:left;"></span>
-    <br style="clear: left;"/>
-</div>
-
-
-<form id="saltSwitch" class="buttonset">
-    <input type="radio" id="saltSwitch1" name="saltSwitch" value="acid"/><label for="saltSwitch1">Phenytoin acid</label>
-    <input type="radio" id="saltSwitch2" name="saltSwitch" checked="checked" value="Na"/><label for="saltSwitch2">Phenytoin
-    Na</label>
-</form>
+    <div class="row">
+        <div class="btn-group" role="group" id="MMmodes">
+            <button type="button" class="btn btn-primary" id="doseButton">Dose Unknown</button>
+            <button type="button" class="btn btn-primary" id="vmaxButton">Vmax Unknown</button>
+            <button type="button" class="btn btn-primary" id="cssButton">Css Unknown</button>
+            <button type="button" class="btn btn-primary" id="kmButton">Km Unknown</button>
+            <button type="button" class="btn btn-primary" id="loadButton">Loading Dose</button>
+            <button type="button" class="btn btn-primary" id="tSSButton">Time to SS</button>
+            <button type="button" class="btn btn-primary" id="2concButton">Two SS Conc</button>
+        </div>
 
 
-<div id="dose_input">
-    <label for="dose">Daily Dose (mg):</label>
-    <input type="text" id="dose" style="border: 0; color: #f6931f; font-weight: bold;"/>
-
-    <div id="slider-dose"></div>
-</div>
-
-
-<div id="vmax_input">
-    <label for="vmax">Vmax (mg/day):</label>
-    <input type="text" id="vmax" style="border: 0; color: #f6931f; font-weight: bold;"/>
-
-    <div id="slider-vmax"></div>
-</div>
+        <div id="equation_equations" style="width: 100%;">
+            <span id="Equation" style="font-size:16px;float:left;"></span>
+            <br style="clear: left;"/>
+            <span id="EquationResult" style="font-size:16px; color:#906;;float:left;"></span>
+            <br style="clear: left;"/>
+        </div>
 
 
-<div id="css_input">
-    <label for="css">Steady-state Concentration (mg/L):</label>
-    <input type="text" id="css" style="border: 0; color: #f6931f; font-weight: bold;"/>
-
-    <div id="slider-css"></div>
-</div>
-
-<div id="km_input">
-    <label for="km">Michaelis Constant (mg/L)</label>
-    <input type="text" id="km" style="border: 0; color: #f6931f; font-weight: bold;"/>
-
-    <div id="slider-km"></div>
-</div>
+        <form id="saltSwitch" class="buttonset">
+            <input type="radio" id="saltSwitch1" name="saltSwitch" value="acid"/><label for="saltSwitch1">Phenytoin
+            acid</label>
+            <input type="radio" id="saltSwitch2" name="saltSwitch" checked="checked" value="Na"/><label
+                for="saltSwitch2">Phenytoin
+            Na</label>
+        </form>
 
 
-<div id="vd_input">
-    <label for="vd">Volume of Distribution (L)</label>
-    <input type="text" id="vd" style="border: 0; color: #f6931f; font-weight: bold;"/>
+        <div id="dose_input">
+            <label for="dose">Daily Dose (mg):</label>
+            <input type="text" id="dose" style="border: 0; color: #f6931f; font-weight: bold;"/>
 
-    <div id="slider-vd"></div>
-</div>
-
-
-<div id="x1_input">
-    <label for="x1">First Dose (mg)</label>
-    <input type="text" id="x1" style="border: 0; color: #f6931f; font-weight: bold;"/>
-
-    <div id="slider-x1"></div>
-</div>
+            <div id="slider-dose"></div>
+        </div>
 
 
-<div id="c1_input">
-    <label for="c1">First Concentration (mg/L)</label>
-    <input type="text" id="c1" style="border: 0; color: #f6931f; font-weight: bold;"/>
+        <div id="vmax_input">
+            <label for="vmax">Vmax (mg/day):</label>
+            <input type="text" id="vmax" style="border: 0; color: #f6931f; font-weight: bold;"/>
 
-    <div id="slider-c1"></div>
-</div>
-
-
-<div id="x2_input">
-    <label for="x2">Second Dose (mg)</label>
-    <input type="text" id="x2" style="border: 0; color: #f6931f; font-weight: bold;"/>
-
-    <div id="slider-x2"></div>
-</div>
+            <div id="slider-vmax"></div>
+        </div>
 
 
-<div id="c2_input">
-    <label for="c2">Second Concentration (mg/L)</label>
-    <input type="text" id="c2" style="border: 0; color: #f6931f; font-weight: bold;"/>
+        <div id="css_input">
+            <label for="css">Steady-state Concentration (mg/L):</label>
+            <input type="text" id="css" style="border: 0; color: #f6931f; font-weight: bold;"/>
 
-    <div id="slider-c2"></div>
-</div>
+            <div id="slider-css"></div>
+        </div>
+
+        <div id="km_input">
+            <label for="km">Michaelis Constant (mg/L)</label>
+            <input type="text" id="km" style="border: 0; color: #f6931f; font-weight: bold;"/>
+
+            <div id="slider-km"></div>
+        </div>
 
 
-<div id="container" style="width: 100%; height: 400px"></div>
+        <div id="vd_input">
+            <label for="vd">Volume of Distribution (L)</label>
+            <input type="text" id="vd" style="border: 0; color: #f6931f; font-weight: bold;"/>
+
+            <div id="slider-vd"></div>
+        </div>
+
+
+        <div id="x1_input">
+            <label for="x1">First Dose (mg)</label>
+            <input type="text" id="x1" style="border: 0; color: #f6931f; font-weight: bold;"/>
+
+            <div id="slider-x1"></div>
+        </div>
+
+
+        <div id="c1_input">
+            <label for="c1">First Concentration (mg/L)</label>
+            <input type="text" id="c1" style="border: 0; color: #f6931f; font-weight: bold;"/>
+
+            <div id="slider-c1"></div>
+        </div>
+
+
+        <div id="x2_input">
+            <label for="x2">Second Dose (mg)</label>
+            <input type="text" id="x2" style="border: 0; color: #f6931f; font-weight: bold;"/>
+
+            <div id="slider-x2"></div>
+        </div>
+
+
+        <div id="c2_input">
+            <label for="c2">Second Concentration (mg/L)</label>
+            <input type="text" id="c2" style="border: 0; color: #f6931f; font-weight: bold;"/>
+
+            <div id="slider-c2"></div>
+        </div>
+
+
+        <div id="container" style="width: 100%; height: 400px"></div>
+
+    </div>

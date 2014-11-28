@@ -1,14 +1,21 @@
 <script src="calculators/js/GFR.js"></script>
 
 
-<!--- Start View --->
+<div class="container">
+    <div class="page-header">
+        <h2>GFR Sandbox</h2>
 
-<div id="GFRmodes" class="ui-widgets">
-    <button id="measured">Measured GFR</button>
-    <button id="cg">Cockcroft-Gault</button>
-    <button id="mdrd">MDRD</button>
-    <button id="ckdepi">CKD-EPI</button>
-    <button id="children">Children</button>
+        <span class="lead">Play with numbers to see how results change.</span>
+    </div>
+
+    <div class="btn-group" role="group">
+
+
+        <button type="button" class="btn btn-primary" id="measured">Measured GFR</button>
+        <button type="button" class="btn btn-primary" id="cg">Cockcroft-Gault</button>
+        <button type="button" class="btn btn-primary" id="mdrd">MDRD</button>
+        <button type="button" class="btn btn-primary" id="ckdepi">CKD-EPI</button>
+        <button type="button" class="btn btn-primary" id="children">Children</button>
 </div>
 
 <div id="specimenBottle" class="urineCollection">
@@ -17,12 +24,11 @@
 </div>
 
 <div id="equation_equations" style="width: 100%;">
-    <span id="Equation" style="font-size:24px;float:left;"></span>
+    <span id="Equation" style="font-size:16px;float:left;"></span>
     <br style="clear: left;"/>
-    <span id="EquationResult" style="font-size:24px; color:#906;;float:left;"></span>
+    <span id="EquationResult" style="font-size:16px; color:#906;;float:left;"></span>
     <br style="clear: left;"/>
 </div>
-
 
 
 <div id="ckdepi_variables">
@@ -36,12 +42,15 @@
 <form id="genderSwitch" class="buttonset">
     <input type="radio" id="genderSwitch1" name="genderSwitch" checked="checked" value="male"/><label
         for="genderSwitch1">Male</label>
-    <input type="radio" id="genderSwitch2" name="genderSwitch" value="female"/><label for="genderSwitch2">Female</label>
+    <input type="radio" id="genderSwitch2" name="genderSwitch" value="female"/><label
+        for="genderSwitch2">Female</label>
 </form>
 
 <form id="raceSwitch" class="buttonset">
-    <input type="radio" id="raceSwitch2" name="raceSwitch" value="notblack"/><label for="raceSwitch2">Not Black</label>
-    <input type="radio" id="raceSwitch1" name="raceSwitch" checked="checked" value="black"/><label for="raceSwitch1">Black</label>
+    <input type="radio" id="raceSwitch2" name="raceSwitch" value="notblack"/><label for="raceSwitch2">Not
+    Black</label>
+    <input type="radio" id="raceSwitch1" name="raceSwitch" checked="checked" value="black"/><label
+        for="raceSwitch1">Black</label>
 </form>
 
 
@@ -114,5 +123,5 @@
 
     <div id="slider-urineVolume"></div>
 </div>
- 
- 
+
+</div>

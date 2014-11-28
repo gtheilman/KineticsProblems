@@ -26,7 +26,7 @@ angular.module('kinetics-problems', [
                 templateUrl: 'calculators/michaelisMenten.html',
                 // controller: 'calculatorCtrl'
             }).
-            when('/sandboxdDigoxin', {
+            when('/sandboxDigoxin', {
                 templateUrl: 'calculators/digoxin.html',
                 // controller: 'calculatorCtrl'
             }).

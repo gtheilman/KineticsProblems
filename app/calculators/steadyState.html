@@ -1,20 +1,30 @@
 <script src="calculators/js/Steady_State.js"></script>
 
+<div class="container">
+    <div class="page-header">
+        <h2>Steady-State Sandbox</h2>
+
+        <span class="lead">Play with numbers to see how results change.</span>
+    </div>
 
 
-<div id="modes">
-    <button id="dose_Unknown">Dose Unknown</button>
-    <button id="C_Unknown">C Unknown</button>
-    <button id="Vd_Unknown">Vd Unknown</button>
-    <!--- <button id="loadingdose">Loading Dose</button> --->
-    <button id="multidose">Multi-Dose</button>
+    <div class="row">
+        <div class="btn-group" role="group" id="modes">
+            <button type="button" class="btn btn-primary" type="button" class="btn btn-primary" id="dose_Unknown">Dose
+                Unknown
+            </button>
+            <button type="button" class="btn btn-primary" id="C_Unknown">C Unknown</button>
+            <button type="button" class="btn btn-primary" id="Vd_Unknown">Vd Unknown</button>
+            <!--- <button type="button" class="btn btn-primary" id="loadingdose">Loading Dose</button> --->
+            <button type="button" class="btn btn-primary" id="multidose">Multi-Dose</button>
 </div>
 
+    </div>
 <div id="equation_equations">
     <div style="width: 100%;">
-        <div style="float: left; width: 600px;"><span id="equation" style="font-size:24px;"></span></div>
+        <div style="float: left; width: 600px;"><span id="equation" style="font-size:16px;"></span></div>
 
-        <div style="float: left; width: 450px;"><span id="equationSolved" style="font-size:24px; color:#00F;"></span>
+        <div style="float: left; width: 450px;"><span id="equationSolved" style="font-size:16px; color:#00F;"></span>
         </div>
         <br style="clear: left;"/>
     </div>
@@ -88,5 +98,5 @@
     <input type="text" id="hrs" style="border: 0; color: #f6931f; font-weight: bold;"/>
 
     <div class="notMultidose" id="slider-hrs"></div>
-</div> 
- 
+</div>
+</div>
