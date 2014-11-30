@@ -11,8 +11,18 @@ angular.module('kinetics-problems.firstOrderPredict', ['ngRoute', 'n3-line-chart
     }])
 
 
-    .controller('firstOrderPredictCtrl', function ($scope, LatexService, CreatePatient, PopulationParams, firstOrderPredictProblem,
+    .controller('firstOrderPredictCtrl', function ($scope, LatexService, CreatePatient, PopulationParams, Problem,
                                                    SolverService, GraphService, AddDisease, AddDrug, $timeout) {
+        $scope.Problem = [];
+        $scope.adultpatient = [];
+        $scope.drug = [];
+        $scope.PMH = [];
+        $scope.PopulationParams = [];
+        $scope.steps = [];
+        $scope.initialDrawingData = [];
+        $scope.initialDrawingOptions = [];
+        $scope.initialDrawingOptionsLog = [];
+
         $scope.hidePatient = false;
         $scope.hideStep1 = false;
         $timeout(function () {
@@ -32,7 +42,7 @@ angular.module('kinetics-problems.firstOrderPredict', ['ngRoute', 'n3-line-chart
         $scope.PMH = AddDisease.PMH();
         /* age, weight, creatinine, gender */
         $scope.firstOrderPredictPopulationParams = PopulationParams.aminoglycoside($scope.adultpatient.age, $scope.adultpatient.weight, $scope.adultpatient.creatinine, $scope.adultpatient.gender);
-        $scope.firstOrderPredictProblem = firstOrderPredictProblem.CalculateKel($scope.firstOrderPredictPopulationParams.k, $scope.firstOrderPredictPopulationParams.Vd);
+        $scope.firstOrderPredictProblem = Problem.firstOrderPredict($scope.firstOrderPredictPopulationParams.k, $scope.firstOrderPredictPopulationParams.Vd);
 
         $scope.initialDrawingData = [
             {
@@ -71,77 +81,7 @@ angular.module('kinetics-problems.firstOrderPredict', ['ngRoute', 'n3-line-chart
 
         $scope.svgScale = 0.7;
 
-    })
-
-
-    .service('firstOrderPredictProblem', function () {
-        this.CalculateKel = function (k, Vd) {
-            var tau = 8;
-
-            var tinf = randSelect([0.25, 0.5, 0.75, 1]);
-
-            var twait = randrange(0, ((tau - tinf) / 5));
-            var Cmax = Math.round(randrange(10, 20) * 10) / 10;
-            var dose = tinf * Cmax * Vd * k / ( (1 - (Math.exp(-1 * k * tinf))) / (1 - (Math.exp(-1 * k * tau))) * (Math.exp(-1 * k * 0)) );
-            dose = Math.round(dose / 10) * 10;
-
-            var C0 = Cmax * (Math.exp(-1 * k * twait));
-            C0 = Math.round(C0 * 10) / 10;
-
-            var C = randNormal(1.3, 0.1, 1);
-
-
-            var t2 = (Math.log(C / C0)) / k * (-1);
-
-            var now = moment();
-            var labDelay = randSelect([0.75, 1, 1.25, 1.5, 1.75, 2]);
-
-            var InfusionBegin_time = moment().subtract((tinf + twait + labDelay), 'hours');
-            var InfusionEnd_time = moment(InfusionBegin_time).add(tinf, 'hours');
-            var C0_time = moment(InfusionEnd_time).add(twait, 'hours');
-            var C_time = moment(C0_time).add(t2, 'hours');
-
-
-            var InfusionBegin_conc = C0 * (Math.exp(-1 * k * (tau - tinf - twait)));
-            InfusionBegin_conc = Math.round(InfusionBegin_conc * 10) / 10;
-
-            var InfusionEnd_conc = C0 * (Math.exp(-1 * k * (-1 * twait)));
-            InfusionEnd_conc = Math.round(InfusionEnd_conc * 10) / 10;
-
-            var deltaT = C_time.diff(C0_time, 'hours', true);
-            deltaT = Math.round(deltaT * 10) / 10;
-
-            C_time = moment(C_time).toDate();
-            C0_time = moment(C0_time).toDate();
-            InfusionBegin_time = moment(InfusionBegin_time).toDate();
-            InfusionEnd_time = moment(InfusionEnd_time).toDate();
-            now = moment(now).toDate();
-
-
-            return {
-                tinf: tinf,
-                twait: twait,
-                t2: t2,
-                tau: tau,
-                C0: C0,
-                dose: dose,
-                C: C,
-                C_time: C_time,
-                C0_time: C0_time,
-                InfusionEnd_time: InfusionEnd_time,
-                InfusionBegin_time: InfusionBegin_time,
-                InfusionEnd_conc: InfusionEnd_conc,
-                InfusionBegin_conc: InfusionBegin_conc,
-                deltaT: deltaT,
-                now: now
-            };
-        };
-
-
     });
-
-
-
 
 
 

@@ -1,18 +1,18 @@
 'use strict';
 
 
-angular.module('kinetics-problems.kel', ['ngRoute', 'n3-line-chart'])
+angular.module('kinetics-problems.firstOrderPostdict', ['ngRoute', 'n3-line-chart'])
 
     .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/kel', {
-            templateUrl: 'kel/kel.html',
-            controller: 'KelCtrl'
+        $routeProvider.when('/firstOrderPostdict', {
+            templateUrl: 'firstOrderPostdict/firstOrderPostdict.html',
+            controller: 'firstOrderPostdictCtrl'
         });
     }])
 
 
-    .controller('KelCtrl', function ($scope, LatexService, CreatePatient, PopulationParams, Problem,
-                                     SolverService, GraphService, AddDisease, AddDrug, $timeout) {
+    .controller('firstOrderPostdictCtrl', function ($scope, LatexService, CreatePatient, PopulationParams, Problem,
+                                                    SolverService, GraphService, AddDisease, AddDrug, $timeout) {
 
         $scope.Problem = [];
         $scope.adultpatient = [];
@@ -40,8 +40,8 @@ angular.module('kinetics-problems.kel', ['ngRoute', 'n3-line-chart'])
         $scope.PMH = AddDisease.PMH();
         /* age, weight, creatinine, gender */
         $scope.PopulationParams = PopulationParams.aminoglycoside($scope.adultpatient.age, $scope.adultpatient.weight, $scope.adultpatient.creatinine, $scope.adultpatient.gender);
-        $scope.Problem = Problem.kel($scope.PopulationParams.k, $scope.PopulationParams.Vd);
-        // $scope.steps = Problem.tutorial();
+        $scope.Problem = Problem.problemVariables($scope.PopulationParams.k, $scope.PopulationParams.Vd);
+        $scope.steps = Problem.tutorial();
 
         $scope.initialDrawingData = [
             {
@@ -71,7 +71,7 @@ angular.module('kinetics-problems.kel', ['ngRoute', 'n3-line-chart'])
         $scope.firstorderslope = LatexService.firstOrderSlope("C", "C0", "k", "t");
         $scope.firstorderslope2 = LatexService.firstOrderSlope($scope.Problem.C, $scope.Problem.C0, "k", "t");
         $scope.firstorderslope3 = LatexService.firstOrderSlope($scope.Problem.C, $scope.Problem.C0, "k", $scope.Problem.deltaT);
-        $scope.kelSolution = LatexService.LaTeX("k_{el} = -" + $scope.PopulationParams.k + " \\:  hrs^{-1}");
+        $scope.firstOrderPostdictSolution = LatexService.LaTeX("k_{el} = -" + $scope.PopulationParams.k + " \\:  hrs^{-1}");
         $scope.riserun = LatexService.LaTeX('slope=\\frac{rise}{run}');
         $scope.firstOrderElimination = LatexService.firstOrderElimination("C", "C0", "k", "t");
         $scope.firstOrderElimination2 = LatexService.firstOrderElimination($scope.Problem.C, $scope.Problem.C0, "k", "t");
@@ -79,8 +79,4 @@ angular.module('kinetics-problems.kel', ['ngRoute', 'n3-line-chart'])
         $scope.halflifeEquation = LatexService.LaTeX('t_{\\frac{1}{2}}=\\frac{0.693}{k_{el}}');
         $scope.halflifeSolution = LatexService.LaTeX($scope.Problem.halflife + '=t_{\\frac{1}{2}}=\\frac{0.693}{' + $scope.PopulationParams.k + '}');
     });
-
-
-
-
 

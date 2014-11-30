@@ -1,0 +1,451 @@
+<div class="container">
+    <div class="page-header">
+        <h2>Solving for the Elimination Rate Constant (Kel)</h2>
+
+        <p class="lead">Given two concentrations, find out how fast the patient is eliminating the drug.</p>
+    </div>
+
+
+    <div ng-controller="KelCtrl">
+
+        <div class="row">
+            <div class="col-md-8"><span class="stepHeader">Patient Case</span></div>
+            <div class="col-md-4">
+                <button class="btn btn-default" ng-click="hidePatient = !hidePatient">Toggle patient case</button>
+            </div>
+        </div>
+        <div collapse="hidePatient">
+
+            <span ng-include="'common/case1.html'"></span>
+
+            <p>
+                <br>
+                {{drug.drug | capitalize}} ({{Problem.C0_time | date:'yyyy-MM-dd HH:mm'}}) {{Problem.C0}} mg/L
+                <br>
+                {{drug.drug | capitalize}} ({{Problem.C_time | date:'yyyy-MM-dd HH:mm'}}) {{Problem.C}} mg/L
+            </p>
+
+            <p>&nbsp;</p>
+
+            <p>
+                The patient has been receiving {{drug.drug}} {{Problem.dose}} mg every {{Problem.tau}} hours
+                intravenously.<br>
+                The most recent dose was infused starting at {{Problem.InfusionBegin_time | date:'HH:mm'}} and the
+                infusion was completed at {{Problem.InfusionEnd_time | date:'HH:mm' }}.
+            </p>
+
+            <p>&nbsp;</p>
+
+            <p>
+                What is this patient's elimination rate constant for {{drug.drug}}?
+            </p>
+
+        </div>
+        <!--collapse hide patient-->
+
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 1: Draw a picture.</span>
+                </p>
+
+                <p>
+                    Use the information in the patient case to create a concentration-time plot. Show what we know so
+                    far about what the drug concentrations are doing.
+                </p>
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep1 = !hideStep1">Toggle Step 1</button>
+            </div>
+        </div>
+        <div collapse="hideStep1">
+            <div class="row">
+                <div class="col-md-6" style="height: 300px">.
+                    <linechart data="initialDrawingData" options="initialDrawingOptions"></linechart>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        Here is the information from the patient case plotted on a linear-linear graph. Both the X-axis
+                        (time) and the Y-axis (concentration) are linear. Since {{drug.drug}} is a first-order drug,
+                        we end up with a curved plot.
+                    </p>
+
+                    <p>
+                        Let your mouse rest over the various points on the graph to see what each one represents.
+                    </p>
+
+                    <p>
+                        Even though there are five different points plotted, we really only know the concentrations for
+                        the inner-most two (Co and C). The other points are just estimated based on what was
+                        described in the case.
+                    </p>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6" style="height:300px">.
+                    <linechart data="initialDrawingData" options="initialDrawingOptionsLog"></linechart>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        Curves are difficult to work with mathematically. Straight lines are easy. Changing the
+                        Y-axis from linear to logarithmic changes the curves to straight lines. The important thing
+                        to keep in mind is that the Y-axis no longer represents 'concentration'. It now represents
+                        <b>ln concentration</b>. The X-axis (time) is still linear.
+                    </p>
+                </div>
+            </div>
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+        </div>
+        <!--collapse hide step 1-->
+
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 2: Predict answer.</span>
+                </p>
+
+                <p>
+                    In the time it took us to draw the graphs, it's possible we may have forgotten what the question
+                    was asking. Go back and look at the question again. Answer these two questions:
+                <ul>
+                    <li>What is the answer going to look like (units)?</li>
+                    <li>What "ballpark" number are we expecting as our answer?</li>
+                </ul>
+                Click the button to the right when you have answered these questions.
+                </p>
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep2 = !hideStep2">Toggle Step 2</button>
+            </div>
+        </div>
+
+
+        <div collapse="hideStep2">
+
+            <div class="row">
+                <div class="col-md-12">
+
+
+                    <p>
+                        Looking back at our question, we see that it is asking for an elimination rate constant (Kel).
+                        We know that the units for Kel is usually <b>per hour</b> (sometimes written as hr
+                        <sup>-1</sup>
+                        ).
+                        If we cross out units and don't end up with <b>per hour</b>, we've done something wrong.
+                    </p>
+
+                    <p>
+                        We are calculating this patient's elimination rate constant for {{drug.drug}}. We can look up
+                        the
+                        <a href="http://europepmc.org/backend/ptpmcrender.fcgi?accid=PMC175054&blobtype=pdf"
+                           target="_blank">predicted value</a>
+                        for the Kel of {{drug.drug}}. If our answer is not a number at least somewhat similar to the
+                        population average, we've probably done something wrong.
+                    </p>
+
+                    <p>
+                        In this case, we are expecting a number that is probably between 0.01 and 0.400. If we end up
+                        with
+                        our answer being "57" or "0.00000034", we need to go back and check our calculations.
+                    </p>
+                </div>
+
+            </div>
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+        </div>
+        <!--collapse hide step 2-->
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 3: Select your tools.</span>
+                </p>
+
+                <p>
+                    Think about what equations help describe the situation. Which one are you going to use?
+                </p>
+
+                <p>Click the button to the right when you have an equation in mind.</p>
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep3 = !hideStep3">Toggle Step 3</button>
+            </div>
+        </div>
+
+
+        <div collapse="hideStep3">
+
+            <div class="row">
+                <div class="col-md-6">.
+
+                    <div ng-include="'kel/kel.svg'"></div>
+
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        Here is the same information from the patient case. The elimination rate constant (Kel) is
+                        going to be the slope of the line on which Co and C lie.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="riserun"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        Slope is sometimes thought of as "rise over run". That is, it is the change in the value of
+                        the Y-axis portion of the the coordinate (ln concentration) over the value of the X-axis portion
+                        (time).
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="firstorderslope"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        Here is our "rise over run" with the coordinates of our points filled-in. The numerator
+                        represents the difference in the <b>ln concentrations</b> of the points, while the denominator
+                        represents the change in time.
+                    </p>
+                </div>
+            </div>
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+        </div>
+        <!--collapse hide step 3-->
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 4: Do the math.</span>
+                </p>
+
+                <p>
+                    Set up your equations and solve for the unknown (Kel).
+                </p>
+
+                <p>Click the button to the right when you have a result.</p>
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep4 = !hideStep4">Toggle Step 4</button>
+            </div>
+        </div>
+
+
+        <div collapse="hideStep4">
+
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="firstorderslope2"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        We've filled in the two concentration values. It's important to remember that we have to take
+                        the natural log of each concentration before subtracting.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="firstorderslope3"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        We add in the difference in time between the two concentrations.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="kelSolution"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        We then solve for Kel. Note that since the line is sloping "down", the slope is a negative
+                        number.
+                        However, we usually express Kel in terms of it's absolute value, even though (by definition) it
+                        always represents a negative slope.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="firstOrderElimination"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        Rearranging the Kel equation gives us this version. It's the exact same equation. I tend to find
+                        this
+                        version easier to use. However, the first version makes the nature of the Kel more clear.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="firstOrderElimination2"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        Just as before, we put in the values for our concentrations. In this case, we don't need to
+                        take the natural logs of the concentrations first.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="firstOrderElimination3"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        Then we add in the change in time.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="kelSolution"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        Both equations give us the same answer for Kel.
+                    </p>
+                </div>
+            </div>
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+
+        </div>
+        <!--collapse hide step 4-->
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 5: Does my answer make sense?.</span>
+                </p>
+
+                <p>
+                    Go back to Step 2. Does you answer look the way you expected it to?
+                </p>
+                <ul>
+                    <li>Are the units what was expected?</li>
+                    <li>Is the number in the same general range for the population predictions?</li>
+                </ul>
+
+
+                <p>Click the button to the right for an additional tip.</p>
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep5 = !hideStep5">Toggle Step 5</button>
+            </div>
+        </div>
+
+
+        <div collapse="hideStep5">
+
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="kelSolution"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        It's hard to think in "per hours". It doesn't make intuitive sense to have a value with no units
+                        in the numerator.
+                    </p>
+
+                    <p>
+                        It's also difficult to think in numbers less than one. Humans work best with numbers between
+                        about 1 and 20. It's hard for use to visualize {{PopulationParams.k}} of something.
+                    </p>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="halflifeEquation"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        In order to better determine if the answer we got "makes sense", it may be helpful to convert
+                        the
+                        Kel into half-life.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="halflifeSolution"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        It's easier to think about {{PopulationParams.halflife | number:1}} hours rather than
+                        {{PopulationParams.k}} per
+                        hours. We can more easily understand that a half-life of {{PopulationParams.halflife |
+                        number:1}}
+                        hours "makes sense" for {{drug.drug}} and gives us an intuitive appreciation of how quickly
+                        the patient is eliminating {{drug.drug}}.
+                    </p>
+                </div>
+            </div>
+
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+        </div>
+        <!--collapse hide step 5-->
+
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+
+    </div>
+    <!-- /container -->

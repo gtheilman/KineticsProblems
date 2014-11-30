@@ -13,9 +13,9 @@ module.exports = function (config) {
             'app/bower_components/jquery/dist/jquery.js',
             'app/components/**/*.js',
             'app/menu*/**/*.js',
-            'app/case*/**/*.js',
             'app/kel*/**/*.js',
             'app/firstOrderPredict*/**/*.js',
+            'app/firstOrderPostdict*/**/*.js',
             'app/*.js'
         ],
 

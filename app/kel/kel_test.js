@@ -35,7 +35,7 @@ describe("Problem service", function () {
     describe("Calculate Kel function", function () {
         it("should return a patient age",
             function () {
-                expect(Problem.CalculateKel(0.1, 25).dose).toBeGreaterThan(1);
+                expect(Problem.kel(0.1, 25).dose).toBeGreaterThan(1);
             });
     });
 

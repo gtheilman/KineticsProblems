@@ -24,18 +24,18 @@ describe('kinetics-problems.firstOrderPredict firstOrderPredictCtrl', function (
 
 
 describe("firstOrderPredictProblem service", function () {
-    var firstOrderPredictProblem;
+    var Problem;
 
     beforeEach(module('kinetics-problems'));
 
-    beforeEach(inject(function (_firstOrderPredictProblem_) {
-        firstOrderPredictProblem = _firstOrderPredictProblem_;
+    beforeEach(inject(function (_Problem_) {
+        Problem = _Problem_;
     }));
 
     describe("Calculate dose function", function () {
         it("should return a patient dose",
             function () {
-                expect(firstOrderPredictProblem.CalculateKel(0.1, 25).dose).toBeGreaterThan(1);
+                expect(Problem.firstOrderPredict(0.1, 25).dose).toBeGreaterThan(1);
             });
     });
 
