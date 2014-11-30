@@ -1,12 +1,12 @@
 <div class="container">
     <div class="page-header">
-        <h2>Solving for the Elimination Rate Constant (Kel)</h2>
+        <h2>Postdicting Concentrations of First-Order Drugs</h2>
 
-        <p class="lead">Given two concentrations, find out how fast the patient is eliminating the drug.</p>
+        <p class="lead">Given a concentration and a Kel, calculate past concentrations.</p>
     </div>
 
 
-    <div ng-controller="KelCtrl">
+    <div ng-controller="firstOrderPostdictCtrl">
 
         <div class="row">
             <div class="col-md-8"><span class="stepHeader">Patient Case</span></div>
@@ -30,14 +30,20 @@
             <p>
                 The patient has been receiving {{drug.drug}} {{Problem.dose}} mg every {{Problem.tau}} hours
                 intravenously.<br>
-                The most recent dose was infused starting at {{Problem.InfusionBegin_time | date:'HH:mm'}} and the
+                The most recent dose was infused starting at {{Problem.InfusionBegin_time | date:'yyyy-MM-dd HH:mm'}}
+                and the
                 infusion was completed at {{Problem.InfusionEnd_time | date:'HH:mm' }}.
+                <br>The intent was to collect
+                the initial concentration at {{Problem.trueC0_time | date:'yyyy-MM-dd HH:mm'}}, but the patient
+                was having a scan done at that time. Drawing the concentration was forgotten until someone remembered
+                to do it at {{Problem.C0_time | date: 'HH:mm'}}. Better late than never.
             </p>
 
             <p>&nbsp;</p>
 
             <p>
-                What is this patient's elimination rate constant for {{drug.drug}}?
+                What would the patient's {{drug.drug}} concentration have been had it actually been collected at
+                {{Problem.trueC0_time | date:'HH:mm'}}?
             </p>
 
         </div>
@@ -70,6 +76,13 @@
                 </div>
                 <div class="col-md-6">
                     <p>
+                        This represents a not terribly uncommon situation where we miss getting the "peak" drawn
+                        at the correct time. If no one knows what to do, most likely the concentration would be
+                        re-ordered after the next dose. This adds to the expense of therapy and delays clinical
+                        decision-making. We can do better.
+                    </p>
+
+                    <p>
                         Here is the information from the patient case plotted on a linear-linear graph. Both the X-axis
                         (time) and the Y-axis (concentration) are linear. Since {{drug.drug}} is a first-order drug,
                         we end up with a curved plot.
@@ -80,7 +93,7 @@
                     </p>
 
                     <p>
-                        Even though there are five different points plotted, we really only know the concentrations for
+                        Even though there are sever different points plotted, we really only know the concentrations for
                         the inner-most two (Co and C). The other points are just estimated based on what was
                         described in the case.
                     </p>
@@ -97,6 +110,23 @@
                         Y-axis from linear to logarithmic changes the curves to straight lines. The important thing
                         to keep in mind is that the Y-axis no longer represents 'concentration'. It now represents
                         <b>ln concentration</b>. The X-axis (time) is still linear.
+                    </p>
+
+                    <p>
+                        We have the coordinates of two points on a straight line. Once we figure out the slope of the
+                        line, we will have enough information to determine <b>every</b> point on the line.
+                    </p>
+
+                    <p>
+                        That's going to be our basic strategy:
+                    <ol>
+                        <li>Determine the slope of the line (Kel)</li>
+                        <li>Characterize the entire line using <i>y=mx+b</i> (the general equation for a stright line)
+                        </li>
+                        <li>Figure out the y-coordinate (concentration) for some other arbitray x-coordinate (time)
+                            on the line.
+                        </li>
+                    </ol>
                     </p>
                 </div>
             </div>
@@ -140,27 +170,15 @@
 
 
                     <p>
-                        Looking back at our question, we see that it is asking for an elimination rate constant (Kel).
-                        We know that the units for Kel is usually <b>per hour</b> (sometimes written as hr
-                        <sup>-1</sup>
-                        ).
-                        If we cross out units and don't end up with <b>per hour</b>, we've done something wrong.
+                        Looking back at our question, we see that it is asking for a concentration.
+                        We know that the units for concentration is usually <b>mg/L</b>.
+                        If we cross out units and don't end up with <b>mg/L</b>, we've done something wrong.
+                    </p>
+                    <p>
+                        We also know that our answer is going to be a number somewhat greater than {{Problem.C0}} mg/L.
+                        Not <b>hugely</b> greater, but a few units greater.
                     </p>
 
-                    <p>
-                        We are calculating this patient's elimination rate constant for {{drug.drug}}. We can look up
-                        the
-                        <a href="http://europepmc.org/backend/ptpmcrender.fcgi?accid=PMC175054&blobtype=pdf"
-                           target="_blank">predicted value</a>
-                        for the Kel of {{drug.drug}}. If our answer is not a number at least somewhat similar to the
-                        population average, we've probably done something wrong.
-                    </p>
-
-                    <p>
-                        In this case, we are expecting a number that is probably between 0.01 and 0.400. If we end up
-                        with
-                        our answer being "57" or "0.00000034", we need to go back and check our calculations.
-                    </p>
                 </div>
 
             </div>
@@ -231,6 +249,11 @@
                         Here is our "rise over run" with the coordinates of our points filled-in. The numerator
                         represents the difference in the <b>ln concentrations</b> of the points, while the denominator
                         represents the change in time.
+                    </p>
+
+                    <p>
+                        Once we have figured out Kel, we can then set our "unknown concentration" (the one we should
+                        have drawn at {{Problem.C0_time | date: 'HH:mm'}}) as <i>Co</i> and solve for △t.
                     </p>
                 </div>
             </div>
@@ -345,9 +368,104 @@
                 </div>
                 <div class="col-md-6">
                     <p>
-                        Both equations give us the same answer for Kel.
+                        Both equations give us the same answer for Kel. We now have enough information to
+                        describe every point on the straight line.
                     </p>
                 </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">.
+
+                    <div ng-include="'firstOrderPostdict/firstOrderPostdict.svg'"></div>
+
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        Look very carefully at what we've done here.
+                    </p>
+
+                    <p>
+                        This is the <b>same</b> line we had sketched out in Step 3. We're just using different points
+                        on that line to represent Co and C.
+                    </p>
+
+                    <P>
+                        We are now calling the point at which we SHOULD have collected the concentration <i>Co</i>. It
+                        is our "unknown" and it occurred at {{Problem.trueC0_time | date:'yyyy-MM-dd HH:mm'}}.
+                    </P>
+
+                    <p>
+                        We are going to set <i>C</i> to one of the concentrations that we do know. We could have used
+                        either {{Problem.C0}} mg/L or {{Problem.C}} mg/L. Either one would work. The important
+                        thing is to remember that we need to adjust which time we are "counting from". If we used
+                        {{Problem.C0}} mg/L, we are determining the unknown concentration relative to
+                        {{Problem.C0_time | date:'HH:mm'}}. If we had chosen to use {{Problem.C}} mg/L as our value
+                        for <i>C</i>, we would be figuring out the value for <i>Co</i> relative to
+                        {{Problem.C_time | date:'HH:mm'}}.
+                    </p>
+
+                    <p>
+                        We're going to solve this using {{Problem.C0}} mg/L as our new value for <i>C</i>. But, by
+                        all means, go back and do the same thing using {{Problem.C}} mg/L as our value for <i>C</i>,
+                        instead. We will end up with the same answer.
+                    </p>
+
+                    <p>
+
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="firstOrderElimination"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        We'll solve this using this version of the slope equation. Remember that this is just a
+                        rearranged version of the "rise over run" equation. We could have used that arrangement of
+                        the equation and would have gotten the same answer.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="firstOrderElimination4"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        Here we have put in our new values for <i>Co</i> and <i>△t</i>. <i>Kel</i> is the value we
+                        calculated earlier.
+                    </p>
+
+                    <p>
+                        Note that <i>△t</i> is {{ Problem.truedeltaT }} hours. That is the amount of time that has
+                        elapsed
+                        between
+                    </p>
+
+                    <ul>
+                        <li>{{Problem.trueC0_time | date:'yyyy-MM-dd HH:mm'}} (the time we SHOULD have gotten the
+                            concentration) and
+                        <li>{{Problem.C0_time | date:'yyyy-MM-dd HH:mm'}} (the time we DID get the concentration).
+                    </ul>
+
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="trueC0Solution"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        Solving for <i>Co</i>, we get {{ Problem.trueC0 | number:1}} mg/L. That was the concentration at
+                        {{Problem.trueC0_time | date:'yyyy-MM-dd HH:mm'}}.
+                    </p>
+
+                </div>
+
             </div>
 
             <p>&nbsp;</p>
@@ -389,17 +507,39 @@
 
             <div class="row">
                 <div class="col-md-6">.
-                    <div mathjax-bind="kelSolution"></div>
+                    <div mathjax-bind="trueC0Solution"></div>
                 </div>
                 <div class="col-md-6">
                     <p>
-                        It's hard to think in "per hours". It doesn't make intuitive sense to have a value with no units
-                        in the numerator.
+                        Our answer was {{ Problem.trueC0 | number:1}} mg/L, which has the correct units and is
+                        somewhat greater than {{Problem.C0}} mg/L. So it sounds right.
+                    </p>
+
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div ng-include="'firstOrderPostdict/firstOrderPostdict2.svg'"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        One way to double-check is to use the same equation and check to see what we get for whichever
+                        value we <b>didn't</b> choose to use back in Step 4.
                     </p>
 
                     <p>
-                        It's also difficult to think in numbers less than one. Humans work best with numbers between
-                        about 1 and 20. It's hard for use to visualize {{PopulationParams.k}} of something.
+                        For example, we chose to use {{Problem.C0}} mg/L as our "new" <i>C</i>. We chose not to use
+                        {{Problem.C}} mg/L. But, let's use it now.
+                    </p>
+
+                    <p>
+                        If we set up our line like this, using {{ Problem.trueC0 | number:1}} mg/L as our <i>Co</i>
+                        and filling in the time for the other other concentration that was drawn
+                        ({{Problem.C_time | date:'yyyy-MM-dd HH:mm'}}), solving for <i>C</i> SHOULD give us the
+                        same answer for the concentration as the value we actually got from the lab
+                        ({{ Problem.C | number:1}}) mg/L. Or, at least, it should be pretty close.
                     </p>
 
                 </div>
@@ -407,29 +547,42 @@
 
             <div class="row">
                 <div class="col-md-6">.
-                    <div mathjax-bind="halflifeEquation"></div>
+                    <div mathjax-bind="firstOrderElimination"></div>
                 </div>
                 <div class="col-md-6">
                     <p>
-                        In order to better determine if the answer we got "makes sense", it may be helpful to convert
-                        the
-                        Kel into half-life.
+                        We'll use this version of the equation (although we could have used the arrangement that
+                        looks more like "rise over run").
                     </p>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6">.
-                    <div mathjax-bind="halflifeSolution"></div>
+                    <div mathjax-bind="firstOrderElimination5"></div>
                 </div>
                 <div class="col-md-6">
                     <p>
-                        It's easier to think about {{PopulationParams.halflife | number:1}} hours rather than
-                        {{PopulationParams.k}} per
-                        hours. We can more easily understand that a half-life of {{PopulationParams.halflife |
-                        number:1}}
-                        hours "makes sense" for {{drug.drug}} and gives us an intuitive appreciation of how quickly
-                        the patient is eliminating {{drug.drug}}.
+                        We'll put in our values.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="checkCSolution"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        The answer we get for <i>C</i> is {{ Problem.C | number:1}} mg/L, which is the same number
+                        we got from the lab. Which means that our solution is probably correct.
+                    </p>
+
+                    <p>
+                        At this point, we would treat {{ Problem.trueC0 | number:1}} mg/L just as if it came from
+                        the lab as the concentration at {{Problem.trueC0_time | date:'yyyy-MM-dd HH:mm'}}. We
+                        would have to look at the patient and make a clinical decision as to whether than concentration
+                        is acceptable or not.
                     </p>
                 </div>
             </div>

@@ -30,7 +30,8 @@
             <p>
                 The patient has been receiving {{drug.drug}} {{Problem.dose}} mg every {{Problem.tau}} hours
                 intravenously.<br>
-                The most recent dose was infused starting at {{Problem.InfusionBegin_time | date:'HH:mm'}} and the
+                The most recent dose was infused starting at {{Problem.InfusionBegin_time | date:'yyyy-MM-dd HH:mm'}}
+                and the
                 infusion was completed at {{Problem.InfusionEnd_time | date:'HH:mm' }}.
             </p>
 

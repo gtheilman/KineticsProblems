@@ -79,7 +79,6 @@ angular.module('kinetics-problems.firstOrderPredict', ['ngRoute', 'n3-line-chart
         $scope.firstOrderElimination3 = LatexService.firstOrderElimination($scope.firstOrderPredictProblem.C, $scope.firstOrderPredictProblem.C0, $scope.firstOrderPredictPopulationParams.k, $scope.firstOrderPredictProblem.deltaT);
         $scope.goal_time = moment($scope.firstOrderPredictProblem.C0_time).add($scope.firstOrderPredictProblem.t2, 'hours').toDate();
 
-        $scope.svgScale = 0.7;
 
     });
 

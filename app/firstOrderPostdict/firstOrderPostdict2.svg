@@ -13,7 +13,7 @@
         id="svg3084"
         version="1.1"
         inkscape:version="0.48.4 r9939"
-        sodipodi:docname="kel.svg">
+        sodipodi:docname="firstOrderPredict.svg">
     <metadata
             id="metadata3143">
         <rdf:RDF>
@@ -41,7 +41,7 @@
             id="namedview3139"
             showgrid="false"
             inkscape:zoom="1.0134615"
-            inkscape:cx="286.73245"
+            inkscape:cx="295.34462"
             inkscape:cy="260"
             inkscape:window-x="75"
             inkscape:window-y="34"
@@ -168,7 +168,7 @@
                             height="14px"
                             class="scrubberText series_0"
                             style="text-anchor: start;"
-                            id="text3127">C = 1.5 mg/L @ 09:12
+                            id="text3127">
                     </text>
                 </g>
                 <g
@@ -190,7 +190,7 @@
                             height="14px"
                             class="scrubberText series_0"
                             style="text-anchor: end;"
-                            id="text3133">C = 1.5 mg/L @ 09:12
+                            id="text3133">
                     </text>
                 </g>
                 <circle
@@ -261,30 +261,30 @@
   <text
      xml:space="preserve"
      style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-     x="176.62238"
+     x="200.62238"
      y="82.884254"
      id="text4096"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan4098"
-       x="176.62238"
+       x="200.62238"
        y="82.884254"
        style="font-size:13px">mg</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-     x="182.93564"
+     x="206.93564"
      y="99.973351"
      id="text4096-5"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan4098-0"
-       x="182.93564"
+       x="206.93564"
        y="99.973351"
        style="font-size:13px">L</tspan></text>
     <path
             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-            d="m 173.66224,86.83112 c 21.70778,0.986717 21.70778,0.986717 21.70778,0.986717"
+            d="m 197.66224,86.83112 c 21.70778,0.986717 21.70778,0.986717 21.70778,0.986717"
             id="path4121"
             inkscape:connector-curvature="0"/>
     <text
@@ -351,7 +351,7 @@
        y="95.711571"
        style="font-size:28px">C<tspan
    style="font-size:65.00091553%;baseline-shift:sub"
-   id="tspan4169">o</tspan>= ?</tspan></text>
+   id="tspan4169">o</tspan>={{Problem.trueC0 | number:1}}</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
@@ -363,7 +363,7 @@
        id="tspan4167-3"
        x="467.67883"
        y="363.66669"
-       style="font-size:28px">C ={{Problem.C0 | number:1}}</tspan></text>
+       style="font-size:28px">C = ?</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:24px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
@@ -374,9 +374,11 @@
        sodipodi:role="line"
        id="tspan4199"
        x="253.58635"
-       y="225.95825">-{{firstOrderPostdictPopulationParams.k}}/hr=k<tspan
-   style="font-size:65.00091553%;baseline-shift:sub"
-   id="tspan4201">el</tspan></tspan></text>
+       y="225.95825">k<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan4403">el</tspan>={{firstOrderPostdictPopulationParams.k}} per hr<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan4405"></tspan></tspan></text>
   <text
      xml:space="preserve"
      style="font-size:24px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
@@ -394,13 +396,13 @@
   <text
      xml:space="preserve"
      style="font-size:24px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-     x="417.98007"
+     x="475.98007"
      y="435.61783"
      id="text4203-3"
      sodipodi:linespacing="125%"
      inkscape:transform-center-y="-4.9335863"><tspan
        sodipodi:role="line"
        id="tspan4205-6"
-       x="417.98007"
-       y="435.61783">t={{Problem.C0_time | date:'HH:mm'}}</tspan></text>
+       x="475.98007"
+       y="435.61783">t={{Problem.C_time | date: 'HH:mm'}}</tspan></text>
 </svg>

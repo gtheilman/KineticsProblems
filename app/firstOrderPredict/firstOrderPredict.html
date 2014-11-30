@@ -32,7 +32,7 @@
                 The patient has been receiving {{drug.drug}} {{firstOrderPredictProblem.dose}} mg every
                 {{firstOrderPredictProblem.tau}} hours intravenously.<br>
                 The most recent dose was infused starting at {{firstOrderPredictProblem.InfusionBegin_time |
-                date:'HH:mm'}} and the infusion was
+                date:'yyyy-MM-dd HH:mm'}} and the infusion was
                 completed at {{firstOrderPredictProblem.InfusionEnd_time | date:'HH:mm' }}. <br>
                 The patient's elimination rate constant for {{drug.drug}}
                 had previously been calculated as being {{firstOrderPredictPopulationParams.k}} per hour.
