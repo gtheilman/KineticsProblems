@@ -16,6 +16,7 @@ module.exports = function (config) {
             'app/kel*/**/*.js',
             'app/firstOrderPredict*/**/*.js',
             'app/firstOrderPostdict*/**/*.js',
+            'app/measuredCrCl*/**/*.js',
             'app/*.js'
         ],
 

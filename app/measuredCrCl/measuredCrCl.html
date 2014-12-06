@@ -1,0 +1,380 @@
+<div class="container">
+    <div class="page-header">
+        <h2>Measured Creatinine Clearance</h2>
+
+        <p class="lead">Estimate glomerular filtration rate by comparing urine and serum creatinine concentrations.</p>
+    </div>
+
+
+    <div ng-controller="measuredCrClCtrl">
+
+        <div class="row">
+            <div class="col-md-8"><span class="stepHeader">Patient Case</span></div>
+            <div class="col-md-4">
+                <button class="btn btn-default" ng-click="hidePatient = !hidePatient">Toggle patient case</button>
+            </div>
+        </div>
+        <div collapse="hidePatient">
+
+            <span ng-include="'common/case1.html'"></span>
+
+            <p>
+                <br>
+                Urine collection started: {{Problem.UrineStart_time | date:'yyyy-MM-dd HH:mm'}}
+                <br>
+                Urine collection ended: {{Problem.UrineEnd_time | date:'yyyy-MM-dd HH:mm'}}
+                <br>
+                Urine volume: {{Problem.UrineVolume}} mL
+                <br>
+                Urine creatinine concentration: {{Problem.UrineCrConc}} mg/dL
+            </p>
+
+            <p>&nbsp;</p>
+
+
+            <p>
+                What would is your best estimate of this patient's glomerular filtration rate?
+            </p>
+
+        </div>
+        <!--collapse hide patient-->
+
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 1: Draw a picture.</span>
+                </p>
+
+                <p>
+                    Creatinine is a waste product created by the natural turnover of muscle cells. It is almost
+                    entirely eliminated via glomerular filtration. Very little of it undergoes active secretion
+                    into the renal tubule or is reabsorbed from the tubule. Thus, seeing how quickly it gets
+                    into the urine can give us a good estimate of the kidney's ability to filter blood.
+                </p>
+
+
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep1 = !hideStep1">Toggle Step 1</button>
+            </div>
+        </div>
+        <div collapse="hideStep1">
+            <div class="row">
+                <div class="col-md-6" style="height: 300px">.
+                    <linechart data="initialDrawingData" options="initialDrawingOptions"></linechart>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        In this process, we are looking at
+                    <ul>
+                        <li>How much creatinine is in the blood</li>
+                        <li>How much of that creatinine comes out in the urine over time</li>
+                    </ul>
+
+                    </p>
+                    <p>
+                        So, what we are going to do is collect urine over a period of time. Halfway into the collection
+                        period we will collect a blood sample.
+                    </p>
+
+                    <p>
+                        After the urine collection is complete, the blood and the urine are sent to the lab. The lab
+                        will measure how much creatinine there is in the two samples.
+                    </p>
+
+                    <p>
+                        If the kidneys are working well, a larger amount of creatinine should end up in the urine.
+                        However, if the kidneys are not functioning, very little creatinine will end up in the urine.
+                    </p>
+                </div>
+            </div>
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+        </div>
+        <!--collapse hide step 1-->
+
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 2: Predict answer.</span>
+                </p>
+
+                <p>
+                    In the time it took us to draw the picture, it's possible we may have forgotten what the question
+                    was asking. Go back and look at the question again. Answer these two questions:
+                <ul>
+                    <li>What is the answer going to look like (units)?</li>
+                    <li>What "ballpark" number are we expecting as our answer?</li>
+                </ul>
+                Click the button to the right when you have answered these questions.
+                </p>
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep2 = !hideStep2">Toggle Step 2</button>
+            </div>
+        </div>
+
+
+        <div collapse="hideStep2">
+
+            <div class="row">
+                <div class="col-md-12">
+
+
+                    <p>
+                        Looking back at our question, we see that it is asking for a glomerular filtration rate.
+                        That's a measure of how fast the kidneys can filter blood.
+                        The usual way of expressing GFR is <b>mL/minute</b>.
+                        If we cross out units and don't end up with <b>mL/min</b>, we've done something wrong.
+                    </p>
+
+                    <p>
+                        We also know that a 'typical' GFR is usually about 100 mL/min.
+                        Some healthy, younger patients might have calculated GFRs of 125-150 mL/min.
+                        A person in renal failure might have a GFR of less than 10 mL/min.
+                    </p>
+
+                    <p>
+                        Our answer is probably going to be somewhere between 0 - 150 mL/min.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+        </div>
+        <!--collapse hide step 2-->
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 3: Select your tools.</span>
+                </p>
+
+                <p>
+                    Think about what equations help describe the situation. Which one are you going to use?
+                </p>
+
+                <p>Click the button to the right when you have an equation in mind.</p>
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep3 = !hideStep3">Toggle Step 3</button>
+            </div>
+        </div>
+
+
+        <div collapse="hideStep3">
+
+            <div class="row">
+                <div class="col-md-6">.
+
+                    <div ng-include="'kel/kel.svg'"></div>
+
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        Here is the general equation for a measured creatinine clearance. You can see that what we
+                        are doing is comparing the concentrations of creatinine in the blood with the concentrations
+                        that end up in the urine.
+                    </p>
+
+                    <p>
+                        If most of the creatinine is staying in the blood, the kidneys must not be filterning very
+                        well. If a lot of creatinine shows up in the urine, the kidneys must be filtering well.
+                    </p>
+                </div>
+            </div>
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+        </div>
+        <!--collapse hide step 3-->
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 4: Do the math.</span>
+                </p>
+
+                <p>
+                    Set up your equations and solve for the unknown (Kel).
+                </p>
+
+                <p>Click the button to the right when you have a result.</p>
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep4 = !hideStep4">Toggle Step 4</button>
+            </div>
+        </div>
+
+
+        <div collapse="hideStep4">
+
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="riserun"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        The hardest part of using this equation is making sure that the units cross out correctly.
+                        Always double check to see how the lab is reporting concentrations. They may not always
+                        be using the same units as in this tutorial. That might require you to first convert between
+                        mL, dL, mg or grams.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="firstorderslope"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        Once we get the units of mass to cancel out correctly, we can start working on time.
+
+                    </p>
+
+                    <p>
+                        This test is sometimes referred to as a "24-hour urine". That's because we often collect
+                        urine over a 24-hour period. However, there's nothing magical about "24 hours". The
+                        collection period can be any length of time. Collecting urine over 24 hours will probably give
+                        us a more accurate estimate of GFR than collecting over just 1-2 hours. But a 6-hour,
+                        12-hour, or 36-hour urine collection would be calculated the same way.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="firstorderslope"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        Notice that we have to convert hours to minutes.
+
+                    </p>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="firstorderslope"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        It's not just a matter of muliplying and dividing.
+
+                    </p>
+
+                </div>
+            </div>
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+
+        </div>
+        <!--collapse hide step 4-->
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 5: Does my answer make sense?.</span>
+                </p>
+
+                <p>
+                    Go back to Step 2. Does you answer look the way you expected it to?
+                </p>
+                <ul>
+                    <li>Are the units what was expected?</li>
+                    <li>Is the number in the same general range for the population predictions?</li>
+                </ul>
+
+
+                <p>Click the button to the right for an additional tip.</p>
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep5 = !hideStep5">Toggle Step 5</button>
+            </div>
+        </div>
+
+
+        <div collapse="hideStep5">
+
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="trueC0Solution"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        Our answer was {{ Problem.trueC0 | number:1}} mg/L, which has the correct units and is
+                        somewhere in the range we expected. So it sounds right.
+                    </p>
+
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="checkCSolution"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        While this is one of the more accurate ways of estimating GFR, it has a big drawback: We had
+                        to collect urine for xxxxx hours. If a patient comes in and needs drug therapy, we want to
+                        figure out what dose to given them <b>today</b>, not tomorrow.
+                    </p>
+
+                    <p>
+                        That's why this technique is used much less frequently than equation that estimate
+                        based on population averages. Using Cockcroft-Gault or MDRD you can estimte GFR using
+                        just a blood sample. Neither technique is as good as getting a timed urine collection,
+                        but the estimate is usually good enough to figure out a drug dose.
+                    </p>
+                </div>
+            </div>
+
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+        </div>
+        <!--collapse hide step 5-->
+
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+
+    </div>
+    <!-- /container -->

@@ -8,6 +8,7 @@ angular.module('kinetics-problems', [
     'kinetics-problems.kel',
     'kinetics-problems.firstOrderPredict',
     'kinetics-problems.firstOrderPostdict',
+    'kinetics-problems.measuredCrCl',
     'kinetics-problems.version',
     'ui.bootstrap'
 
