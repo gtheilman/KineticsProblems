@@ -19,23 +19,23 @@ angular.module('kinetics-problems', [
                 // controller: 'calculatorCtrl'
             }).
             when('/sandboxGFR', {
-                templateUrl: 'calculators/gfr.html',
+                templateUrl: 'calculators/gfr.html'
                 // controller: 'calculatorCtrl'
             }).
             when('/sandboxMM', {
-                templateUrl: 'calculators/michaelisMenten.html',
+                templateUrl: 'calculators/michaelisMenten.html'
                 // controller: 'calculatorCtrl'
             }).
             when('/sandboxDigoxin', {
-                templateUrl: 'calculators/digoxin.html',
+                templateUrl: 'calculators/digoxin.html'
                 // controller: 'calculatorCtrl'
             }).
             when('/sandboxSteadyState', {
-                templateUrl: 'calculators/steadyState.html',
+                templateUrl: 'calculators/steadyState.html'
                 // controller: 'calculatorCtrl'
             }).
             when('/sandboxTheophylline', {
-                templateUrl: 'calculators/theophylline.html',
+                templateUrl: 'calculators/theophylline.html'
                 // controller: 'calculatorCtrl'
             }).
             otherwise({
