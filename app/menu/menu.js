@@ -65,7 +65,37 @@ angular.module('kinetics-problems.menu', ['ngRoute'])
                         {
                             "title": "Calculating a Patient's Actual Volume of Distribution",
                             "url": "VdCalc"
-                        },
+                        }
+                    ]
+                },
+                {
+                    "name": "Theophylline",
+                    "problems": [
+
+                        {
+                            "title": "Sandbox",
+                            "url": "sandboxTheophylline"
+                        }
+
+                    ]
+                },
+
+                {
+                    "name": "Digoxin",
+                    "problems": [
+
+                        {
+                            "title": "Sandbox",
+                            "url": "sandboxDigoxin"
+                        }
+
+                    ]
+                },
+
+                {
+                    "name": "Phenytoin",
+                    "problems": [
+
                         {
                             "title": "Sandbox",
                             "url": "sandboxMM"
@@ -73,5 +103,6 @@ angular.module('kinetics-problems.menu', ['ngRoute'])
 
                     ]
                 }
+
             ]
     });
