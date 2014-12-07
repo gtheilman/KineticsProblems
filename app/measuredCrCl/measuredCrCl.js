@@ -42,12 +42,12 @@ angular.module('kinetics-problems.measuredCrCl', ['ngRoute', 'n3-line-chart'])
 
         $scope.GFR_Equation2 = LatexService.LaTeX('Cl_{Cr}\\scriptsize{\\frac{mL}{min}}=\\frac{' + $scope.Problem.UrineCrConc + '\\: \\small{\\frac{mg}{dL}}}{' + $scope.adultpatient.creatinine + '\\small{\\frac{mg}{dL}}}\\times \\frac{' + $scope.Problem.UrineVolume + '\\; mL}{time}');
 
-        $scope.GFR_Equation3 = LatexService.LaTeX('Cl_{Cr}\\scriptsize{\\frac{mL}{min}}=\\frac{' + $scope.Problem.UrineCrConc +
-        '\\: \\small{\\frac{mg}{dL}}}{' + $scope.adultpatient.creatinine + '\\small{\\frac{mg}{dL}}}\\times \\frac{' +
+        $scope.GFR_Equation3 = LatexService.LaTeX('\\require{cancel}Cl_{Cr}\\scriptsize{\\frac{mL}{min}}=\\frac{' + $scope.Problem.UrineCrConc +
+        '\\:\\cancel{\\small{\\frac{mg}{dL}}}}{' + $scope.adultpatient.creatinine + '\\: \\cancel{\\small{\\frac{mg}{dL}}}}\\times \\frac{' +
         $scope.Problem.UrineVolume + '\\; mL}{' + $scope.Problem.durationUrineCollection + '\\: hours}');
 
         $scope.GFR_Equation4 = LatexService.LaTeX('\\require{cancel}Cl_{Cr}\\scriptsize{\\frac{mL}{min}}=\\frac{' + $scope.Problem.UrineCrConc +
-        '\\: \\small{\\frac{mg}{dL}}}{' + $scope.adultpatient.creatinine + '\\: \\small{\\frac{mg}{dL}}}\\times \\frac{' +
+        '\\:\\cancel{\\small{\\frac{mg}{dL}}}}{' + $scope.adultpatient.creatinine + '\\:\\cancel{\\small{\\frac{mg}{dL}}}}\\times \\frac{' +
         $scope.Problem.UrineVolume + '\\; mL}{' + $scope.Problem.durationUrineCollection + '\\: hours\\times\\small{\\frac{60\\: minutes}{1\\: hour}}}');
 
 
