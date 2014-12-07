@@ -24,9 +24,9 @@
                 <br>
                 Urine collection ended: {{Problem.UrineEnd_time | date:'yyyy-MM-dd HH:mm'}}
                 <br>
-                Urine volume: {{Problem.UrineVolume}} mL
+                Urine volume: {{Problem.UrineVolume | number:0}} mL
                 <br>
-                Urine creatinine concentration: {{Problem.UrineCrConc}} mg/dL
+                Urine creatinine concentration: {{Problem.UrineCrConc | number:1 }} mg/dL
             </p>
 
             <p>&nbsp;</p>
@@ -78,8 +78,10 @@
 
                     </p>
                     <p>
-                        So, what we are going to do is collect urine over a period of time. Halfway into the collection
-                        period we will collect a blood sample.
+                        So, what we are going to do is collect urine over a period of time. We will also collect a
+                        blood sample. Ideally, the blood sample would be at the midpoint of the urine collection.
+                        However, serum creatinine doesn't change that much over a period of a few hours, so the
+                        timing of the blood sample is not critical.
                     </p>
 
                     <p>
@@ -186,7 +188,7 @@
             <div class="row">
                 <div class="col-md-6">.
 
-                    <div ng-include="'kel/kel.svg'"></div>
+                    <div mathjax-bind="GFR_Equation"></div>
 
                 </div>
                 <div class="col-md-6">
@@ -236,24 +238,32 @@
 
             <div class="row">
                 <div class="col-md-6">.
-                    <div mathjax-bind="riserun"></div>
+                    <div mathjax-bind="GFR_Equation2" style="font-size:125%"></div>
                 </div>
                 <div class="col-md-6">
                     <p>
                         The hardest part of using this equation is making sure that the units cross out correctly.
                         Always double check to see how the lab is reporting concentrations. They may not always
                         be using the same units as in this tutorial. That might require you to first convert between
-                        mL, dL, mg or grams.
+                        mL, dL, mg or grams. The units for urine and blood concentrations need to be the same so that
+                        they cross out.
                     </p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">.
-                    <div mathjax-bind="firstorderslope"></div>
+                    <div mathjax-bind="GFR_Equation3" style="font-size:125%"></div>
                 </div>
                 <div class="col-md-6">
                     <p>
-                        Once we get the units of mass to cancel out correctly, we can start working on time.
+                        Once we get the units of concentration to cancel out correctly, what left is <i>volume</i>
+                        over <i>time</i>. We previously said we expected our answer to look like this, so that's a
+                        good sign.
+                    </p>
+
+                    <p>
+                        We can now start working on time. Note that we expect our answer to have <i>minutes</i> in the
+                        denominator. We need to make sure that's what we use.
 
                     </p>
 
@@ -262,14 +272,16 @@
                         urine over a 24-hour period. However, there's nothing magical about "24 hours". The
                         collection period can be any length of time. Collecting urine over 24 hours will probably give
                         us a more accurate estimate of GFR than collecting over just 1-2 hours. But a 6-hour,
-                        12-hour, or 36-hour urine collection would be calculated the same way.
+                        12-hour, or 36-hour urine collection would be calculated the same way. In our current case,
+                        the urine was collected over {{Problem.durationUrineCollection | number:0}} hours.
                     </p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">.
-                    <div mathjax-bind="firstorderslope"></div>
+                    <div mathjax-bind="GFR_Equation4" style="font-size:125%"></div>
                 </div>
+
                 <div class="col-md-6">
                     <p>
                         Notice that we have to convert hours to minutes.
@@ -281,11 +293,11 @@
 
             <div class="row">
                 <div class="col-md-6">.
-                    <div mathjax-bind="firstorderslope"></div>
+                    <div mathjax-bind="GFR_Equation5" style="font-size:125%"></div>
                 </div>
                 <div class="col-md-6">
                     <p>
-                        It's not just a matter of muliplying and dividing.
+                        It's now just a matter of muliplying and dividing.
 
                     </p>
 
@@ -318,7 +330,7 @@
                 </ul>
 
 
-                <p>Click the button to the right for an additional tip.</p>
+                <p>Click the button to the right when you've answered the questions.</p>
             </div>
             <div class="col-md-4">.
                 <button class="btn btn-default" ng-click="hideStep5 = !hideStep5">Toggle Step 5</button>
@@ -330,13 +342,11 @@
 
 
             <div class="row">
-                <div class="col-md-6">.
-                    <div mathjax-bind="trueC0Solution"></div>
-                </div>
-                <div class="col-md-6">
+
+                <div>
                     <p>
-                        Our answer was {{ Problem.trueC0 | number:1}} mg/L, which has the correct units and is
-                        somewhere in the range we expected. So it sounds right.
+                        Our answer was {{ measuredCrClPopulationParams.ClCr | number:0}} mL/min,
+                        which has the correct units and is somewhere in the range we expected. So it sounds right.
                     </p>
 
                 </div>
@@ -344,18 +354,23 @@
 
 
             <div class="row">
-                <div class="col-md-6">.
-                    <div mathjax-bind="checkCSolution"></div>
-                </div>
-                <div class="col-md-6">
+
+                <div>
                     <p>
-                        While this is one of the more accurate ways of estimating GFR, it has a big drawback: We had
-                        to collect urine for xxxxx hours. If a patient comes in and needs drug therapy, we want to
-                        figure out what dose to given them <b>today</b>, not tomorrow.
+                        While this is one of the more accurate ways of estimating GFR, it has a big drawback: We first
+                        collected urine for {{Problem.durationUrineCollection | number:0}} hours.
+                        If a patient comes in and needs drug therapy, we want to
+                        figure out what dose to given them <b>now</b>, not in {{Problem.durationUrineCollection |
+                        number:0}} hours.
                     </p>
 
                     <p>
-                        That's why this technique is used much less frequently than equation that estimate
+                        And while we could have used a shorter urine collection period, that reduces the
+                        accuracy of our result.
+                    </p>
+
+                    <p>
+                        That's why this technique is used much less frequently than using equations that estimate GFR
                         based on population averages. Using Cockcroft-Gault or MDRD you can estimte GFR using
                         just a blood sample. Neither technique is as good as getting a timed urine collection,
                         but the estimate is usually good enough to figure out a drug dose.

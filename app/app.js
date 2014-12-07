@@ -307,6 +307,10 @@ angular.module('kinetics-problems', [
 
             var C = randNormal(1.3, 0.1, 1);
 
+            InfusionEnd_conc = Math.round(InfusionEnd_conc * 10) / 10;
+
+            var deltaT = C_time.diff(C0_time, 'hours', true);
+            deltaT = Math.round(deltaT * 10) / 10;
 
             var t2 = (Math.log(C / C0)) / k * (-1);
 
@@ -323,10 +327,6 @@ angular.module('kinetics-problems', [
             InfusionBegin_conc = Math.round(InfusionBegin_conc * 10) / 10;
 
             var InfusionEnd_conc = C0 * (Math.exp(-1 * k * (-1 * twait)));
-            InfusionEnd_conc = Math.round(InfusionEnd_conc * 10) / 10;
-
-            var deltaT = C_time.diff(C0_time, 'hours', true);
-            deltaT = Math.round(deltaT * 10) / 10;
 
             C_time = moment(C_time).toDate();
             C0_time = moment(C0_time).toDate();
@@ -351,6 +351,32 @@ angular.module('kinetics-problems', [
                 InfusionBegin_conc: InfusionBegin_conc,
                 deltaT: deltaT,
                 now: now
+            };
+        };
+        this.measuredCrCl = function (ClCr, creatinine, weight) {
+            var durationUrineCollection = randrange(6, 36);
+            var now = moment();
+            var labDelay = randSelect([0.75, 1, 1.25, 1.5, 1.75, 2]);
+            var UrineEnd_time = moment().subtract((labDelay), 'hours');
+            var UrineStart_time = moment(UrineEnd_time).subtract((durationUrineCollection), 'hours');
+            var UrineVolume = randNormal(1.1, 0.1, 1);
+            UrineVolume = UrineVolume * ClCr / 60 * weight * durationUrineCollection;
+            UrineVolume = Math.round(UrineVolume);
+
+            var UrineCrConc = ClCr * creatinine * durationUrineCollection * 60 / UrineVolume;
+            UrineCrConc = Math.round(UrineCrConc * 10) / 10;
+
+
+            UrineEnd_time = moment(UrineEnd_time).toDate();
+            UrineStart_time = moment(UrineStart_time).toDate();
+
+            return {
+                durationUrineCollection: durationUrineCollection,
+                UrineEnd_time: UrineEnd_time,
+                UrineStart_time: UrineStart_time,
+                UrineVolume: UrineVolume,
+                UrineCrConc: UrineCrConc
+
             };
         };
     }

@@ -10,7 +10,7 @@ angular.module('kinetics-problems.measuredCrCl', ['ngRoute', 'n3-line-chart'])
     }])
 
     .controller('measuredCrClCtrl', function ($scope, LatexService, CreatePatient, PopulationParams, Problem,
-                                              SolverService, GraphService, AddDisease, AddDrug, $timeout) {
+                                              AddDisease, AddDrug) {
         $scope.Problem = [];
         $scope.adultpatient = [];
         $scope.drug = [];
@@ -22,10 +22,7 @@ angular.module('kinetics-problems.measuredCrCl', ['ngRoute', 'n3-line-chart'])
         $scope.initialDrawingOptionsLog = [];
 
         $scope.hidePatient = false;
-        $scope.hideStep1 = false;
-        $timeout(function () {
-            $scope.hideStep1 = true;
-        }, 500);
+        $scope.hideStep1 = true;
         $scope.hideStep2 = true;
         $scope.hideStep3 = true;
         $scope.hideStep4 = true;
@@ -33,59 +30,32 @@ angular.module('kinetics-problems.measuredCrCl', ['ngRoute', 'n3-line-chart'])
 
 
         $scope.adultpatient = CreatePatient.adult();
-        $scope.adultpatient.creatinine = randrange(2.5, 8);
+        $scope.adultpatient.creatinine = randNormal(3, 1, 1)
         $scope.adultpatient.BUN = randNormal(($scope.adultpatient.creatinine * 10), 3, 0);
         $scope.disease = AddDisease.gramNegative();
         $scope.drug = AddDrug.genttobra();
         $scope.PMH = AddDisease.PMH();
         /* age, weight, creatinine, gender */
         $scope.measuredCrClPopulationParams = PopulationParams.aminoglycoside($scope.adultpatient.age, $scope.adultpatient.weight, $scope.adultpatient.creatinine, $scope.adultpatient.gender);
-        $scope.Problem = Problem.measuredCrCl($scope.measuredCrClPopulationParams.k, $scope.measuredCrClPopulationParams.Vd);
+        $scope.Problem = Problem.measuredCrCl($scope.measuredCrClPopulationParams.ClCr, $scope.adultpatient.creatinine, $scope.adultpatient.weight);
+        $scope.GFR_Equation = LatexService.LaTeX('GFR\\approx Cl_{Cr}=\\frac{[Urine]}{[Blood]}\\times \\frac{Urine\\; Volume}{time}');
 
-        $scope.initialDrawingData = [
-            {
-                x: $scope.Problem.InfusionBegin_time,
-                value: $scope.Problem.InfusionBegin_conc,
-                tooltip: "Infusion Begins"
-            },
-            {
-                x: $scope.Problem.InfusionEnd_time,
-                value: $scope.Problem.InfusionEnd_conc,
-                tooltip: "Infusion Ends"
-            },
-            {
-                x: $scope.Problem.trueC0_time,
-                value: $scope.Problem.trueC0,
-                tooltip: "Time concentration SHOULD have been collected = " + moment($scope.Problem.trueC0_time).format('HH:mm')
-            },
-            {
-                x: $scope.Problem.C0_time,
-                value: $scope.Problem.C0,
-                tooltip: "Co = " + $scope.Problem.C0 + " mg/L @ " + moment($scope.Problem.C0_time).format('HH:mm')
-            },
-            {
-                x: $scope.Problem.C_time,
-                value: $scope.Problem.C,
-                tooltip: "C = " + $scope.Problem.C + " mg/L @ " + moment($scope.Problem.C_time).format('HH:mm')
-            }
+        $scope.GFR_Equation2 = LatexService.LaTeX('Cl_{Cr}\\scriptsize{\\frac{mL}{min}}=\\frac{' + $scope.Problem.UrineCrConc + '\\: \\small{\\frac{mg}{dL}}}{' + $scope.adultpatient.creatinine + '\\small{\\frac{mg}{dL}}}\\times \\frac{' + $scope.Problem.UrineVolume + '\\; mL}{time}');
 
-        ]
-        ;
-        $scope.initialDrawingOptions = GraphService.concTime('mg/L', $scope.drug.drug, 'linear', $scope.initialDrawingData);
-        $scope.initialDrawingOptionsLog = GraphService.concTime('mg/L', $scope.drug.drug, 'log', $scope.initialDrawingData);
-        $scope.riserun = LatexService.LaTeX('slope=\\frac{rise}{run}');
-        $scope.firstorderslope = LatexService.firstOrderSlope("C", "C0", "k", "t");
-        $scope.firstorderslope2 = LatexService.firstOrderSlope($scope.Problem.C, $scope.Problem.C0, $scope.measuredCrClPopulationParams.k, "t");
-        $scope.firstorderslope3 = LatexService.firstOrderSlope($scope.Problem.C, $scope.Problem.C0, $scope.measuredCrClPopulationParams.k, $scope.Problem.deltaT);
-        $scope.kelSolution = LatexService.LaTeX("k_{el} = -" + $scope.measuredCrClPopulationParams.k + " \\:  hrs^{-1}");
-        $scope.trueC0Solution = LatexService.LaTeX("C_{0} = " + $scope.Problem.trueC0 + " \\Tiny\\frac{mg}{L}");
+        $scope.GFR_Equation3 = LatexService.LaTeX('Cl_{Cr}\\scriptsize{\\frac{mL}{min}}=\\frac{' + $scope.Problem.UrineCrConc +
+        '\\: \\small{\\frac{mg}{dL}}}{' + $scope.adultpatient.creatinine + '\\small{\\frac{mg}{dL}}}\\times \\frac{' +
+        $scope.Problem.UrineVolume + '\\; mL}{' + $scope.Problem.durationUrineCollection + '\\: hours}');
 
-        $scope.firstOrderElimination = LatexService.firstOrderElimination("C", "C0", "k", "t");
-        $scope.firstOrderElimination2 = LatexService.firstOrderElimination($scope.Problem.C, $scope.Problem.C0, $scope.measuredCrClPopulationParams.k, "t");
-        $scope.firstOrderElimination3 = LatexService.firstOrderElimination($scope.Problem.C, $scope.Problem.C0, $scope.measuredCrClPopulationParams.k, $scope.Problem.deltaT);
-        $scope.firstOrderElimination4 = LatexService.firstOrderElimination($scope.Problem.C0, "C", $scope.measuredCrClPopulationParams.k, $scope.Problem.truedeltaT);
-        $scope.firstOrderElimination5 = LatexService.firstOrderElimination("C", $scope.Problem.trueC0, $scope.measuredCrClPopulationParams.k, $scope.Problem.checkdeltaT);
-        $scope.checkCSolution = LatexService.LaTeX("C = " + $scope.Problem.C + " \\Tiny\\frac{mg}{L}");
+        $scope.GFR_Equation4 = LatexService.LaTeX('\\require{cancel}Cl_{Cr}\\scriptsize{\\frac{mL}{min}}=\\frac{' + $scope.Problem.UrineCrConc +
+        '\\: \\small{\\frac{mg}{dL}}}{' + $scope.adultpatient.creatinine + '\\: \\small{\\frac{mg}{dL}}}\\times \\frac{' +
+        $scope.Problem.UrineVolume + '\\; mL}{' + $scope.Problem.durationUrineCollection + '\\: hours\\times\\small{\\frac{60\\: minutes}{1\\: hour}}}');
+
+
+        $scope.GFR_Equation5 = LatexService.LaTeX('\\require{cancel}Cl_{Cr}\\scriptsize{\\frac{mL}{min}}=\\frac{' + $scope.Problem.UrineCrConc +
+        '\\: \\cancel{\\small{\\frac{mg}{dL}}}}{' + $scope.adultpatient.creatinine + '\\: \\cancel{\\small{\\frac{mg}{dL}}}}\\times \\frac{' +
+        $scope.Problem.UrineVolume + '\\; mL}{' + $scope.Problem.durationUrineCollection +
+        '\\: \\cancel{hours}\\times\\small{\\frac{60\\: minutes}{1\\: \\cancel{hour}}}}=\\normalsize{' + $scope.measuredCrClPopulationParams.ClCr +
+        '}\\scriptsize{\\frac{mL}{min}}');
 
 
     })
