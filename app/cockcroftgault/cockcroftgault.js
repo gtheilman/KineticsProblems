@@ -36,9 +36,16 @@ angular.module('kinetics-problems.cockcroftgault', ['ngRoute', 'n3-line-chart'])
         $scope.drug = AddDrug.genttobra();
         $scope.PMH = AddDisease.PMH();
         $scope.cgEquationMale = LatexService.LaTeX('Cl_{cr}=\\frac{(140-Age)\\cdot Weight}{72\\cdot Creatinine}');
+        $scope.cgEquationFemale = LatexService.LaTeX('Cl_{cr}=\\frac{(140-Age)\\cdot Weight}{72\\cdot Creatinine} \\times 0.85');
         $scope.cgEquationAge = LatexService.LaTeX('Cl_{cr}=\\frac{(140-\\textbf{Age})\\cdot Weight}{72\\cdot Creatinine}');
+        $scope.cgEquationWeight = LatexService.LaTeX('Cl_{cr}=\\frac{(140-Age)\\cdot \\textbf{Weight}}{72\\cdot Creatinine}');
+        $scope.cgEquationCreat = LatexService.LaTeX('Cl_{cr}=\\frac{(140-Age)\\cdot Weight}{72\\cdot \\textbf{Creatinine}}');
+        $scope.cgEquationCreat = LatexService.LaTeX('Cl_{cr}=\\frac{(140-Age)\\cdot Weight}{72\\cdot \\textbf{Creatinine}}');
         $scope.cgEquationLowOldCreat = LatexService.cockcroftgault(87, 90, 50, 0.4, 1);
         $scope.cgEquationLowOldCreatRounded = LatexService.cockcroftgault(35, 90, 50, 1.0, 1);
+        $scope.ibwEquationMale = LatexService.LaTeX('IBW=50kg + (2.3\\times inches>5\\, feet)');
+        $scope.ibwEquationAlgebraic = LatexService.LaTeX('IBW=50kg + 2.3(Height-60)');
+        $scope.ibwEquationFemale = LatexService.LaTeX('IBW=45.5kg + (2.3\\times inches>5\\, feet)');
         /* age, weight, creatinine, gender
          $scope.cockcroftgaultPopulationParams = PopulationParams.aminoglycoside($scope.adultpatient.age, $scope.adultpatient.weight, $scope.adultpatient.creatinine, $scope.adultpatient.gender);
          $scope.Problem = Problem.cockcroftgault($scope.cockcroftgaultPopulationParams.ClCr, $scope.adultpatient.creatinine, $scope.adultpatient.weight);

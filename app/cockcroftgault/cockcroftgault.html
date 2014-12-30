@@ -264,11 +264,11 @@
 
                 <div class="col-md-6">
                     <p>
-                        Some sources recommend ignoring the patient's actual serum creatinine and instead using
+                        Some sources recommend ignoring the elderly patient's actual serum creatinine and instead using
                         1.0 mg/dL in the Cockroft-Gault equation for such a patient. The idea is that since the
                         patient's
-                        serum creatinine is "falsely low", arbitrarily increasing the creatinine will keep
-                        keep us from over-estimating the patient's GFR.
+                        serum creatinine is "falsely low", arbitrarily increasing the creatinine will give us a closer
+                        estimate of the patient's actual GFR.
                     </p>
 
                     <p>
@@ -284,7 +284,8 @@
                     </p>
 
                     <p>
-                        So, what does one do? Probably the best solution is to collect urine as soon as possible
+                        So, what does one do? Probably the best solution when dealing with such a patient
+                        is to collect urine as soon as possible
                         and directly measure the patient's creatinine clearance. Until that result comes back, dosing
                         of drugs should use the elderly patient's actual serum creatinine in the Cockcroft-Gault
                         equation.
@@ -309,9 +310,13 @@
 
             </div>
             <div class="row">
-                <div class="col-md-6">.
+                <div class="col-md-3">
 
-                    <div mathjax-bind="GFR_Equation"></div>
+
+                </div>
+                <div class="col-md-3">
+
+                    <img width="100" src="cockcroftgault/nochildren.gif">
 
                 </div>
 
@@ -330,7 +335,7 @@
             <div class="row">
                 <div class="col-md-6">.
 
-                    <div mathjax-bind="GFR_Equation"></div>
+                    <div mathjax-bind="cgEquationWeight"></div>
 
                 </div>
 
@@ -338,9 +343,12 @@
                     <p>
                         The next thing to think about is weight. Creatinine is produced by muscle, not by adipose
                         tissue (fat). Looking at the Cockroft-Gault equation, it should be clear that using an obese
-                        patient's actual body weight would give a higher estimate the patient's GFR. It doesn't really
-                        make sense to think that someone who is grossly obese would have better functioning kidneys
-                        than an identical patient who was at their ideal body weight.
+                        patient's body weight would give a higher estimate the patient's GFR than that of an
+                        identical patient who was at their ideal body weight. It doesn't really
+                        make sense to think that someone who is grossly obese would have better functioning kidneys.
+                        Someone who is three times larger due to adipose tissue doesn't have three times larger
+                        kidneys.
+
                     </p>
                 </div>
 
@@ -348,15 +356,17 @@
 
 
             <div class="row">
-                <div class="col-md-6">.
+                <div class="col-md-2"></div>
+                <div class="col-md-4">
 
-                    <div mathjax-bind="GFR_Equation"></div>
+                    <img width="300" src="cockcroftgault/obese.png">
 
                 </div>
 
                 <div class="col-md-6">
                     <p>
-                        So, the question is "What should we put in for weight when the patient is obese?" The best
+                        So, the question is "What should we put in for weight when the patient is obese?" When the
+                        patient has BMI > 30 kg/m<sup>2</sup>, the best
                         estimates of GFR seem to come from using a weight that reflects an obese person's
                         muscle mass rather than their actual body weight.
                     </p>
@@ -368,14 +378,14 @@
             <div class="row">
                 <div class="col-md-6">.
 
-                    <div mathjax-bind="GFR_Equation"></div>
+                    <div mathjax-bind="ibwEquationMale"></div>
 
                 </div>
 
                 <div class="col-md-6">
                     <p>
-                        There have been several strategies proposed for trying to estimate this weight. This equation
-                        has been used to estimate "ideal body weight" in men.
+                        There have been several strategies proposed for trying to estimate this "lean" body weight.
+                        This equation has been used most often to estimate "ideal body weight" in men.
                     </p>
                 </div>
 
@@ -384,7 +394,23 @@
             <div class="row">
                 <div class="col-md-6">.
 
-                    <div mathjax-bind="GFR_Equation"></div>
+                    <div mathjax-bind="ibwEquationAlgebraic"></div>
+
+                </div>
+
+                <div class="col-md-6">
+                    <p>
+                        The way this equation is used is that one subtracts 5 feet (60 inches) from the patient's
+                        height. That number is multipled times 2.3. Then 50 kg is added.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">.
+
+                    <div mathjax-bind="ibwEquationFemale"></div>
 
                 </div>
 
@@ -392,7 +418,69 @@
                     <p>
                         Here is the analogous equation for women.
                     </p>
+
+                    <p>
+                        In this case, the terms "ideal body weight" and "lean body weight" are being used
+                        inter-changeably.
+                        There really isn't anything "ideal" about IBW and a person who is above their IBW is not
+                        necessarily obese. "Lean body weight" is probably a better name. However, most textbooks
+                        and articles refer to that equation as "IBW", so that is what will be used here.
+                    </p>
+
+                    <p>
+                        There are also <a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3165292/" target="_blank">other
+                        ways</a>
+                        of estimating "lean body weight", some of which might be more appropriate for certain drugs.
+                    </p>
+
+                    <p>
+                        If the patient is underweight (actual weight < IBW), one would use their actual body weight
+                        in the Cockcroft-Gault equation. One would not add kilograms that don't exist.
+                    </p>
+
                 </div>
+
+
+                <p>&nbsp;</p>
+
+                <div class="row">
+                    <div class="col-md-6">.
+
+                        <div mathjax-bind="cgEquationCreat"></div>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <p>
+                            Serum creatinine is inversely proportional to GFR. The lower the patient's glomerular
+                            filtration rate, the more creatinine accumulates in the serum.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <p>&nbsp;</p>
+
+                <div class="row">
+                    <div class="col-md-6">.
+
+                        <div mathjax-bind="cgEquationFemale"></div>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <p>
+                            If the patient is female, the Cockcroft-Gault equation includes " x 0.85 ". The correction
+                            is included because when comparing a man and a woman of the same height and
+                            weight, the man will statistically have more muscle mass. Creatinine is a break-down
+                            product of muscle.
+                        </p>
+                    </div>
+
+                </div>
+
+
             </div>
 
 
@@ -484,7 +572,7 @@
                 </div>
                 <div class="col-md-6">
                     <p>
-                        It's now just a matter of muliplying and dividing.
+                        It's now just a matter of multiplying and dividing.
 
                     </p>
 
