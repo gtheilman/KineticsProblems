@@ -179,14 +179,21 @@ angular.module('kinetics-problems', [
             var Variables = checkCGVariables(Cl, age, weight, creat, gender);
             return "\\[  Cl_{cr} " + "=\\frac{(140-" + Variables.age + ")\\cdot " + Variables.weight + "}{72\\cdot  " + Variables.creat + "} " + Variables.gender + Variables.result + " \\]";
         };
+        this.ibw = function (ibw, height, gender) {
+            if (gender == 1) {
+                return "\\[   IBW=50kg + 2.3(" + height + "-60)=" + ibw + "kg \\]";
+            } else {
+                return "\\[   IBW=45.5kg + 2.3(" + height + "-60)=" + ibw + "kg \\]";
+            }
+
+        };
         this.LaTeX = function (str) {
             return "\\[" + str + "\\]";
         };
-    }
-)
+    })
 
-    .
-    service('SolverService', function () {
+
+    .service('SolverService', function () {
         this.FirstOrderElimination = function (C, C0, k, t) {
             if (!angular.isNumber(C)) {
                 C = C0 * (Math.exp(-1 * k * t));
@@ -210,6 +217,13 @@ angular.module('kinetics-problems', [
                 k: k,
                 t: t
             };
+        };
+        this.ibw = function (height, gender) {
+            if (gender == 1) {
+                return Math.round(50 + 2.3 * (height - 60))
+            } else {
+                return Math.round(45.5 + 2.3 * (height - 60))
+            }
         };
     })
 

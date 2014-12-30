@@ -264,10 +264,11 @@
 
                 <div class="col-md-6">
                     <p>
-                        Some sources recommend ignoring the elderly patient's actual serum creatinine and instead using
+                        Some sources recommend ignoring the elderly patient's low actual serum creatinine and instead
+                        using
                         1.0 mg/dL in the Cockroft-Gault equation for such a patient. The idea is that since the
-                        patient's
-                        serum creatinine is "falsely low", arbitrarily increasing the creatinine will give us a closer
+                        patient's serum creatinine is "falsely low", arbitrarily increasing the creatinine will give us
+                        a closer
                         estimate of the patient's actual GFR.
                     </p>
 
@@ -515,64 +516,73 @@
 
 
             <div class="row">
-                <div class="col-md-6">.
-                    <div mathjax-bind="GFR_Equation2" style="font-size:125%"></div>
+                <div class="col-md-6">
+                    <div ng-if="adultpatient.gender=='male'" mathjax-bind="cgEquationMale"></div>
+                    <div ng-if="adultpatient.gender=='female'" mathjax-bind="cgEquationFemale"></div>
                 </div>
                 <div class="col-md-6">
                     <p>
-                        The hardest part of using this equation is making sure that the units cross out correctly.
-                        Always double check to see how the lab is reporting concentrations. They may not always
-                        be using the same units as in this tutorial. That might require you to first convert between
-                        mL, dL, mg or grams. The units for urine and blood concentrations need to be the same so that
-                        they cross out.
+                        The patient is {{ adultpatient.gender }}, so we would use this version of the Cockcroft-Gault
+                        equation.
+                    </p>
+
+                    <p>
+                        The patient is {{ adultpatient.age }} years old.
+
+                    <span ng-if="adultpatient.age > 60 && adultpatient.creatinine < 1">
+                        This might be old enough for the patient to be considered "elderly" (although there are some
+                        particularly fit and "young" {{ adultpatient.age }} year-olds).  Also, this patient's serum
+                        creatinine is {{ adultpatient.creatinine }} mg/dL.   Some clinicians would use "1" rather than
+                        "{{adultpatient.creatinine}}" in the Cockcroft-Gault equation in order to compensate for the
+                        decrease in muscle mass that usually occurs as patients age.   However (as discussed above), this
+                        practice has little evidence behind it. </span>
+                        We will use {{adultpatient.creatinine}} mg/dL as our
+                        serum creatinine.
+                    </p>
+
+                    <p>
+                        The patient weighs {{ adultpatient.weight }} kg
+                        <span ng-if="adultpatient.weight/((adultpatient.height*0.0254)*(adultpatient.height*0.0254)) > 30">
+                        and is {{ adultpatient.height }} inches tall
+                        </span>.
                     </p>
                 </div>
             </div>
-            <div class="row">
+
+
+            <div ng-if="adultpatient.weight/((adultpatient.height*0.0254)*(adultpatient.height*0.0254)) > 30"
+                 class="row">
                 <div class="col-md-6">.
-                    <div mathjax-bind="GFR_Equation3" style="font-size:125%"></div>
+                    <div mathjax-bind="ibwEquationPatient" style="font-size:125%"></div>
                 </div>
                 <div class="col-md-6">
                     <p>
-                        Once we get the units of concentration to cancel out correctly, what left is <i>volume</i>
-                        over <i>time</i>. We previously said we expected our answer to look like this, so that's a
-                        good sign.
+                        This patient would be considered obese since their BMI
+                        ({{ adultpatient.weight/((adultpatient.height*0.0254)*(adultpatient.height*0.0254)) | number:1
+                        }}
+                        kg/m<sup>2</sup>) is greater than 30 kg/m<sup>2</sup>. Since creatinine is a product of muscle
+                        breakdown,
+                        we would get a better estimation of the patient's GFR if we used their "lean" or
+                        "ideal" body weight rather than their actual body weight.
                     </p>
 
-
                     <p>
-                        This test is sometimes referred to as a "24-hour urine". That's because we often collect
-                        urine over a 24-hour period. However, there's nothing magical about "24 hours". The
-                        collection period can be any length of time. Collecting urine over 24 hours will probably give
-                        us a more accurate estimate of GFR than collecting over just 1-2 hours. But a 6-hour,
-                        12-hour, or 36-hour urine collection would be calculated the same way. In our current case,
-                        the urine was collected over {{Problem.durationUrineCollection | number:0}} hours.
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">.
-                    <div mathjax-bind="GFR_Equation4" style="font-size:125%"></div>
-                </div>
-
-                <div class="col-md-6">
-                    <p>
-                        We can now start working on time. Note that we expect our answer to have <i>minutes</i> in the
-                        denominator. We need to make sure that's what we use.
-
+                        Going forward, we would use {{ ibw | number:0 }} kg as their "weight" rather than {{
+                        adultpatient.weight }} kg.
                     </p>
 
 
                 </div>
             </div>
 
+
             <div class="row">
                 <div class="col-md-6">.
-                    <div mathjax-bind="GFR_Equation5" style="font-size:125%"></div>
+                    <div mathjax-bind="cgEquationPatient" style="font-size:125%"></div>
                 </div>
                 <div class="col-md-6">
                     <p>
-                        It's now just a matter of multiplying and dividing.
+                        This gives us an estimated GFR for this patient of {{ CG | number: 0 }} mL/min.
 
                     </p>
 
@@ -598,11 +608,7 @@
 
                 <p>
                     Go back to Step 2. Does you answer look the way you expected it to?
-                </p>
-                <ul>
-                    <li>Are the units what was expected?</li>
-                    <li>Is the number in the same general range for the population predictions?</li>
-                </ul>
+                    Is the number in the same general range for the population predictions?</p>
 
 
                 <p>Click the button to the right when you've answered the questions.</p>
@@ -620,38 +626,24 @@
 
                 <div>
                     <p>
-                        Our answer was {{ cockcroftgaultPopulationParams.ClCr | number:0}} mL/min,
-                        which has the correct units and is somewhere in the range we expected. So it sounds right.
+                        Our answer was {{ CG | number: 0 }} mL/min,
+                        which is somewhere in the range we expected. So it sounds right.
                     </p>
+
+                    <p>
+                        One thing to keep in mind is that this is an estimate of measured creatinine clearance, which
+                        is itself an estimate of GFR. Confidence of the the estimate is decreased if the
+                        patient is elderly, obese or has rapidly changing renal function.
+                        So, if the patient is being treated with a drug with a
+                        narrow therapeutic index or is critically ill, a 24-hour urine collection to measure actual
+                        creatinine clearance would be advisable.
+                    </p>
+
 
                 </div>
             </div>
 
 
-            <div class="row">
-
-                <div>
-                    <p>
-                        While this is one of the more accurate ways of estimating GFR, it has a big drawback: We first
-                        collected urine for {{Problem.durationUrineCollection | number:0}} hours.
-                        If a patient comes in and needs drug therapy, we want to
-                        figure out what dose to given them <b>now</b>, not in {{Problem.durationUrineCollection |
-                        number:0}} hours.
-                    </p>
-
-                    <p>
-                        And while we could have used a shorter urine collection period, that reduces the
-                        accuracy of our result.
-                    </p>
-
-                    <p>
-                        That's why this technique is used much less frequently than using equations that estimate GFR
-                        based on population averages. Using Cockcroft-Gault or MDRD you can estimte GFR using
-                        just a blood sample. Neither technique is as good as getting a timed urine collection,
-                        but the estimate is usually good enough to figure out a drug dose.
-                    </p>
-                </div>
-            </div>
 
 
             <p>&nbsp;</p>

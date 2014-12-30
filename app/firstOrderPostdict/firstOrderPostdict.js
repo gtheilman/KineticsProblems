@@ -34,6 +34,9 @@ angular.module('kinetics-problems.firstOrderPostdict', ['ngRoute', 'n3-line-char
 
         $scope.adultpatient = CreatePatient.adult();
         $scope.adultpatient.creatinine = randrange(2.5, 8);
+        if ($scope.adultpatient.creatinine < 0.1) {
+            $scope.adultpatient.creatinine = 0.2;
+        }
         $scope.adultpatient.BUN = randNormal(($scope.adultpatient.creatinine * 10), 3, 0);
         $scope.disease = AddDisease.gramNegative();
         $scope.drug = AddDrug.genttobra();
