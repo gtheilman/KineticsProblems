@@ -37,7 +37,8 @@ angular.module('kinetics-problems.cockcroftgault', ['ngRoute', 'n3-line-chart'])
         $scope.PMH = AddDisease.PMH();
         $scope.cgEquationMale = LatexService.LaTeX('Cl_{cr}=\\frac{(140-Age)\\cdot Weight}{72\\cdot Creatinine}');
         $scope.cgEquationAge = LatexService.LaTeX('Cl_{cr}=\\frac{(140-\\textbf{Age})\\cdot Weight}{72\\cdot Creatinine}');
-        $scope.cgEquationLowCreat = LatexService.cockcroftgault("Cl", "age", "weight", 0.4, 0);
+        $scope.cgEquationLowOldCreat = LatexService.cockcroftgault(87, 90, 50, 0.4, 1);
+        $scope.cgEquationLowOldCreatRounded = LatexService.cockcroftgault(35, 90, 50, 1.0, 1);
         /* age, weight, creatinine, gender
          $scope.cockcroftgaultPopulationParams = PopulationParams.aminoglycoside($scope.adultpatient.age, $scope.adultpatient.weight, $scope.adultpatient.creatinine, $scope.adultpatient.gender);
          $scope.Problem = Problem.cockcroftgault($scope.cockcroftgaultPopulationParams.ClCr, $scope.adultpatient.creatinine, $scope.adultpatient.weight);

@@ -236,34 +236,38 @@
             <div class="row">
                 <div class="col-md-6">.
 
-                    <div mathjax-bind="cgEquationLowCreat"></div>
+                    <div mathjax-bind="cgEquationLowOldCreat"></div>
 
                 </div>
                 <div class="col-md-6">
 
                     <p>
-                        Let's think about the situation where we have a 90 year old man with a serum creatinine of
-                        0.4 mg/dL. That's a very low serum creatinine. Is his serum creatinine low because he has
+                        Let's think about the situation where we have a 90 year old man who weighs 50 kg with a serum
+                        creatinine of
+                        0.4 mg/dL. That's a low serum creatinine. Is his serum creatinine low because he has
                         super-performing kidneys?
                     </p>
 
                     <p>
                         Of course not. He has a very low creatinine because creatinine comes from muscle. He
-                        doesn't have as much muscle mass as a man who is 35 years old.
+                        doesn't have as much muscle mass as a man who is 35 years old. So, he won't be making as
+                        much creatinine in the first place.
                     </p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">.
 
-                    <div mathjax-bind="GFR_Equation"></div>
+                    <div mathjax-bind="cgEquationLowOldCreatRounded"></div>
 
                 </div>
 
                 <div class="col-md-6">
                     <p>
                         Some sources recommend ignoring the patient's actual serum creatinine and instead using
-                        1.0 mg/dL in the Cockroft-Gault equation for such a patient. The idea is that this will
+                        1.0 mg/dL in the Cockroft-Gault equation for such a patient. The idea is that since the
+                        patient's
+                        serum creatinine is "falsely low", arbitrarily increasing the creatinine will keep
                         keep us from over-estimating the patient's GFR.
                     </p>
 

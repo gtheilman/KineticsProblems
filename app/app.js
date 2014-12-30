@@ -135,9 +135,9 @@ angular.module('kinetics-problems', [
 
         function checkCGVariables(Cl, age, weight, creat, gender) {
             if (!angular.isNumber(Cl)) {
-                Cl = "Cl_{cr}";
+                var result = "";
             } else {
-                Cl = Cl + "{\\Tiny\\frac{mL}{min}}";
+                var result = "=" + Cl + "{\\Tiny\\frac{mL}{min}}";
             }
             if (!angular.isNumber(age)) {
                 age = "Age";
@@ -159,11 +159,11 @@ angular.module('kinetics-problems', [
                 }
             }
             return {
-                Cl: Cl,
                 age: age,
                 weight: weight,
                 creat: creat,
-                gender: gender
+                gender: gender,
+                result: result
             };
         }
 
@@ -177,7 +177,7 @@ angular.module('kinetics-problems', [
         };
         this.cockcroftgault = function (Cl, age, weight, creat, gender) {
             var Variables = checkCGVariables(Cl, age, weight, creat, gender);
-            return "\\[" + Variables.Cl + "=\\frac{(140-" + Variables.age + ")\\cdot " + Variables.weight + "}{72\\cdot  " + Variables.creat + "} " + Variables.gender + " \\]";
+            return "\\[  Cl_{cr} " + "=\\frac{(140-" + Variables.age + ")\\cdot " + Variables.weight + "}{72\\cdot  " + Variables.creat + "} " + Variables.gender + Variables.result + " \\]";
         };
         this.LaTeX = function (str) {
             return "\\[" + str + "\\]";
