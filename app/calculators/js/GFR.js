@@ -50,11 +50,11 @@ function initializeEquation() {
 
     else if (GFRmode == "cg") {
         if ($("#genderSwitch input[type='radio']:checked").val() == "female") {
-            Equation = "\\[      GFR\\approx ClCr\\approx  \\frac{(140-Age)\\cdot IBW}{72\\cdot SrCr}\\cdot 0.85       \\]";
-            EquationResult = "\\[      GFR\\approx \\frac{(140-Age)\\cdot IBW}{72\\cdot SrCr}\\cdot 0.85      \\]";
+            Equation = "\\[      GFR\\approx ClCr\\approx  \\frac{(140-Age)\\cdot Weight}{72\\cdot SrCr}\\cdot 0.85       \\]";
+            EquationResult = "\\[      GFR\\approx \\frac{(140-Age)\\cdot Weight}{72\\cdot SrCr}\\cdot 0.85      \\]";
         } else {
-            Equation = "\\[      GFR\\approx ClCr\\approx   \\frac{(140-Age)\\cdot IBW}{72\\cdot SrCr}       \\]";
-            EquationResult = "\\[      GFR\\approx \\frac{(140-Age)\\cdot IBW}{72\\cdot SrCr}       \\]";
+            Equation = "\\[      GFR\\approx ClCr\\approx   \\frac{(140-Age)\\cdot Weight}{72\\cdot SrCr}       \\]";
+            EquationResult = "\\[      GFR\\approx \\frac{(140-Age)\\cdot Weight}{72\\cdot SrCr}       \\]";
 
         }
     }
