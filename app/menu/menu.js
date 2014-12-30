@@ -43,7 +43,7 @@ angular.module('kinetics-problems.menu', ['ngRoute'])
                         },
                         {
                             "title": "Estimating GFR with Cockroft-Gault",
-                            "url": "cockroftGault"
+                            "url": "cockcroftgault"
                         },
                         {
                             "title": "Estimating GFR with MDRD",

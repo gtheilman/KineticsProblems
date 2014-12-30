@@ -1,0 +1,578 @@
+<div class="container">
+    <div class="page-header">
+        <h2>Cockroft-Gault</h2>
+
+        <p class="lead">Estimate glomerular filtration rate using the Cockroft-Gault equation.</p>
+    </div>
+
+
+    <div ng-controller="cockcroftgaultCtrl">
+
+        <div class="row">
+            <div class="col-md-8"><span class="stepHeader">Patient Case</span></div>
+            <div class="col-md-4">
+                <button class="btn btn-default" ng-click="hidePatient = !hidePatient">Toggle patient case</button>
+            </div>
+        </div>
+        <div collapse="hidePatient">
+
+            <span ng-include="'common/case1.html'"></span>
+
+            <p>&nbsp;</p>
+
+
+            <p>
+                What would is your best estimate of this patient's glomerular filtration rate using the Cockroft-Gault
+                equation?
+            </p>
+
+        </div>
+        <!--collapse hide patient-->
+
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 1: Draw a picture.</span>
+                </p>
+
+                <p>
+                    Make a quick sketch of what's going on in the question. This forces us to look at the question
+                    closely and avoid assumptions.
+                </p>
+
+                <p>Click the button to the right when you've finished your picture.</p>
+
+
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep1 = !hideStep1">Toggle Step 1</button>
+            </div>
+        </div>
+        <div collapse="hideStep1">
+            <div class="row">
+                <div class="col-md-6" style="height: 300px">
+
+                    <div ng-if="adultpatient.gender=='male'" ng-include="'cockcroftgault/stickmale.svg'"></div>
+                    <div ng-if="adultpatient.gender=='female'" ng-include="'cockcroftgault/stickfemale.svg'"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        While getting a "24-hour urine" and measuring how quickly the patient excretes creatinine
+                        would be optimal, it has one major drawback: It takes 24 hours. We need methods for
+                        estimating the patient's glomerular filtration rate quickly.
+                    </p>
+
+                    <p>
+                        Cockroft and Gault developed an equation that estimates GFR based on the patient's
+                    <ul>
+                        <li>Serum creatinine</li>
+                        <li>Body height/weight</li>
+                        <li>Age</li>
+                        <li>Gender</li>
+                    </ul>
+
+                    </p>
+                    <p>
+                        While it may not be the most accurate equation for estimating GFR, it can be done using paper
+                        and pencil (no calculator needed). For most situations involving drug dosing, it is close
+                        enough.
+                    </p>
+
+                    <p>
+                        In this case, we know that the patient
+                    <ul>
+                        <li>Has a serum creatinine of {{adultpatient.creatinine | number:1}} mg/dL</li>
+                        <li>Weighs {{adultpatient.weight}} kg and is {{adultpatient.height}} inches tall.</li>
+                        <li>Is {{adultpatient.age}} years old</li>
+                        <li>Is {{adultpatient.gender}}</li>
+                    </ul>
+
+                    </p>
+
+                </div>
+            </div>
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+        </div>
+        <!--collapse hide step 1-->
+
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 2: Predict answer.</span>
+                </p>
+
+                <p>
+                    In the time it took us to draw the picture, it's possible we may have forgotten what the question
+                    was asking. Go back and look at the question again. Answer these two questions:
+                <ul>
+                    <li>What is the answer going to look like (units)?</li>
+                    <li>What "ballpark" number are we expecting as our answer?</li>
+                </ul>
+                Click the button to the right when you have answered these questions.
+                </p>
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep2 = !hideStep2">Toggle Step 2</button>
+            </div>
+        </div>
+
+
+        <div collapse="hideStep2">
+
+            <div class="row">
+                <div class="col-md-12">
+
+
+                    <p>
+                        Looking back at our question, we see that it is asking for a glomerular filtration rate.
+                        That's a measure of how fast the kidneys can filter blood.
+                        The usual way of expressing GFR is <b>mL/minute</b>.
+                        When directly measuring creatinine clearance using a 24-hour urine, we would cross out units in
+                        order to end up with <b>mL/min</b>. However, units don't cross out when using the Cockroft-Gault
+                        equation. Rather, we have to make sure we are using the same units that they did when they
+                        created the equation. We have to express
+                    </p>
+                    <ul>
+                        <li>Serum creatinine in mg/dL</li>
+                        <li>Weight in kg</li>
+                        <li>Age in years</li>
+                    </ul>
+                    If we don't use those units, our number will not come out right.
+
+                    <p>
+                        We know that a 'typical' GFR is usually about 100 mL/min.
+                        Some healthy, younger patients might have calculated GFRs of 125-150 mL/min.
+                        A person in renal failure might have a GFR of less than 10 mL/min.
+                    </p>
+
+                    <p>
+                        Our answer is probably going to be somewhere between 0 - 150 mL/min.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+        </div>
+        <!--collapse hide step 2-->
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 3: Select your tools.</span>
+                </p>
+
+                <p>
+                    Think about what equations help describe the situation. Which one are you going to use?
+                </p>
+
+                <p>Click the button to the right when you have an equation in mind.</p>
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep3 = !hideStep3">Toggle Step 3</button>
+            </div>
+        </div>
+
+
+        <div collapse="hideStep3">
+
+            <div class="row">
+                <div class="col-md-6">.
+
+                    <div mathjax-bind="GFR_Equation"></div>
+
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        Obviously, we will use the Cockroft-Gault equation.
+                    </p>
+
+                    <p>
+                        However, we need to think about how we are going to interpret the values we are going to
+                        enter into the equation.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">.
+
+                    <div mathjax-bind="GFR_Equation"></div>
+
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        Let's start with age. Intuitively, it makes sense that as age increases, GFR decreases.
+                    </p>
+
+                    <p>
+                        The thing to keep in mind, though, is that Cockroft and Gault developed their equation using
+                        data collected from patients whom we would consider "young" or "middle-aged" adults. They
+                        didn't use data from patients who were 70, 80 or 90 years old.
+                    </p>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">.
+
+                    <div mathjax-bind="GFR_Equation"></div>
+
+                </div>
+                <div class="col-md-6">
+
+                    <p>
+                        Let's think about the situation where we have a 90 year old woman with a serum creatinine of
+                        0.4 mg/dL. That's a very low serum creatinine. Is her serum creatinine low because she has
+                        super-performing kidneys?
+                    </p>
+
+                    <p>
+                        Of course not. She has a very low creatinine because creatinine comes from muscle. She
+                        doesn't have as much muscle mass as a woman who is 35 years old.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">.
+
+                    <div mathjax-bind="GFR_Equation"></div>
+
+                </div>
+
+                <div class="col-md-6">
+                    <p>
+                        Some sources recommend ignoring the patient's actual serum creatinine and instead using
+                        1.0 mg/dL in the Cockroft-Gault equation for such a patient. The idea is that this will
+                        keep us from over-estimating the patient's GFR.
+                    </p>
+
+                    <p>
+                        However, recent <a
+                            href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3732548/pdf/nihms460125.pdf"
+                            target="_blank">studies</a>
+                        have suggested that this practice significantly <b>underestimates</b>
+                        the patient's GFR. A <a
+                            href="http://onlinelibrary.wiley.com/doi/10.1592/phco.31.11.1130/abstract" target="_blank">position
+                        paper</a>
+                        published by ACCP calls rounding the serum creatinine to 1.0 mg/dL in elderly patients
+                        "common, [but] is not evidence-based".
+                    </p>
+
+                    <p>
+                        So, what does one do? Probably the best solution is to collect urine as soon as possible
+                        and directly measure the patient's creatinine clearance. Until that result comes back, dosing
+                        of drugs should use the elderly patient's actual serum creatinine in the Cockcroft-Gault
+                        equation.
+                        Then, the clinician should ask themselves:
+                    </p>
+                    <ul>
+                        <li>
+                            How toxic is the drug that I am giving?
+                        </li>
+                        <li>
+                            How sick is the patient?
+                        </li>
+                        <li>
+                            Which would do more harm: Overdosing the patient or undertreating the disease?
+                        </li>
+                    </ul>
+                    <p>
+                        The answers to such questions are, of course, beyond the scope of this tutorial.
+                    </p>
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">.
+
+                    <div mathjax-bind="GFR_Equation"></div>
+
+                </div>
+
+                <div class="col-md-6">
+                    <p>
+                        The other extreme would be children. The Cockcroft-Gault equation was not developed for use in
+                        children and should not be used. There are other methods of estimating GFR in pediatric
+                        patients.
+                    </p>
+                </div>
+
+            </div>
+
+            <p>&nbsp;</p>
+
+            <div class="row">
+                <div class="col-md-6">.
+
+                    <div mathjax-bind="GFR_Equation"></div>
+
+                </div>
+
+                <div class="col-md-6">
+                    <p>
+                        The next thing to think about is weight. Creatinine is produced by muscle, not by adipose
+                        tissue (fat). Looking at the Cockroft-Gault equation, it should be clear that using an obese
+                        patient's actual body weight would give a higher estimate the patient's GFR. It doesn't really
+                        make sense to think that someone who is grossly obese would have better functioning kidneys
+                        than an identical patient who was at their ideal body weight.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">.
+
+                    <div mathjax-bind="GFR_Equation"></div>
+
+                </div>
+
+                <div class="col-md-6">
+                    <p>
+                        So, the question is "What should we put in for weight when the patient is obese?" The best
+                        estimates of GFR seem to come from using a weight that reflects an obese person's
+                        muscle mass rather than their actual body weight.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">.
+
+                    <div mathjax-bind="GFR_Equation"></div>
+
+                </div>
+
+                <div class="col-md-6">
+                    <p>
+                        There have been several strategies proposed for trying to estimate this weight. This equation
+                        has been used to estimate "ideal body weight" in men.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">.
+
+                    <div mathjax-bind="GFR_Equation"></div>
+
+                </div>
+
+                <div class="col-md-6">
+                    <p>
+                        Here is the analogous equation for women.
+                    </p>
+                </div>
+            </div>
+
+
+            <p>&nbsp;</p>
+        </div>
+        <!--collapse hide step 3-->
+
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 4: Do the math.</span>
+                </p>
+
+                <p>
+                    Set up your equations and solve for the unknown (creatinine clearance).
+                </p>
+
+                <p>Click the button to the right when you have a result.</p>
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep4 = !hideStep4">Toggle Step 4</button>
+            </div>
+        </div>
+
+
+        <div collapse="hideStep4">
+
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="GFR_Equation2" style="font-size:125%"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        The hardest part of using this equation is making sure that the units cross out correctly.
+                        Always double check to see how the lab is reporting concentrations. They may not always
+                        be using the same units as in this tutorial. That might require you to first convert between
+                        mL, dL, mg or grams. The units for urine and blood concentrations need to be the same so that
+                        they cross out.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="GFR_Equation3" style="font-size:125%"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        Once we get the units of concentration to cancel out correctly, what left is <i>volume</i>
+                        over <i>time</i>. We previously said we expected our answer to look like this, so that's a
+                        good sign.
+                    </p>
+
+
+                    <p>
+                        This test is sometimes referred to as a "24-hour urine". That's because we often collect
+                        urine over a 24-hour period. However, there's nothing magical about "24 hours". The
+                        collection period can be any length of time. Collecting urine over 24 hours will probably give
+                        us a more accurate estimate of GFR than collecting over just 1-2 hours. But a 6-hour,
+                        12-hour, or 36-hour urine collection would be calculated the same way. In our current case,
+                        the urine was collected over {{Problem.durationUrineCollection | number:0}} hours.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="GFR_Equation4" style="font-size:125%"></div>
+                </div>
+
+                <div class="col-md-6">
+                    <p>
+                        We can now start working on time. Note that we expect our answer to have <i>minutes</i> in the
+                        denominator. We need to make sure that's what we use.
+
+                    </p>
+
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="GFR_Equation5" style="font-size:125%"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        It's now just a matter of muliplying and dividing.
+
+                    </p>
+
+                </div>
+            </div>
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+
+        </div>
+        <!--collapse hide step 4-->
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 5: Does my answer make sense?.</span>
+                </p>
+
+                <p>
+                    Go back to Step 2. Does you answer look the way you expected it to?
+                </p>
+                <ul>
+                    <li>Are the units what was expected?</li>
+                    <li>Is the number in the same general range for the population predictions?</li>
+                </ul>
+
+
+                <p>Click the button to the right when you've answered the questions.</p>
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep5 = !hideStep5">Toggle Step 5</button>
+            </div>
+        </div>
+
+
+        <div collapse="hideStep5">
+
+
+            <div class="row">
+
+                <div>
+                    <p>
+                        Our answer was {{ cockcroftgaultPopulationParams.ClCr | number:0}} mL/min,
+                        which has the correct units and is somewhere in the range we expected. So it sounds right.
+                    </p>
+
+                </div>
+            </div>
+
+
+            <div class="row">
+
+                <div>
+                    <p>
+                        While this is one of the more accurate ways of estimating GFR, it has a big drawback: We first
+                        collected urine for {{Problem.durationUrineCollection | number:0}} hours.
+                        If a patient comes in and needs drug therapy, we want to
+                        figure out what dose to given them <b>now</b>, not in {{Problem.durationUrineCollection |
+                        number:0}} hours.
+                    </p>
+
+                    <p>
+                        And while we could have used a shorter urine collection period, that reduces the
+                        accuracy of our result.
+                    </p>
+
+                    <p>
+                        That's why this technique is used much less frequently than using equations that estimate GFR
+                        based on population averages. Using Cockcroft-Gault or MDRD you can estimte GFR using
+                        just a blood sample. Neither technique is as good as getting a timed urine collection,
+                        but the estimate is usually good enough to figure out a drug dose.
+                    </p>
+                </div>
+            </div>
+
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+        </div>
+        <!--collapse hide step 5-->
+
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+
+    </div>
+    <!-- /container -->

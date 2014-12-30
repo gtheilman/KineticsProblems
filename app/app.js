@@ -9,6 +9,7 @@ angular.module('kinetics-problems', [
     'kinetics-problems.firstOrderPredict',
     'kinetics-problems.firstOrderPostdict',
     'kinetics-problems.measuredCrCl',
+    'kinetics-problems.cockcroftgault',
     'kinetics-problems.version',
     'ui.bootstrap'
 
