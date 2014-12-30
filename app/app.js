@@ -133,6 +133,40 @@ angular.module('kinetics-problems', [
             };
         }
 
+        function checkCGVariables(Cl, age, weight, creat, gender) {
+            if (!angular.isNumber(Cl)) {
+                Cl = "Cl_{cr}";
+            } else {
+                Cl = Cl + "{\\Tiny\\frac{mL}{min}}";
+            }
+            if (!angular.isNumber(age)) {
+                age = "Age";
+            } else {
+                age = age;
+            }
+            if (!angular.isNumber(weight)) {
+                weight = "Weight";
+            } else {
+                weight = weight;
+            }
+            if (!angular.isNumber(creat)) {
+                creat = "Creatinine";
+            } else {
+                if (gender == 0) {
+                    gender = "\\times 0.85";
+                } else {
+                    gender = "";
+                }
+            }
+            return {
+                Cl: Cl,
+                age: age,
+                weight: weight,
+                creat: creat,
+                gender: gender
+            };
+        }
+
         this.firstOrderElimination = function (C, C0, k, t) {
             var Variables = checkVariables(C, C0, k, t);
             return "\\[ " + Variables.C + "=" + Variables.C0 + "\\cdot e^{-" + Variables.k + "\\cdot " + Variables.t + "} \\]";
@@ -141,12 +175,18 @@ angular.module('kinetics-problems', [
             var Variables = checkVariables(C, C0, k, t);
             return "\\[-" + Variables.k + " = {\\frac{{\\ln " + Variables.C + " - \\ln " + Variables.C0 + "}}{" + Variables.t + "}} \\]";
         };
+        this.cockcroftgault = function (Cl, age, weight, creat, gender) {
+            var Variables = checkCGVariables(Cl, age, weight, creat, gender);
+            return "\\[" + Variables.Cl + "=\\frac{(140-" + Variables.age + ")\\cdot " + Variables.weight + "}{72\\cdot  " + Variables.creat + "} " + Variables.gender + " \\]";
+        };
         this.LaTeX = function (str) {
             return "\\[" + str + "\\]";
         };
-    })
+    }
+)
 
-    .service('SolverService', function () {
+    .
+    service('SolverService', function () {
         this.FirstOrderElimination = function (C, C0, k, t) {
             if (!angular.isNumber(C)) {
                 C = C0 * (Math.exp(-1 * k * t));
@@ -952,7 +992,7 @@ angular.module('kinetics-problems', [
                 gu_PE: gu_PE,
                 ext_PE: ext_PE
 
-        };
+            };
         };
     })
 
