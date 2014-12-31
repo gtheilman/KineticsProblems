@@ -10,6 +10,7 @@ angular.module('kinetics-problems', [
     'kinetics-problems.firstOrderPostdict',
     'kinetics-problems.measuredCrCl',
     'kinetics-problems.cockcroftgault',
+    'kinetics-problems.mdrd',
     'kinetics-problems.version',
     'ui.bootstrap'
 
@@ -167,6 +168,109 @@ angular.module('kinetics-problems', [
             };
         }
 
+        function checkMDRDVariables(Cl, creat, age, gender, race, BUN, albumin) {
+            if (!angular.isNumber(Cl)) {
+                var result = "";
+            } else {
+                var result = "=" + Cl + "{\\Tiny\\frac{mL}{min}}";
+            }
+
+            if (!angular.isNumber(age)) {
+                if (BUN == '' && albumin == '') {
+                    age = "\\times Age ^{-0.203}";
+                } else {
+                    age = "\\times Age ^{-0.176}";
+                }
+            } else {
+                if (BUN == '' && albumin == '') {
+                    age = "\\times" + age + "^ { - 0.203";
+                } else {
+                    age = "\\times" + age + "^ { - 0.176";
+                }
+            }
+
+            if (!angular.isNumber(creat)) {
+                if (BUN == '' && albumin == '') {
+                    creat = "175\\, \\times Serum\\, Creatinine ^{-1.154}";
+                } else {
+                    creat = "170\\, \\times Serum\\, Creatinine ^{-0.999}";
+                }
+            } else {
+                if (BUN == '' && albumin == '') {
+                    creat = "175\\, \\times Serum\\, Creatinine ^{-1.154}";
+                } else {
+                    creat = "170\\, \\times" + creat + "^{-0.999}";
+                }
+            }
+
+
+            if (gender == 'Male') {
+                if (BUN == '' && albumin == '') {
+                    gender = "{\\color{Gray} \\times [0.742\\,  if\\, female ]} ";
+                } else {
+                    gender = "{\\color{Gray} \\times [0.762\\,  if\\, female ]} ";
+                }
+            } else if (gender == 'Female') {
+                if (BUN == '' && albumin == '') {
+                    gender = " \\mathbf{\\times [0.742\\,  if\\, female ]} ";
+                } else {
+                    gender = " \\mathbf{\\times [0.762\\,  if\\, female ]} ";
+                }
+            } else {
+                if (BUN == '' && albumin == '') {
+                    gender = "\\times [0.742\\,  if\\, female ]";
+                } else {
+                    gender = "\\times [0.762\\,  if\\, female ]";
+                }
+            }
+
+
+            if (race == '') {
+                if (BUN == '' && albumin == '') {
+                    race = "\\times [1.210\\, if\\, black]";
+                } else {
+                    race = "\\times [1.180\\, if\\, black]";
+                }
+            } else if (race == 'African-American') {
+                if (BUN == '' && albumin == '') {
+                    race = " \\mathbf{\\times [1.210\\, if\\, black]}";
+                } else {
+                    race = " \\mathbf{\\times [1.180\\, if\\, black]} ";
+                }
+            } else {
+                if (BUN == '' && albumin == '') {
+                    race = "{\\color{Gray} \\times [1.210\\, if\\, black]}";
+                } else {
+                    race = "{\\color{Gray} \\times [1.180\\, if\\, black]}";
+                }
+            }
+
+            if (BUN == '') {
+                BUN = '';
+            } else if (!angular.isNumber(BUN)) {
+                BUN = "\\times BUN" + "^{-0.170}";
+            } else {
+                BUN = "\\times" + BUN + "^{-0.170}";
+            }
+
+            if (albumin == '') {
+                albumin = '';
+            } else if (!angular.isNumber(albumin)) {
+                albumin = "\\times Albumin" + "^{+0.318}";
+            } else {
+                albumin = "\\times" + albumin + "^{+0.318}";
+            }
+            return {
+                age: age,
+                race: race,
+                creat: creat,
+                gender: gender,
+                result: result,
+                albumin: albumin,
+                BUN: BUN
+            };
+        }
+
         this.firstOrderElimination = function (C, C0, k, t) {
             var Variables = checkVariables(C, C0, k, t);
             return "\\[ " + Variables.C + "=" + Variables.C0 + "\\cdot e^{-" + Variables.k + "\\cdot " + Variables.t + "} \\]";
@@ -185,7 +289,10 @@ angular.module('kinetics-problems', [
             } else {
                 return "\\[   IBW=45.5kg + 2.3(" + height + "-60)=" + ibw + "kg \\]";
             }
-
+        };
+        this.mdrd = function (Cl, creat, age, gender, race, BUN, albumin) {
+            var Variables = checkMDRDVariables(Cl, creat, age, gender, race, BUN, albumin);
+            return "\\[  eGFR=" + Variables.creat + Variables.age + Variables.gender + Variables.race + Variables.BUN + Variables.albumin + "\\]";
         };
         this.LaTeX = function (str) {
             return "\\[" + str + "\\]";
@@ -193,7 +300,8 @@ angular.module('kinetics-problems', [
     })
 
 
-    .service('SolverService', function () {
+    .
+    service('SolverService', function () {
         this.FirstOrderElimination = function (C, C0, k, t) {
             if (!angular.isNumber(C)) {
                 C = C0 * (Math.exp(-1 * k * t));
@@ -501,6 +609,7 @@ angular.module('kinetics-problems', [
             var Hgb = randNormal(13, 1, 1);
             var Hct = randNormal(39, 2, 0);
             var platelets = randNormal(275, 75, 0);
+            var albumin = randNormal(4.1, 0.4, 1);
 
             var childhoodIllnesses = randSelect([
                 "No significant childhood illnesses",
@@ -980,6 +1089,7 @@ angular.module('kinetics-problems', [
                 Hgb: Hgb,
                 Hct: Hct,
                 platelets: platelets,
+                albumin: albumin,
                 childhoodIllnesses: childhoodIllnesses,
                 trauma: trauma,
                 travel: travel,

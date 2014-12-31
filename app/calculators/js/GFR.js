@@ -60,8 +60,8 @@ function initializeEquation() {
     }
 
     else if (GFRmode == "mdrd") {
-        Equation = "\\[    GFR \\approx ClCr \\approx 186 \\times SrCr^{-1.154}\\times Age^{-0.203}\\times [1.210 \\; if \\; Black] \\times [0.742 \\; if \\; female]     \\]";
-        EquationResult = "\\[    GFR \\approx ClCr \\approx 186 \\times SrCr^{-1.154}\\times Age^{-0.203}\\times [1.210 \\; if \\; Black] \\times [0.742 \\; if \\; female]     \\]";
+        Equation = "\\[    GFR \\approx ClCr \\approx 175 \\times SrCr^{-1.154}\\times Age^{-0.203}\\times [1.210 \\; if \\; Black] \\times [0.742 \\; if \\; female]     \\]";
+        EquationResult = "\\[    GFR \\approx ClCr \\approx 175 \\times SrCr^{-1.154}\\times Age^{-0.203}\\times [1.210 \\; if \\; Black] \\times [0.742 \\; if \\; female]     \\]";
     }
 
     else if (GFRmode == "ckdepi") {
@@ -181,25 +181,25 @@ $(document).ready(function () {
         else if (GFRmode == "mdrd") {
             $('#mdrd').removeClass("inactivebutton").addClass("activebutton");
             if (($("#genderSwitch input[type='radio']:checked").val() == "female") && ($("#raceSwitch input[type='radio']:checked").val() == "black")) {
-                GFR = 186 * Math.pow($("#scr").val(), -1.154) * Math.pow($("#age").val(), -0.203) * 1.210 * 0.742;
+                GFR = 175 * Math.pow($("#scr").val(), -1.154) * Math.pow($("#age").val(), -0.203) * 1.210 * 0.742;
                 GFR = Math.round(GFR * 10) / 10;
-                EquationResult = "\\[    " + GFR + " = 186 \\times " + $("#scr").val() + "^{-1.154}\\times " + $("#age").val() + "^{-0.203}\\times 1.210   \\times 0.742    \\]";
+                EquationResult = "\\[    " + GFR + " = 175 \\times " + $("#scr").val() + "^{-1.154}\\times " + $("#age").val() + "^{-0.203}\\times 1.210   \\times 0.742    \\]";
 
             } else if (($("#genderSwitch input[type='radio']:checked").val() == "female") && ($("#raceSwitch input[type='radio']:checked").val() != "black")) {
-                GFR = 186 * Math.pow($("#scr").val(), -1.154) * Math.pow($("#age").val(), -0.203) * 0.742;
+                GFR = 175 * Math.pow($("#scr").val(), -1.154) * Math.pow($("#age").val(), -0.203) * 0.742;
                 GFR = Math.round(GFR * 10) / 10;
-                EquationResult = "\\[    " + GFR + " = 186 \\times " + $("#scr").val() + "^{-1.154}\\times " + $("#age").val() + "^{-0.203}    \\times 0.742    \\]";
+                EquationResult = "\\[    " + GFR + " = 175 \\times " + $("#scr").val() + "^{-1.154}\\times " + $("#age").val() + "^{-0.203}    \\times 0.742    \\]";
 
             } else if (($("#genderSwitch input[type='radio']:checked").val() != "female") && ($("#raceSwitch input[type='radio']:checked").val() == "black")) {
-                GFR = 186 * Math.pow($("#scr").val(), -1.154) * Math.pow($("#age").val(), -0.203) * 1.210;
+                GFR = 175 * Math.pow($("#scr").val(), -1.154) * Math.pow($("#age").val(), -0.203) * 1.210;
                 GFR = Math.round(GFR * 10) / 10;
-                EquationResult = "\\[    " + GFR + " = 186 \\times " + $("#scr").val() + "^{-1.154}\\times " + $("#age").val() + "^{-0.203}\\times 1.210      \\]";
+                EquationResult = "\\[    " + GFR + " = 175 \\times " + $("#scr").val() + "^{-1.154}\\times " + $("#age").val() + "^{-0.203}\\times 1.210      \\]";
 
 
             } else if (($("#genderSwitch input[type='radio']:checked").val() != "female") && ($("#raceSwitch input[type='radio']:checked").val() != "black")) {
-                GFR = 186 * Math.pow($("#scr").val(), -1.154) * Math.pow($("#age").val(), -0.203);
+                GFR = 175 * Math.pow($("#scr").val(), -1.154) * Math.pow($("#age").val(), -0.203);
                 GFR = Math.round(GFR * 10) / 10;
-                EquationResult = "\\[    " + GFR + " = 186 \\times " + $("#scr").val() + "^{-1.154}\\times " + $("#age").val() + "^{-0.203}    \\]";
+                EquationResult = "\\[    " + GFR + " = 175 \\times " + $("#scr").val() + "^{-1.154}\\times " + $("#age").val() + "^{-0.203}    \\]";
 
 
             }
