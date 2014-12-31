@@ -45,6 +45,11 @@ angular.module('kinetics-problems.mdrd', ['ngRoute', 'n3-line-chart'])
         $scope.mdrdFourFactorOriginal = LatexService.LaTeX('eGFR=186\\times Serum\\, Creatinine ^{^{-1.154}}\\times Age^{-0.203}\\times [1.210\\, if\\, black]\\times [0.742\\, if\\, female]');
         $scope.mdrdSixFactor = LatexService.mdrd("Cl", "creat", "age", "gender", "race", "BUN", "albumin");
 
+        $scope.mdrd = SolverService.mdrd($scope.adultpatient.creatinine, $scope.adultpatient.age, $scope.adultpatient.gender, $scope.adultpatient.race);
+
+        // $scope.mdrdFourFactorPatient = LatexService.mdrd($scope.mdrd, $scope.adultpatient.creatinine, $scope.adultpatient.age,  $scope.adultpatient.gender, $scope.adultpatient.race, "", "");
+
+        $scope.mdrdFourFactorPatient = LatexService.mdrd($scope.mdrd, $scope.adultpatient.creatinine, $scope.adultpatient.age, $scope.adultpatient.gender, $scope.adultpatient.race, "", "");
 
     })
 ;

@@ -244,7 +244,6 @@
                                                                      target="_blank">
                     opinion paper</a> published by ACCP in 2011 recommends that this version be used.
                     <div mathjax-bind="mdrdFourFactor"></div>
-
                 </div>
             </div>
 
@@ -265,7 +264,7 @@
                 </p>
 
                 <p>
-                    Set up your equations and solve for the unknown (creatinine clearance).
+                    Set up your equations and solve for the unknown (eGFR).
                 </p>
 
                 <p>Click the button to the right when you have a result.</p>
@@ -280,62 +279,33 @@
 
 
             <div class="row">
-                <div class="col-md-6">
-                    <div ng-if="adultpatient.gender=='male'" mathjax-bind="cgEquationMale"></div>
-                    <div ng-if="adultpatient.gender=='female'" mathjax-bind="cgEquationFemale"></div>
-                </div>
-                <div class="col-md-6">
-                    <p>
-                        The patient is {{ adultpatient.gender }}, so we would use this version of the Cockcroft-Gault
-                        equation.
-                    </p>
-
-                    <p>
-                        The patient is {{ adultpatient.age }} years old.
-
-                    <span ng-if="adultpatient.age > 60 && adultpatient.creatinine < 1">
-                        This might be old enough for the patient to be considered "elderly" (although there are some
-                        particularly fit and "young" {{ adultpatient.age }} year-olds).  Also, this patient's serum
-                        creatinine is {{ adultpatient.creatinine }} mg/dL.   Some clinicians would use "1" rather than
-                        "{{adultpatient.creatinine}}" in the Cockcroft-Gault equation in order to compensate for the
-                        decrease in muscle mass that usually occurs as patients age.   However (as discussed above), this
-                        practice has little evidence behind it. </span>
-                        We will use {{adultpatient.creatinine}} mg/dL as our
-                        serum creatinine.
-                    </p>
-
-                    <p>
-                        The patient weighs {{ adultpatient.weight }} kg
-                        <span ng-if="adultpatient.weight/((adultpatient.height*0.0254)*(adultpatient.height*0.0254)) > 30">
-                        and is {{ adultpatient.height }} inches tall
-                        </span>.
-                    </p>
+                <div class="col-md-12">
+                    <div mathjax-bind="mdrdFourFactorPatient"></div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12">
 
-
-            <div ng-if="adultpatient.weight/((adultpatient.height*0.0254)*(adultpatient.height*0.0254)) > 30"
-                 class="row">
-                <div class="col-md-6">.
-                    <div mathjax-bind="ibwEquationPatient" style="font-size:125%"></div>
-                </div>
-                <div class="col-md-6">
                     <p>
-                        This patient would be considered obese since their BMI
-                        ({{ adultpatient.weight/((adultpatient.height*0.0254)*(adultpatient.height*0.0254)) | number:1
-                        }}
-                        kg/m<sup>2</sup>) is greater than 30 kg/m<sup>2</sup>. Since creatinine is a product of muscle
-                        breakdown,
-                        we would get a better estimation of the patient's GFR if we used their "lean" or
-                        "ideal" body weight rather than their actual body weight.
+                        The patient is {{ adultpatient.age }} years old and has a serum creatinine of
+                        {{adultpatient.creatinine}} mg/dL.
                     </p>
 
                     <p>
-                        Going forward, we would use {{ ibw | number:0 }} kg as their "weight" rather than {{
-                        adultpatient.weight }} kg.
+                        This patient is {{ adultpatient.gender }}.
+                        So, we <span ng-if="adultpatient.gender=='male'">do not</span> need to multiply the result by
+                        0.742.</span>
+
                     </p>
 
+                    <p ng-if="adultpatient.race == 'African-American'">
+                        This patient is black. So, we need to multiply the result by 1.210.
+                    </p>
 
+                    <p ng-if="adultpatient.race != 'African-American'">
+                        This patient is {{adultpatient.race}}. So, we do not need to multiply the result by 1.210, as
+                        we would need to were the patient black.
+                    </p>
                 </div>
             </div>
 
@@ -344,10 +314,9 @@
                 <div class="col-md-6">.
                     <div mathjax-bind="cgEquationPatient" style="font-size:125%"></div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <p>
-                        This gives us an estimated GFR for this patient of {{ CG | number: 0 }} mL/min.
-
+                        This gives us an estimated GFR for this patient of {{ mdrd | number: 0 }} mL/min.
                     </p>
 
                 </div>
@@ -390,18 +359,36 @@
 
                 <div>
                     <p>
-                        Our answer was {{ CG | number: 0 }} mL/min,
-                        which is somewhere in the range we expected. So it sounds right.
+                        Our answer was {{ mdrd | number: 0 }} mL/min,
+                        which is somewhere in the range we expected. So it is likely that our math is correct.
                     </p>
 
-                    <p>
-                        One thing to keep in mind is that this is an estimate of measured creatinine clearance, which
-                        is itself an estimate of GFR. Confidence of the the estimate is decreased if the
-                        patient is elderly, obese or has rapidly changing renal function.
-                        So, if the patient is being treated with a drug with a
-                        narrow therapeutic index or is critically ill, a 24-hour urine collection to measure actual
-                        creatinine clearance would be advisable.
+                    <p ng-if="mdrd > 60">
+                        While the MDRD equation does a good job in patients who have renal dysfunction, it has a
+                        tendency
+                        to be less accurate in patients with 'healthy' kidneys. If an accurate estimation of GFR is
+                        needed in a patient with a GFR > 60 mL/min, a 24-hour urine should be collected.
                     </p>
+
+
+                    <div ng-if="adultpatient.weight/((adultpatient.height*0.0254)*(adultpatient.height*0.0254)) > 30"
+                         class="row">
+
+                        <div class="col-md-12">
+                            <p>
+                                This patient would be considered obese since their BMI
+                                ({{ adultpatient.weight/((adultpatient.height*0.0254)*(adultpatient.height*0.0254)) |
+                                number:1
+                                }} kg/m<sup>2</sup>) is greater than 30 kg/m<sup>2</sup>. MDRD does not take into
+                                account
+                                patient weight. Instead, it provides a result that is already normalized to a body
+                                surface area of 1.73 m<sup>2</sup>. The precision of the equation is less in obese
+                                patients than in patients with normal weight. This had led <a
+                                    href="http://www.medscape.com/viewarticle/753041_6" target="_blank">some</a> to
+                                recommend that Cockroft-Gault be used instead of MDRD in obese patients.
+                            </p>
+                        </div>
+                    </div>
 
 
                 </div>
