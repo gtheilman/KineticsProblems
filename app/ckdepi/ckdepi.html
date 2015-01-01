@@ -1,13 +1,13 @@
 <div class="container">
     <div class="page-header">
-        <h2>MDRD</h2>
+        <h2>CKD-EPI</h2>
 
-        <p class="lead">Estimate glomerular filtration rate using the Modification of Diet in Renal Disease
+        <p class="lead">Estimate glomerular filtration rate using the Chronic Kidney Disease Epidemiology Collaboration
             equation.</p>
     </div>
 
 
-    <div ng-controller="mdrdCtrl">
+    <div ng-controller="ckdepiCtrl">
 
         <div class="row">
             <div class="col-md-8"><span class="stepHeader">Patient Case</span></div>
@@ -23,7 +23,7 @@
 
 
             <p>
-                What would is your best estimate of this patient's glomerular filtration rate using the MDRD
+                What would is your best estimate of this patient's glomerular filtration rate using the CKD-EPI
                 equation?
             </p>
 
@@ -63,19 +63,20 @@
                 </div>
                 <div class="col-md-6">
                     <p>
-                        While getting a "24-hour urine" and measuring how quickly the patient excretes creatinine
-                        would be optimal, it has one major drawback: It takes 24 hours. We need methods for
-                        estimating the patient's glomerular filtration rate quickly.
+                        <a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2763564/" target="_blank">Published in
+                            2009</a>,
+                        the CKD-EPI equation can be thought of as an "improved MDRD". It hasn't
+                        been studied as much as the MDRD equation, but it is thought to do a better job of estimating
+                        GFR in patients with GFR's greater than 60 mL/min.
                     </p>
 
                     <p>
-                        The original <a href="http://annals.org/article.aspx?articleid=712617" target="_blank">MDRD
-                        equation</a>
+                        Like the four-factor MDRD equation, the
+                        <a href="http://nkdep.nih.gov/lab-evaluation/gfr/estimating.shtml" target="_blank">CKD-EPI
+                            equation</a>
                         estimates GFR based on the patient's
                     <ul>
                         <li>Serum creatinine</li>
-                        <li>BUN</li>
-                        <li>Albumin</li>
                         <li>Race</li>
                         <li>Age</li>
                         <li>Gender</li>
@@ -86,8 +87,6 @@
                         In this case, we know that the patient
                     <ul>
                         <li>Has a serum creatinine of {{adultpatient.creatinine | number:1}} mg/dL</li>
-                        <li>Has a blood urea nitrogen of {{adultpatient.BUN | number:0}} mg/dL</li>
-                        <li>Has a serum albumin of {{adultpatient.albumin | number:1}} g/dL</li>
                         <li>Is {{adultpatient.race}}</li>
                         <li>Is {{adultpatient.age}} years old</li>
                         <li>Is {{adultpatient.gender}}</li>
@@ -97,13 +96,6 @@
 
                 </div>
             </div>
-            <p>
-                The Cockroft-Gault equation requires the patient's weight, which is not always recorded.
-                All of the above information (with the exception, perhaps, of the patient's race),
-                would be available in the lab's computer. So, the MDRD value is often automatically calculated and
-                reported by the lab alongside the patient's serum creatinine. If race is not available, the lab will
-                report two values: one for black patients and one for non-black patients.
-            </p>
             <p>&nbsp;</p>
 
             <p>&nbsp;</p>
@@ -148,14 +140,12 @@
                         That's a measure of how fast the kidneys can filter blood.
                         The usual way of expressing GFR is <b>mL/minute</b>.
                         When directly measuring creatinine clearance using a 24-hour urine, we would cross out units in
-                        order to end up with <b>mL/min</b>. However, units don't cross out when using the MDRD
+                        order to end up with <b>mL/min</b>. However, units don't cross out when using the CKD-EPI
                         equation. Rather, we have to make sure we are using the same units that they did when they
                         created the equation. We have to express
                     </p>
                     <ul>
                         <li>Serum creatinine in mg/dL</li>
-                        <li>BUN in mg/dL</li>
-                        <li>Serum albumin in g/dL</li>
                         <li>Age in years</li>
                     </ul>
                     If we don't use those units, our number will not come out right.
@@ -208,51 +198,18 @@
 
                 <div class="col-md-12">
                     <p>
-                        Obviously, we will use the MDRD equation.
+                        Obviously, we will use the CKD-EPI equation.
                     </p>
 
-                    <p>
-                        The question that may not be obvious is <b>which</b> MDRD equation will we use? There are at
-                        least <a href="http://bitly.com/1tmM2EJ" target="_blank">four different versions</a>
-                        and one <a href="http://www.clinchem.org/content/53/4/766.long"
-                                   target="_blank">"reexpression"</a> .
-                    </p>
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <p>This is the original "six-factor" version that was <a
-                            href="http://annals.org/article.aspx?articleid=712617" target="_blank">published</a>
-                        in 1999.</p>
-
-                    <div mathjax-bind="mdrdSixFactor"></div>
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <p>The "four-factor" version below dropped the use of albumin and BUN. It was found to be as
-                        accurate
-                        as the original "six-factor" version and was <a href="http://bitly.com/1tmM2EJ" target="_blank">recommended</a>
-                        by the National Kidney Foundation in 2002.</p>
-
-                    <div mathjax-bind="mdrdFourFactorOriginal"></div>
-
-                </div>
-            </div>
-
-
-            <div class="row">
-                <div class="col-md-12">
-                    Following an effort to standardize the way that laboratories were reporting serum creatinine
-                    values, a <a href="http://www.clinchem.org/content/53/4/766.long" target="_blank">reexpression</a>
-                    of the four-factor equation was published. An
-                    <a href="http://www.medscape.com/viewarticle/753041_3" target="_blank">
-                        opinion paper</a> published by ACCP in 2011 recommends that this version be used. So, while this
-                    example started off including albumin and BUN (as was required by the six-factor version),
-                    there's no advantage to using that version of the equation.
-                    <div mathjax-bind="mdrdFourFactor"></div>
+                    <div mathjax-bind="ckdepiEquation"></div>
+                    <p>where</p>
+                    <ul>
+                        <li>Scr is serum creatinine in mg/dL</li>
+                        <li>κ is 0.7 for females and 0.9 for males</li>
+                        <li>α is -0.329 for females and -0.411 for males</li>
+                        <li>min indicates the minimum of Scr /κ or 1</li>
+                        <li>max indicates the maximum of Scr /κ or 1</li>
+                    </ul>
                 </div>
             </div>
 

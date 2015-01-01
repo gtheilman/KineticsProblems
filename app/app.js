@@ -11,6 +11,7 @@ angular.module('kinetics-problems', [
     'kinetics-problems.measuredCrCl',
     'kinetics-problems.cockcroftgault',
     'kinetics-problems.mdrd',
+    'kinetics-problems.ckdepi',
     'kinetics-problems.version',
     'ui.bootstrap'
 
@@ -271,6 +272,56 @@ angular.module('kinetics-problems', [
             };
         }
 
+        function checkckdepiVariables(Cl, creat, age, gender, race) {
+
+            if (gender == 'male') {
+                var kappa = 0.9;
+                var alpha = -0.411;
+                gender = "{\\color{Gray} \\times [1.018\\,  if\\, female ]} ";
+            }
+            else {
+                gender = "\\times [1.018\\,  if\\, female ]";
+                var kappa = 0.7;
+                var alpha = -0.329;
+            }
+
+            if (!angular.isNumber(creat)) {
+                creat = "141\\, \\times \\,  min({\\small \\frac{S_{cr}}   {\\kappa }},1)^{\\alpha }\\, \\times \\, {\\small max(\\frac{S_{cr}}{\\kappa },1)^{-1.209}}\\, ";
+            } else {
+                if (creat / kappa < 1) {
+                    creat = "141\\, \\times \\, {\\color{Gray}  min({\\small \\frac{" + creat + "}   {" + kappa + " }},1)^{" + alpha + " }}\\, \\times \\, {\\small max(\\frac{" + creat + "}{" + kappa + "},1)^{-1.209}}\\,";
+                } else {
+                    creat = "141\\, \\times \\,  min({\\small \\frac{" + creat + "}   {" + kappa + " }},1)^{" + alpha + " }\\, \\times \\, {\\small \\color{Gray}  max(\\frac{" + creat + "}{" + kappa + "},1)^{-1.209}}\\,";
+                }
+            }
+
+
+            if (!angular.isNumber(age)) {
+                age = "\\times Age ^{-0.176}";
+            } else {
+                age = "\\times" + age + "^{-0.176}";
+            }
+
+            if (race != 'African-American') {
+                race = "\\times [1.180\\, if\\, black]";
+            } else {
+                race = "{\\color{Gray} \\times [1.180\\, if\\, black]}";
+            }
+
+            if (!angular.isNumber(Cl)) {
+                var result = "";
+            } else {
+                var result = "=" + Cl + "{\\Tiny\\frac{mL}{min}}";
+            }
+            return {
+                age: age,
+                race: race,
+                creat: creat,
+                gender: gender,
+                result: result
+            };
+        }
+
         this.firstOrderElimination = function (C, C0, k, t) {
             var Variables = checkVariables(C, C0, k, t);
             return "\\[ " + Variables.C + "=" + Variables.C0 + "\\cdot e^{-" + Variables.k + "\\cdot " + Variables.t + "} \\]";
@@ -294,10 +345,15 @@ angular.module('kinetics-problems', [
             var Variables = checkMDRDVariables(Cl, creat, age, gender, race, BUN, albumin);
             return "\\[ \\require{color}\\ eGFR=" + Variables.creat + Variables.age + Variables.gender + Variables.race + Variables.BUN + Variables.albumin + Variables.result + "\\]";
         };
+        this.ckdepi = function (Cl, creat, age, gender, race) {
+            var Variables = checkckdepiVariables(Cl, creat, age, gender, race);
+            return "\\[ \\require{color}\\ GFR=" + Variables.creat + Variables.age + Variables.gender + Variables.race + Variables.result + "\\]";
+        };
         this.LaTeX = function (str) {
             return "\\[" + str + "\\]";
         };
-    })
+    }
+)
 
 
     .

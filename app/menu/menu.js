@@ -50,6 +50,14 @@ angular.module('kinetics-problems.menu', ['ngRoute'])
                             "url": "mdrd"
                         },
                         {
+                            "title": "Estimating GFR with CKD-EPI",
+                            "url": "ckdepi"
+                        },
+                        {
+                            "title": "Estimating GFR in Children",
+                            "url": "gfrchildren"
+                        },
+                        {
                             "title": "Sandbox",
                             "url": "sandboxGFR"
                         }
