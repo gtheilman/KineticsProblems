@@ -288,10 +288,10 @@ angular.module('kinetics-problems', [
             if (!angular.isNumber(creat)) {
                 creat = "141\\, \\times \\,  min({\\small \\frac{S_{cr}}   {\\kappa }},1)^{\\alpha }\\, \\times \\, {\\small max(\\frac{S_{cr}}{\\kappa },1)^{-1.209}}\\, ";
             } else {
-                if (creat / kappa < 1) {
-                    creat = "141\\, \\times \\, {\\color{Gray}  min({\\small \\frac{" + creat + "}   {" + kappa + " }},1)^{" + alpha + " }}\\, \\times \\, {\\small max(\\frac{" + creat + "}{" + kappa + "},1)^{-1.209}}\\,";
+                if (creat / kappa > 1) {
+                    creat = "141\\, \\times \\,  min({ {\\color{Gray}  \\small \\frac{" + creat + "}   {" + kappa + " }},1)^{" + alpha + " }}\\, \\times \\, {\\small max(\\frac{" + creat + "}{" + kappa + "},{\\color{Gray} 1})^{-1.209}}\\,";
                 } else {
-                    creat = "141\\, \\times \\,  min({\\small \\frac{" + creat + "}   {" + kappa + " }},1)^{" + alpha + " }\\, \\times \\, {\\small \\color{Gray}  max(\\frac{" + creat + "}{" + kappa + "},1)^{-1.209}}\\,";
+                    creat = "141\\, \\times \\,  min({\\small \\frac{" + creat + "}   {" + kappa + " }},{\\color{Gray} 1})^{" + alpha + " }\\, \\times \\, {\\small \\color{Gray}  max({\\color{Gray} \\frac{" + creat + "}{" + kappa + "}},1)^{-1.209}}\\,";
                 }
             }
 
