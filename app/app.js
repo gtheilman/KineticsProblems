@@ -289,9 +289,9 @@ angular.module('kinetics-problems', [
                 creat = "141\\, \\times \\,  min({\\small \\frac{S_{cr}}   {\\kappa }},1)^{\\alpha }\\, \\times \\, {\\small max(\\frac{S_{cr}}{\\kappa },1)^{-1.209}}\\, ";
             } else {
                 if (creat / kappa > 1) {
-                    creat = "141\\, \\times \\,  min({ {\\color{Gray}  \\small \\frac{" + creat + "}   {" + kappa + " }},1)^{" + alpha + " }}\\, \\times \\, {\\small max(\\frac{" + creat + "}{" + kappa + "},{\\color{Gray} 1})^{-1.209}}\\,";
+                    creat = "141\\, \\times \\,  min({ {\\color{Gray}  \\small \\frac{" + creat + "}   {" + kappa + " }},1)^{" + alpha + " }}\\, \\times \\, {\\small max(\\frac{" + creat + "}{" + kappa + "},{\\color{Gray} 1}})^{-1.209}\\,";
                 } else {
-                    creat = "141\\, \\times \\,  min({\\small \\frac{" + creat + "}   {" + kappa + " }},{\\color{Gray} 1})^{" + alpha + " }\\, \\times \\, {\\small \\color{Gray}  max({\\color{Gray} \\frac{" + creat + "}{" + kappa + "}},1)^{-1.209}}\\,";
+                    creat = "141\\, \\times \\,  min({\\small \\frac{" + creat + "}   {" + kappa + " }},{\\color{Gray} 1})^{" + alpha + " }\\, \\times \\, {\\small max({\\color{Gray} \\frac{" + creat + "}{" + kappa + "}},\\textbf{1})^{-1.209}}\\,";
                 }
             }
 
@@ -303,9 +303,9 @@ angular.module('kinetics-problems', [
             }
 
             if (race != 'African-American') {
-                race = "\\times [1.180\\, if\\, black]";
+                race = "{\\color{Gray} \\times [1.159\\, if\\, black]}";
             } else {
-                race = "{\\color{Gray} \\times [1.180\\, if\\, black]}";
+                race = " \\times [1.159\\, if\\, black]";
             }
 
             if (!angular.isNumber(Cl)) {
@@ -398,6 +398,31 @@ angular.module('kinetics-problems', [
                 eGFR = eGFR * 1.210;
             }
             return Math.round(eGFR);
+        };
+        this.ckdepi = function (creat, age, gender, race) {
+            if (gender == 'male') {
+                var kappa = 0.9;
+                var alpha = -0.411;
+            }
+            else {
+                var kappa = 0.7;
+                var alpha = -0.329;
+            }
+            if (creat / kappa < 1) {
+                var mincreat = creat / kappa;
+                var maxcreat = 1;
+            } else {
+                var maxcreat = creat / kappa;
+                var mincreat = 1;
+            }
+            var GFR = 141 * Math.pow(mincreat, alpha) * Math.pow(maxcreat, -1.209) * Math.pow(0.993, age);
+            if (gender == 'female') {
+                GFR = GFR * 1.108;
+            }
+            if (race == 'African-American') {
+                GFR = GFR * 1.159;
+            }
+            return Math.round(GFR);
         };
     })
 

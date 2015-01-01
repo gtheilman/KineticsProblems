@@ -198,7 +198,7 @@
 
                 <div class="col-md-12">
                     <p>
-                        Obviously, we will use the CKD-EPI equation.
+                        We will use the CKD-EPI equation.
                     </p>
 
                     <div mathjax-bind="ckdepiEquation"></div>
@@ -266,19 +266,33 @@
                         {{adultpatient.creatinine}} mg/dL.
                     </p>
 
-                    <p>
-                        This patient is {{ adultpatient.gender }}.
-                        So, we <span ng-if="adultpatient.gender=='male'">do not</span> need to multiply the result by
-                        0.742.</span>
 
+                    <p ng-if="adultpatient.gender == 'female'">
+                        This patient is female. So, we need to multiply the result by 1.018.
                     </p>
 
+                    <p ng-if="adultpatient.gender == 'male'">
+                        This patient is male. So, we do not need to multiply the result by 1.018 (as we would need to
+                        if the patient were female).
+                    </p>
+
+
+                    <ul>
+                        <li>We use <span ng-if="adultpatient.gender=='male'">0.9</span><span
+                                ng-if="adultpatient.gender=='female'">0.7</span> as the value for κ
+                        </li>
+                        <li>We use <span ng-if="adultpatient.gender=='male'">-0.411</span><span
+                                ng-if="adultpatient.gender=='female'">-0.329</span> as the value for α
+                        </li>
+                    </ul>
+
+
                     <p ng-if="adultpatient.race == 'African-American'">
-                        This patient is black. So, we need to multiply the result by 1.210.
+                        This patient is black. So, we need to multiply the result by 1.159.
                     </p>
 
                     <p ng-if="adultpatient.race != 'African-American'">
-                        This patient is {{adultpatient.race}}. So, we do not need to multiply the result by 1.210, as
+                        This patient is {{adultpatient.race}}. So, we do not need to multiply the result by 1.159, as
                         we would need to were the patient black.
                     </p>
                 </div>
@@ -287,11 +301,11 @@
 
             <div class="row">
                 <div class="col-md-6">.
-                    <div mathjax-bind="cgEquationPatient" style="font-size:125%"></div>
+                    <div mathjax-bind="ckdepiEquationPatient"></div>
                 </div>
                 <div class="col-md-12">
                     <p>
-                        This gives us an estimated GFR for this patient of {{ mdrd | number: 0 }} mL/min.
+                        This gives us an estimated GFR for this patient of {{ ckdepi | number: 0 }} mL/min.
                     </p>
 
                 </div>
@@ -334,16 +348,11 @@
 
                 <div>
                     <p>
-                        Our answer was {{ mdrd | number: 0 }} mL/min,
+                        Our answer was {{ ckdepi | number: 0 }} mL/min,
                         which is somewhere in the range we expected. So it is likely that our math is correct.
                     </p>
 
-                    <p ng-if="mdrd > 60">
-                        While the MDRD equation does a good job in patients who have renal dysfunction, it has a
-                        tendency
-                        to be less accurate in patients with 'healthy' kidneys. If an accurate estimation of GFR is
-                        needed in a patient with a GFR > 60 mL/min, a 24-hour urine should be collected.
-                    </p>
+
 
 
                     <div ng-if="adultpatient.weight/((adultpatient.height*0.0254)*(adultpatient.height*0.0254)) > 30"
@@ -354,13 +363,11 @@
                                 This patient would be considered obese since their BMI
                                 ({{ adultpatient.weight/((adultpatient.height*0.0254)*(adultpatient.height*0.0254)) |
                                 number:1
-                                }} kg/m<sup>2</sup>) is greater than 30 kg/m<sup>2</sup>. MDRD does not take into
+                                }} kg/m<sup>2</sup>) is greater than 30 kg/m<sup>2</sup>. CKD-Epi does not take into
                                 account
                                 patient weight. Instead, it provides a result that is already normalized to a body
                                 surface area of 1.73 m<sup>2</sup>. The precision of the equation is less in obese
-                                patients than in patients with normal weight. This had led <a
-                                    href="http://www.medscape.com/viewarticle/753041_6" target="_blank">some</a> to
-                                recommend that Cockroft-Gault be used instead of MDRD in obese patients.
+                                patients than in patients with normal weight.  
                             </p>
                         </div>
                     </div>
