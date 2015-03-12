@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="600"
+   height="500"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.48.5 r10040"
+   version="1.0"
+   sodipodi:docname="stickfemale.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   sodipodi:modified="true">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.152"
+     inkscape:cx="300"
+     inkscape:cy="250"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer2"
+     inkscape:guide-points="false"
+     inkscape:grid-points="false"
+     showgrid="false"
+     inkscape:object-bbox="true"
+     inkscape:object-points="true"
+     inkscape:object-nodes="true"
+     inkscape:window-width="1440"
+     inkscape:window-height="783"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     width="170px"
+     height="240px"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Lines"
+     transform="translate(0,260)">
+    <g
+       id="g6721"
+       transform="matrix(2.66372,0,0,1.9722718,-706.97165,-966.9228)">
+      <path
+         id="path3796"
+         d="m 289.70588,466.47983 55.88236,16.47059 51.47058,-17.35294"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         inkscape:connector-curvature="0" />
+      <path
+         id="path3798"
+         d="m 305,576.18571 40.88235,-60.29412 31.76471,59.70589"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         inkscape:connector-curvature="0" />
+      <path
+         id="path3800"
+         d="m 345.9104,516.00089 0,-64.36751"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         inkscape:connector-curvature="0" />
+      <path
+         transform="translate(22.352941,-12.411765)"
+         d="m 361.49863,429.93896 c 0,18.96628 -16.69201,34.34149 -37.28266,34.34149 -20.59064,0 -37.28265,-15.37521 -37.28265,-34.34149 0,-18.96627 16.69201,-34.34148 37.28265,-34.34148 20.59065,0 37.28266,15.37521 37.28266,34.34148 z"
+         sodipodi:ry="34.34148"
+         sodipodi:rx="37.282658"
+         sodipodi:cy="429.93896"
+         sodipodi:cx="324.21597"
+         id="path3802"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:100;stroke-opacity:1;stroke-dasharray:none"
+         sodipodi:type="arc" />
+      <path
+         transform="translate(12.880335,-19.248572)"
+         d="m 330.1751,429.93896 c 0,3.29114 -2.66799,5.95913 -5.95913,5.95913 -3.29113,0 -5.95913,-2.66799 -5.95913,-5.95913 0,-3.29113 2.668,-5.95912 5.95913,-5.95912 3.29114,0 5.95913,2.66799 5.95913,5.95912 z"
+         sodipodi:ry="5.9591279"
+         sodipodi:rx="5.9591279"
+         sodipodi:cy="429.93896"
+         sodipodi:cx="324.21597"
+         id="path5746"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:100;stroke-opacity:1;stroke-dasharray:none"
+         sodipodi:type="arc" />
+      <path
+         transform="translate(32.439159,-19.248572)"
+         d="m 330.1751,429.93896 c 0,3.29114 -2.66799,5.95913 -5.95913,5.95913 -3.29113,0 -5.95913,-2.66799 -5.95913,-5.95913 0,-3.29113 2.668,-5.95912 5.95913,-5.95912 3.29114,0 5.95913,2.66799 5.95913,5.95912 z"
+         sodipodi:ry="5.9591279"
+         sodipodi:rx="5.9591279"
+         sodipodi:cy="429.93896"
+         sodipodi:cx="324.21597"
+         id="path5748"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:100;stroke-opacity:1;stroke-dasharray:none"
+         sodipodi:type="arc" />
+      <path
+         sodipodi:open="true"
+         sodipodi:end="2.2600247"
+         sodipodi:start="0.87001508"
+         transform="matrix(0.9995118,-0.03124306,0.03124306,0.9995118,9.3957979,-16.053504)"
+         d="m 344.35227,455.7106 c -11.52705,10.49976 -28.35687,10.60473 -39.9955,0.24945"
+         sodipodi:ry="33.717564"
+         sodipodi:rx="31.228014"
+         sodipodi:cy="429.93896"
+         sodipodi:cx="324.21597"
+         id="path5750"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:100;stroke-opacity:1;stroke-dasharray:none"
+         sodipodi:type="arc" />
+    </g>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3174"
+       y="75.197937"
+       x="253.65623"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       xml:space="preserve"><tspan
+         style="font-size:20px"
+         y="75.197937"
+         x="253.65623"
+         id="tspan3176"
+         sodipodi:role="line">Race: {{adultpatient.race}} </tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="440.78122"
+       y="165.84378"
+       id="text3197"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3199"
+         x="440.78122"
+         y="165.84378"
+         style="font-size:48px">♀</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3232"
+       y="-163.83331"
+       x="330.98956"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       xml:space="preserve"><tspan
+         style="font-size:20px"
+         y="-163.83331"
+         x="330.98956"
+         id="tspan3234"
+         sodipodi:role="line">{{adultpatient.age}} years old</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="332.98956"
+       y="-113.83331"
+       id="text3259"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3261"
+         x="332.98956"
+         y="-113.83331"
+         style="font-size:20px">Serum Creatinine: {{adultpatient.creatinine | number:1}} mg/dL</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="253.65623"
+       y="35.197937"
+       id="text3006"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3008"
+         x="253.65623"
+         y="35.197937"
+         style="font-size:20px">Albumin: {{adultpatient.albumin | number:1 }} g/dL </tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3010"
+       y="-79.833313"
+       x="332.98956"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       xml:space="preserve"><tspan
+         style="font-size:20px"
+         y="-79.833313"
+         x="332.98956"
+         id="tspan3012"
+         sodipodi:role="line">BUN: {{adultpatient.BUN | number:0}} mg/dL</tspan></text>
+  </g>
+</svg>

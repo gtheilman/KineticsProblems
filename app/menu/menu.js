@@ -43,11 +43,19 @@ angular.module('kinetics-problems.menu', ['ngRoute'])
                         },
                         {
                             "title": "Estimating GFR with Cockroft-Gault",
-                            "url": "cockroftGault"
+                            "url": "cockcroftgault"
                         },
                         {
                             "title": "Estimating GFR with MDRD",
                             "url": "mdrd"
+                        },
+                        {
+                            "title": "Estimating GFR with CKD-EPI",
+                            "url": "ckdepi"
+                        },
+                        {
+                            "title": "Estimating GFR in Children",
+                            "url": "gfrchildren"
                         },
                         {
                             "title": "Sandbox",

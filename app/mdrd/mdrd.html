@@ -1,0 +1,420 @@
+<div class="container">
+    <div class="page-header">
+        <h2>MDRD</h2>
+
+        <p class="lead">Estimate glomerular filtration rate using the Modification of Diet in Renal Disease
+            equation.</p>
+    </div>
+
+
+    <div ng-controller="mdrdCtrl">
+
+        <div class="row">
+            <div class="col-md-8"><span class="stepHeader">Patient Case</span></div>
+            <div class="col-md-4">
+                <button class="btn btn-default" ng-click="hidePatient = !hidePatient">Toggle patient case</button>
+            </div>
+        </div>
+        <div collapse="hidePatient">
+
+            <span ng-include="'common/case1.html'"></span>
+
+            <p>&nbsp;</p>
+
+
+            <p>
+                What would is your best estimate of this patient's glomerular filtration rate using the MDRD
+                equation?
+            </p>
+
+        </div>
+        <!--collapse hide patient-->
+
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 1: Draw a picture.</span>
+                </p>
+
+                <p>
+                    Make a quick sketch of what's going on in the question. This forces us to look at the question
+                    closely and avoid assumptions.
+                </p>
+
+                <p>Click the button to the right when you've finished your picture.</p>
+
+
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep1 = !hideStep1">Toggle Step 1</button>
+            </div>
+        </div>
+        <div collapse="hideStep1">
+            <div class="row">
+                <div class="col-md-6" style="height: 300px">
+
+                    <div ng-if="adultpatient.gender=='male'" ng-include="'mdrd/stickmale.svg'"></div>
+                    <div ng-if="adultpatient.gender=='female'" ng-include="'mdrd/stickfemale.svg'"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        While getting a "24-hour urine" and measuring how quickly the patient excretes creatinine
+                        would be optimal, it has one major drawback: It takes 24 hours. We need methods for
+                        estimating the patient's glomerular filtration rate quickly.
+                    </p>
+
+                    <p>
+                        The original <a href="http://annals.org/article.aspx?articleid=712617" target="_blank">MDRD
+                        equation</a>
+                        estimates GFR based on the patient's
+                    <ul>
+                        <li>Serum creatinine</li>
+                        <li>BUN</li>
+                        <li>Albumin</li>
+                        <li>Race</li>
+                        <li>Age</li>
+                        <li>Gender</li>
+                    </ul>
+
+                    </p>
+                    <p>
+                        In this case, we know that the patient
+                    <ul>
+                        <li>Has a serum creatinine of {{adultpatient.creatinine | number:1}} mg/dL</li>
+                        <li>Has a blood urea nitrogen of {{adultpatient.BUN | number:0}} mg/dL</li>
+                        <li>Has a serum albumin of {{adultpatient.albumin | number:1}} g/dL</li>
+                        <li>Is {{adultpatient.race}}</li>
+                        <li>Is {{adultpatient.age}} years old</li>
+                        <li>Is {{adultpatient.gender}}</li>
+                    </ul>
+
+                    </p>
+
+                </div>
+            </div>
+            <p>
+                The Cockroft-Gault equation requires the patient's weight, which is not always recorded.
+                All of the above information (with the exception, perhaps, of the patient's race),
+                would be available in the lab's computer. So, the MDRD value is often automatically calculated and
+                reported by the lab alongside the patient's serum creatinine. If race is not available, the lab will
+                report two values: one for black patients and one for non-black patients.
+            </p>
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+        </div>
+        <!--collapse hide step 1-->
+
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 2: Predict answer.</span>
+                </p>
+
+                <p>
+                    In the time it took us to draw the picture, it's possible we may have forgotten what the question
+                    was asking. Go back and look at the question again. Answer these two questions:
+                <ul>
+                    <li>What is the answer going to look like (units)?</li>
+                    <li>What "ballpark" number are we expecting as our answer?</li>
+                </ul>
+                Click the button to the right when you have answered these questions.
+                </p>
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep2 = !hideStep2">Toggle Step 2</button>
+            </div>
+        </div>
+
+
+        <div collapse="hideStep2">
+
+            <div class="row">
+                <div class="col-md-12">
+
+
+                    <p>
+                        Looking back at our question, we see that it is asking for a glomerular filtration rate.
+                        That's a measure of how fast the kidneys can filter blood.
+                        The usual way of expressing GFR is <b>mL/minute</b>.
+                        When directly measuring creatinine clearance using a 24-hour urine, we would cross out units in
+                        order to end up with <b>mL/min</b>. However, units don't cross out when using the MDRD
+                        equation. Rather, we have to make sure we are using the same units that they did when they
+                        created the equation. We have to express
+                    </p>
+                    <ul>
+                        <li>Serum creatinine in mg/dL</li>
+                        <li>BUN in mg/dL</li>
+                        <li>Serum albumin in g/dL</li>
+                        <li>Age in years</li>
+                    </ul>
+                    If we don't use those units, our number will not come out right.
+
+                    <p>
+                        We know that a 'typical' GFR is usually about 100 mL/min.
+                        Some healthy, younger patients might have calculated GFRs of 125-150 mL/min.
+                        A person in renal failure might have a GFR of less than 10 mL/min.
+                    </p>
+
+                    <p>
+                        Our answer is probably going to be somewhere between 0 - 150 mL/min.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+        </div>
+        <!--collapse hide step 2-->
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 3: Select your tools.</span>
+                </p>
+
+                <p>
+                    Think about what equations help describe the situation. Which one are you going to use?
+                </p>
+
+                <p>Click the button to the right when you have an equation in mind.</p>
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep3 = !hideStep3">Toggle Step 3</button>
+            </div>
+        </div>
+
+
+        <div collapse="hideStep3">
+
+            <div class="row">
+
+                <div class="col-md-12">
+                    <p>
+                        Obviously, we will use the MDRD equation.
+                    </p>
+
+                    <p>
+                        The question that may not be obvious is <b>which</b> MDRD equation will we use? There are at
+                        least <a href="http://bitly.com/1tmM2EJ" target="_blank">four different versions</a>
+                        and one <a href="http://www.clinchem.org/content/53/4/766.long"
+                                   target="_blank">"reexpression"</a> .
+                    </p>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>This is the original "six-factor" version that was <a
+                            href="http://annals.org/article.aspx?articleid=712617" target="_blank">published</a>
+                        in 1999.</p>
+
+                    <div mathjax-bind="mdrdSixFactor"></div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>The "four-factor" version below dropped the use of albumin and BUN. It was found to be as
+                        accurate
+                        as the original "six-factor" version and was <a href="http://bitly.com/1tmM2EJ" target="_blank">recommended</a>
+                        by the National Kidney Foundation in 2002.</p>
+
+                    <div mathjax-bind="mdrdFourFactorOriginal"></div>
+
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    Following an effort to standardize the way that laboratories were reporting serum creatinine
+                    values, a <a href="http://www.clinchem.org/content/53/4/766.long" target="_blank">reexpression</a>
+                    of the four-factor equation was published. An
+                    <a href="http://www.medscape.com/viewarticle/753041_3" target="_blank">
+                        opinion paper</a> published by ACCP in 2011 recommends that this version be used. So, while this
+                    example started off including albumin and BUN (as was required by the six-factor version),
+                    there's no advantage to using that version of the equation.
+                    <div mathjax-bind="mdrdFourFactor"></div>
+                </div>
+            </div>
+
+
+            <p>&nbsp;</p>
+        </div>
+        <!--collapse hide step 3-->
+
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 4: Do the math.</span>
+                </p>
+
+                <p>
+                    Set up your equations and solve for the unknown (eGFR).
+                </p>
+
+                <p>Click the button to the right when you have a result.</p>
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep4 = !hideStep4">Toggle Step 4</button>
+            </div>
+        </div>
+
+
+        <div collapse="hideStep4">
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div mathjax-bind="mdrdFourFactorPatient"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+
+                    <p>
+                        The patient is {{ adultpatient.age }} years old and has a serum creatinine of
+                        {{adultpatient.creatinine}} mg/dL.
+                    </p>
+
+                    <p>
+                        This patient is {{ adultpatient.gender }}.
+                        So, we <span ng-if="adultpatient.gender=='male'">do not</span> need to multiply the result by
+                        0.742.</span>
+
+                    </p>
+
+                    <p ng-if="adultpatient.race == 'African-American'">
+                        This patient is black. So, we need to multiply the result by 1.210.
+                    </p>
+
+                    <p ng-if="adultpatient.race != 'African-American'">
+                        This patient is {{adultpatient.race}}. So, we do not need to multiply the result by 1.210, as
+                        we would need to were the patient black.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="cgEquationPatient"></div>
+                </div>
+                <div class="col-md-12">
+                    <p>
+                        This gives us an estimated GFR for this patient of {{ mdrd | number: 0 }} mL/min.
+                    </p>
+
+                </div>
+            </div>
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+
+        </div>
+        <!--collapse hide step 4-->
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 5: Does my answer make sense?.</span>
+                </p>
+
+                <p>
+                    Go back to Step 2. Does you answer look the way you expected it to?
+                    Is the number in the same general range for the population predictions?</p>
+
+
+                <p>Click the button to the right when you've answered the questions.</p>
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep5 = !hideStep5">Toggle Step 5</button>
+            </div>
+        </div>
+
+
+        <div collapse="hideStep5">
+
+
+            <div class="row">
+
+                <div>
+                    <p>
+                        Our answer was {{ mdrd | number: 0 }} mL/min,
+                        which is somewhere in the range we expected. So it is likely that our math is correct.
+                    </p>
+
+                    <p ng-if="mdrd > 60">
+                        While the MDRD equation does a good job in patients who have renal dysfunction, it has a
+                        tendency
+                        to be less accurate in patients with 'healthy' kidneys. If an accurate estimation of GFR is
+                        needed in a patient with a GFR > 60 mL/min, a 24-hour urine should be collected.
+                    </p>
+
+
+                    <div ng-if="adultpatient.weight/((adultpatient.height*0.0254)*(adultpatient.height*0.0254)) > 30"
+                         class="row">
+
+                        <div class="col-md-12">
+                            <p>
+                                This patient would be considered obese since their BMI
+                                ({{ adultpatient.weight/((adultpatient.height*0.0254)*(adultpatient.height*0.0254)) |
+                                number:1
+                                }} kg/m<sup>2</sup>) is greater than 30 kg/m<sup>2</sup>. MDRD does not take into
+                                account
+                                patient weight. Instead, it provides a result that is already normalized to a body
+                                surface area of 1.73 m<sup>2</sup>. The precision of the equation is less in obese
+                                patients than in patients with normal weight. This had led <a
+                                    href="http://www.medscape.com/viewarticle/753041_6" target="_blank">some</a> to
+                                recommend that Cockroft-Gault be used instead of MDRD in obese patients.
+                            </p>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+        </div>
+        <!--collapse hide step 5-->
+
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+
+    </div>
+    <!-- /container -->

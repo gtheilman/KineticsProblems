@@ -1,0 +1,393 @@
+<div class="container">
+    <div class="page-header">
+        <h2>CKD-EPI</h2>
+
+        <p class="lead">Estimate glomerular filtration rate using the Chronic Kidney Disease Epidemiology Collaboration
+            equation.</p>
+    </div>
+
+
+    <div ng-controller="ckdepiCtrl">
+
+        <div class="row">
+            <div class="col-md-8"><span class="stepHeader">Patient Case</span></div>
+            <div class="col-md-4">
+                <button class="btn btn-default" ng-click="hidePatient = !hidePatient">Toggle patient case</button>
+            </div>
+        </div>
+        <div collapse="hidePatient">
+
+            <span ng-include="'common/case1.html'"></span>
+
+            <p>&nbsp;</p>
+
+
+            <p>
+                What would is your best estimate of this patient's glomerular filtration rate using the CKD-EPI
+                equation?
+            </p>
+
+        </div>
+        <!--collapse hide patient-->
+
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 1: Draw a picture.</span>
+                </p>
+
+                <p>
+                    Make a quick sketch of what's going on in the question. This forces us to look at the question
+                    closely and avoid assumptions.
+                </p>
+
+                <p>Click the button to the right when you've finished your picture.</p>
+
+
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep1 = !hideStep1">Toggle Step 1</button>
+            </div>
+        </div>
+        <div collapse="hideStep1">
+            <div class="row">
+                <div class="col-md-6" style="height: 300px">
+
+                    <div ng-if="adultpatient.gender=='male'" ng-include="'mdrd/stickmale.svg'"></div>
+                    <div ng-if="adultpatient.gender=='female'" ng-include="'mdrd/stickfemale.svg'"></div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        <a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2763564/" target="_blank">Published in
+                            2009</a>,
+                        the CKD-EPI equation can be thought of as an "improved MDRD". It hasn't
+                        been studied as much as the MDRD equation, but it is thought to do a better job of estimating
+                        GFR in patients with GFR's greater than 60 mL/min.
+                    </p>
+
+                    <p>
+                        Like the four-factor MDRD equation, the
+                        <a href="http://nkdep.nih.gov/lab-evaluation/gfr/estimating.shtml" target="_blank">CKD-EPI
+                            equation</a>
+                        estimates GFR based on the patient's
+                    <ul>
+                        <li>Serum creatinine</li>
+                        <li>Race</li>
+                        <li>Age</li>
+                        <li>Gender</li>
+                    </ul>
+
+                    </p>
+                    <p>
+                        In this case, we know that the patient
+                    <ul>
+                        <li>Has a serum creatinine of {{adultpatient.creatinine | number:1}} mg/dL</li>
+                        <li>Is {{adultpatient.race}}</li>
+                        <li>Is {{adultpatient.age}} years old</li>
+                        <li>Is {{adultpatient.gender}}</li>
+                    </ul>
+
+                    </p>
+
+                </div>
+            </div>
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+        </div>
+        <!--collapse hide step 1-->
+
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 2: Predict answer.</span>
+                </p>
+
+                <p>
+                    In the time it took us to draw the picture, it's possible we may have forgotten what the question
+                    was asking. Go back and look at the question again. Answer these two questions:
+                <ul>
+                    <li>What is the answer going to look like (units)?</li>
+                    <li>What "ballpark" number are we expecting as our answer?</li>
+                </ul>
+                Click the button to the right when you have answered these questions.
+                </p>
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep2 = !hideStep2">Toggle Step 2</button>
+            </div>
+        </div>
+
+
+        <div collapse="hideStep2">
+
+            <div class="row">
+                <div class="col-md-12">
+
+
+                    <p>
+                        Looking back at our question, we see that it is asking for a glomerular filtration rate.
+                        That's a measure of how fast the kidneys can filter blood.
+                        The usual way of expressing GFR is <b>mL/minute</b>.
+                        When directly measuring creatinine clearance using a 24-hour urine, we would cross out units in
+                        order to end up with <b>mL/min</b>. However, units don't cross out when using the CKD-EPI
+                        equation. Rather, we have to make sure we are using the same units that they did when they
+                        created the equation. We have to express
+                    </p>
+                    <ul>
+                        <li>Serum creatinine in mg/dL</li>
+                        <li>Age in years</li>
+                    </ul>
+                    If we don't use those units, our number will not come out right.
+
+                    <p>
+                        We know that a 'typical' GFR is usually about 100 mL/min.
+                        Some healthy, younger patients might have calculated GFRs of 125-150 mL/min.
+                        A person in renal failure might have a GFR of less than 10 mL/min.
+                    </p>
+
+                    <p>
+                        Our answer is probably going to be somewhere between 0 - 150 mL/min.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+        </div>
+        <!--collapse hide step 2-->
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 3: Select your tools.</span>
+                </p>
+
+                <p>
+                    Think about what equations help describe the situation. Which one are you going to use?
+                </p>
+
+                <p>Click the button to the right when you have an equation in mind.</p>
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep3 = !hideStep3">Toggle Step 3</button>
+            </div>
+        </div>
+
+
+        <div collapse="hideStep3">
+
+            <div class="row">
+
+                <div class="col-md-12">
+                    <p>
+                        We will use the CKD-EPI equation.
+                    </p>
+
+                    <div mathjax-bind="ckdepiEquation"></div>
+                    <p>where</p>
+                    <ul>
+                        <li>Scr is serum creatinine in mg/dL</li>
+                        <li>κ is 0.7 for females and 0.9 for males</li>
+                        <li>α is -0.329 for females and -0.411 for males</li>
+                        <li>min indicates the minimum of Scr /κ or 1</li>
+                        <li>max indicates the maximum of Scr /κ or 1</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p>
+                Really, the only "tricky" part of this equation is understanding the "min" and "max" portions.
+            </p>
+
+            <p>First, divide serum creatinine by kappa. Compare that value to the number '1'.</p>
+
+            <p>In the first set of parentheses, use whichever of those two numbers that is smaller.</p>
+
+            <p>In the second set of parentheses, use whichever of those two numbers that is larger.</p>
+
+            <p>&nbsp;</p>
+        </div>
+        <!--collapse hide step 3-->
+
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 4: Do the math.</span>
+                </p>
+
+                <p>
+                    Set up your equations and solve for the unknown (eGFR).
+                </p>
+
+                <p>Click the button to the right when you have a result.</p>
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep4 = !hideStep4">Toggle Step 4</button>
+            </div>
+        </div>
+
+
+        <div collapse="hideStep4">
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div mathjax-bind="mdrdFourFactorPatient"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+
+                    <p>
+                        The patient is {{ adultpatient.age }} years old and has a serum creatinine of
+                        {{adultpatient.creatinine}} mg/dL.
+                    </p>
+
+
+                    <p ng-if="adultpatient.gender == 'female'">
+                        This patient is female. So, we need to multiply the result by 1.018.
+                    </p>
+
+                    <p ng-if="adultpatient.gender == 'male'">
+                        This patient is male. So, we do not need to multiply the result by 1.018 (as we would need to
+                        if the patient were female).
+                    </p>
+
+
+                    <ul>
+                        <li>We use <span ng-if="adultpatient.gender=='male'">0.9</span><span
+                                ng-if="adultpatient.gender=='female'">0.7</span> as the value for κ
+                        </li>
+                        <li>We use <span ng-if="adultpatient.gender=='male'">-0.411</span><span
+                                ng-if="adultpatient.gender=='female'">-0.329</span> as the value for α
+                        </li>
+                    </ul>
+
+
+                    <p ng-if="adultpatient.race == 'African-American'">
+                        This patient is black. So, we need to multiply the result by 1.159.
+                    </p>
+
+                    <p ng-if="adultpatient.race != 'African-American'">
+                        This patient is {{adultpatient.race}}. So, we do not need to multiply the result by 1.159, as
+                        we would need to were the patient black.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">.
+                    <div mathjax-bind="ckdepiEquationPatient"></div>
+                </div>
+                <div class="col-md-12">
+                    <p>
+                        This gives us an estimated GFR for this patient of {{ ckdepi | number: 0 }} mL/min.
+                    </p>
+
+                </div>
+            </div>
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+
+        </div>
+        <!--collapse hide step 4-->
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <span class="stepHeader">Step 5: Does my answer make sense?.</span>
+                </p>
+
+                <p>
+                    Go back to Step 2. Does you answer look the way you expected it to?
+                    Is the number in the same general range for the population predictions?</p>
+
+
+                <p>Click the button to the right when you've answered the questions.</p>
+            </div>
+            <div class="col-md-4">.
+                <button class="btn btn-default" ng-click="hideStep5 = !hideStep5">Toggle Step 5</button>
+            </div>
+        </div>
+
+
+        <div collapse="hideStep5">
+
+
+            <div class="row">
+
+                <div>
+                    <p>
+                        Our answer was {{ ckdepi | number: 0 }} mL/min,
+                        which is somewhere in the range we expected. So it is likely that our math is correct.
+                    </p>
+
+
+
+
+                    <div ng-if="adultpatient.weight/((adultpatient.height*0.0254)*(adultpatient.height*0.0254)) > 30"
+                         class="row">
+
+                        <div class="col-md-12">
+                            <p>
+                                This patient would be considered obese since their BMI
+                                ({{ adultpatient.weight/((adultpatient.height*0.0254)*(adultpatient.height*0.0254)) |
+                                number:1
+                                }} kg/m<sup>2</sup>) is greater than 30 kg/m<sup>2</sup>. CKD-Epi does not take into
+                                account
+                                patient weight. Instead, it provides a result that is already normalized to a body
+                                surface area of 1.73 m<sup>2</sup>. The precision of the equation is less in obese
+                                patients than in patients with normal weight.  
+                            </p>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <p>&nbsp;</p>
+
+            <p>&nbsp;</p>
+        </div>
+        <!--collapse hide step 5-->
+
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+
+    </div>
+    <!-- /container -->
