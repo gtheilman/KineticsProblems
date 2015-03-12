@@ -309,9 +309,6 @@ angular.module('kinetics-problems', [
 
             InfusionEnd_conc = Math.round(InfusionEnd_conc * 10) / 10;
 
-            var deltaT = C_time.diff(C0_time, 'hours', true);
-            deltaT = Math.round(deltaT * 10) / 10;
-
             var t2 = (Math.log(C / C0)) / k * (-1);
 
             var now = moment();
@@ -321,6 +318,9 @@ angular.module('kinetics-problems', [
             var InfusionEnd_time = moment(InfusionBegin_time).add(tinf, 'hours');
             var C0_time = moment(InfusionEnd_time).add(twait, 'hours');
             var C_time = moment(C0_time).add(t2, 'hours');
+
+            var deltaT = C_time.diff(C0_time, 'hours', true);
+            deltaT = Math.round(deltaT * 10) / 10;
 
 
             var InfusionBegin_conc = C0 * (Math.exp(-1 * k * (tau - tinf - twait)));
