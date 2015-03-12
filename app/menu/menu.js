@@ -64,15 +64,19 @@ angular.module('kinetics-problems.menu', ['ngRoute'])
                     ]
                 },
                 {
-                    "name": "Volume of Distribution",
+                    "name": "Intermittent Infusion",
                     "problems": [
+                        // {
+                        //     "title": "Volume of Distribution Population Estimates",
+                        //    "url": "VdPop"
+                        //  },
+                        // {
+                        //    "title": "Calculating a Patient's Actual Volume of Distribution",
+                        //    "url": "VdCalc"
+                        //  },
                         {
-                            "title": "Volume of Distribution Population Estimates",
-                            "url": "VdPop"
-                        },
-                        {
-                            "title": "Calculating a Patient's Actual Volume of Distribution",
-                            "url": "VdCalc"
+                            "title": "Sandbox",
+                            "url": "sandboxSteadyState"
                         }
                     ]
                 },
