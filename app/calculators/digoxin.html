@@ -1,126 +1,122 @@
-<script src="calculators/js/digoxin.js"></script>
+<script src="js/digoxin.js"></script>
 
 
-<div class="container">
-    <div class="page-header">
-        <h2>Digoxin Sandbox</h2>
+<!--- Start View --->
 
-        <span class="lead">Play with numbers to see how results change.</span>
-    </div>
-
-
-    <div class="btn-group" role="group" id="digoxinModes">
-
-        <button type="button" class="btn btn-primary" id="loadDoseButton">Load (Dose ?)</button>
-        <button type="button" class="btn btn-primary" id="loadCButton">Load (C ?)</button>
-        <button type="button" class="btn btn-primary" id="EmpiricVdButton">Empiric Vd</button>
-        <button type="button" class="btn btn-primary" id="EmpiricClButton">Empiric Cl</button>
-        <button type="button" class="btn btn-primary" id="doseMaintButton">Maint (Dose ?)</button>
-        <button type="button" class="btn btn-primary" id="clMaintButton">Maint (Cl ?)</button>
-        <button type="button" class="btn btn-primary" id="cMaintButton">Maint (C ?)</button>
-        <button type="button" class="btn btn-primary" id="tauMaintButton">Maint (Tau ?)</button>
-    </div>
-
-
-    <div id="equation_equations" style="width: 100%;">
-        <span id="Equation" style="font-size:24px;float:left;"></span>
-        <br style="clear: left;"/>
-
-        <div id="clearanceEquations">
-            <span id="renalClearanceEquation" style="font-size:16px;float:left;"></span>
-            <br style="clear: left;"/>
-            <span id="renalClearance" style="font-size:16px;color:#906;float:left;"></span>
-            <br style="clear: left;"/>
-            <span id="metabolicClearance" style="font-size:16px; color:#906;;float:left;"></span>
-            <br style="clear: left;"/>
-        </div>
-        <div id="vdEquations">
-            <span id="VminEquation" style="font-size:16px;float:left; width: 300px;"></span>
-            <span id="Vmin" style="font-size:16px;color:#906;float:left;"></span>
-            <br style="clear: left;"/>
-            <span id="VnEquation" style="font-size:16px; float:left;width: 300px;"></span>
-            <span id="Vn" style="font-size:16px; color:#906;float:left;"></span>
-            <br style="clear: left;"/>
-            <span id="KdEquation" style="font-size:16px;float:left;width: 300px;"></span>
-            <span id="Kd" style="font-size:16px; color:#906;;float:left;"></span>
-            <br style="clear: left;"/>
-        </div>
-        <span id="EquationResult" style="font-size:24px; color:#906;;float:left;"></span>
-        <br style="clear: left;"/>
-    </div>
-
-
-    <form id="hfSwitch" class="buttonset">
-        <input type="radio" id="hfSwitch2" name="hfSwitch" value="36"/><label for="hfSwitch2">No Heart Failure</label>
-        <input type="radio" id="hfSwitch1" name="hfSwitch" checked="checked" value="20"/><label for="hfSwitch1">Heart
-        Failure</label>
-    </form>
-
-
-    <form id="doseformSwitch" class="buttonset">
-        <input type="radio" id="doseformSwitch1" name="doseformSwitch" checked="checked" value="0.75"/><label
-            for="doseformSwitch1">Tablet</label>
-        <input type="radio" id="doseformSwitch2" name="doseformSwitch" value="1"/><label for="doseformSwitch2">Gel
-        Capsules</label>
-        <input type="radio" id="doseformSwitch3" name="doseformSwitch" value="0.8"/><label
-            for="doseformSwitch3">Elixir</label>
-        <input type="radio" id="doseformSwitch4" name="doseformSwitch" value="1"/><label
-            for="doseformSwitch4">Intravenous</label>
-    </form>
-
-
-    <div id="c_input">
-        <label for="c">Conc (mcg/L):</label>
-        <input type="text" id="c" style="border: 0; color: #f6931f; font-weight: bold;"/>
-
-        <div id="slider-c"></div>
-    </div>
-
-
-    <div id="dose_input">
-        <label for="dose">Dose (mcg):</label>
-        <input type="text" id="dose" style="border: 0; color: #f6931f; font-weight: bold;"/>
-
-        <div id="slider-dose"></div>
-    </div>
-
-
-    <div id="vd_input">
-        <label for="vd">Volume of Distribution (L):</label>
-        <input type="text" id="vd" style="border: 0; color: #f6931f; font-weight: bold;"/>
-
-        <div id="slider-vd"></div>
-    </div>
-
-    <div id="ibw_input">
-        <label for="ibw">Weight (kg):</label>
-        <input type="text" id="ibw" style="border: 0; color: #f6931f; font-weight: bold;"/>
-
-        <div id="slider-ibw"></div>
-    </div>
-
-
-    <div id="GFR_input">
-        <label for="weight">GFR (mL/min):</label>
-        <input type="text" id="GFR" style="border: 0; color: #f6931f; font-weight: bold;"/>
-
-        <div id="slider-GFR"></div>
-    </div>
-
-
-    <div id="cl_input">
-        <label for="cl">Clearance (mL/min/1.73m2):</label>
-        <input type="text" id="cl" style="border: 0; color: #f6931f; font-weight: bold;"/>
-
-        <div id="slider-cl"></div>
-    </div>
-
-    <div id="tau_input">
-        <label for="tau">Dosing Interval (hours):</label>
-        <input type="text" id="tau" style="border: 0; color: #f6931f; font-weight: bold;"/>
-
-        <div id="slider-tau"></div>
-    </div>
-
-
+<div id="digoxinModes" class="ui-widgets">
+    <button id="loadDoseButton">Load (Dose Unknown)</button>
+    <button id="loadCButton">Load (C Unknown)</button>
+    <button id="EmpiricVdButton">Empiric Vd</button>
+    <button id="EmpiricClButton">Empiric Cl</button>
+    <p></p>
+    <button id="doseMaintButton">Maint (Dose Unknown)</button>
+    <button id="clMaintButton">Maint (Cl Unknown)</button>
+    <button id="cMaintButton">Maint (C Unknown)</button>
+    <button id="tauMaintButton">Maint (Tau Unknown)</button>
 </div>
+
+
+<div id="equation_equations" style="width: 100%;">
+    <span id="Equation" style="font-size:24px;float:left;"></span>
+    <br style="clear: left;"/>
+
+    <div id="clearanceEquations">
+        <span id="renalClearanceEquation" style="font-size:16px;float:left;"></span>
+        <br style="clear: left;"/>
+        <span id="renalClearance" style="font-size:16px;color:#906;float:left;"></span>
+        <br style="clear: left;"/>
+        <span id="metabolicClearance" style="font-size:16px; color:#906;;float:left;"></span>
+        <br style="clear: left;"/>
+    </div>
+    <div id="vdEquations">
+        <span id="VminEquation" style="font-size:16px;float:left; width: 300px;"></span>
+        <span id="Vmin" style="font-size:16px;color:#906;float:left;"></span>
+        <br style="clear: left;"/>
+        <span id="VnEquation" style="font-size:16px; float:left;width: 300px;"></span>
+        <span id="Vn" style="font-size:16px; color:#906;float:left;"></span>
+        <br style="clear: left;"/>
+        <span id="KdEquation" style="font-size:16px;float:left;width: 300px;"></span>
+        <span id="Kd" style="font-size:16px; color:#906;;float:left;"></span>
+        <br style="clear: left;"/>
+    </div>
+    <span id="EquationResult" style="font-size:24px; color:#906;;float:left;"></span>
+    <br style="clear: left;"/>
+</div>
+
+
+<form id="hfSwitch" class="buttonset">
+    <input type="radio" id="hfSwitch2" name="hfSwitch" value="36"/><label for="hfSwitch2">No Heart Failure</label>
+    <input type="radio" id="hfSwitch1" name="hfSwitch" checked="checked" value="20"/><label for="hfSwitch1">Heart
+    Failure</label>
+</form>
+
+
+<form id="doseformSwitch" class="buttonset">
+    <input type="radio" id="doseformSwitch1" name="doseformSwitch" checked="checked" value="0.75"/><label
+        for="doseformSwitch1">Tablet</label>
+    <input type="radio" id="doseformSwitch2" name="doseformSwitch" value="1"/><label for="doseformSwitch2">Gel
+    Capsules</label>
+    <input type="radio" id="doseformSwitch3" name="doseformSwitch" value="0.8"/><label
+        for="doseformSwitch3">Elixir</label>
+    <input type="radio" id="doseformSwitch4" name="doseformSwitch" value="1"/><label
+        for="doseformSwitch4">Intravenous</label>
+</form>
+
+
+<div id="c_input">
+    <label for="c">Conc (mcg/L):</label>
+    <input type="text" id="c" style="border: 0; color: #f6931f; font-weight: bold;"/>
+
+    <div id="slider-c"></div>
+</div>
+
+
+<div id="dose_input">
+    <label for="dose">Dose (mcg):</label>
+    <input type="text" id="dose" style="border: 0; color: #f6931f; font-weight: bold;"/>
+
+    <div id="slider-dose"></div>
+</div>
+
+
+<div id="vd_input">
+    <label for="vd">Volume of Distribution (L):</label>
+    <input type="text" id="vd" style="border: 0; color: #f6931f; font-weight: bold;"/>
+
+    <div id="slider-vd"></div>
+</div>
+
+<div id="ibw_input">
+    <label for="ibw">Weight (kg):</label>
+    <input type="text" id="ibw" style="border: 0; color: #f6931f; font-weight: bold;"/>
+
+    <div id="slider-ibw"></div>
+</div>
+
+
+<div id="GFR_input">
+    <label for="weight">GFR (mL/min):</label>
+    <input type="text" id="GFR" style="border: 0; color: #f6931f; font-weight: bold;"/>
+
+    <div id="slider-GFR"></div>
+</div>
+
+
+<div id="cl_input">
+    <label for="cl">Clearance (mL/min/1.73m2):</label>
+    <input type="text" id="cl" style="border: 0; color: #f6931f; font-weight: bold;"/>
+
+    <div id="slider-cl"></div>
+</div>
+
+<div id="tau_input">
+    <label for="tau">Dosing Interval (hours):</label>
+    <input type="text" id="tau" style="border: 0; color: #f6931f; font-weight: bold;"/>
+
+    <div id="slider-tau"></div>
+</div>
+
+
+
+
+ 
