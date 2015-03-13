@@ -12,6 +12,7 @@ angular.module('kinetics-problems', [
     'kinetics-problems.cockcroftgault',
     'kinetics-problems.mdrd',
     'kinetics-problems.ckdepi',
+    'kinetics-problems.gfrchildren',
     'kinetics-problems.version',
     'ui.bootstrap'
 
