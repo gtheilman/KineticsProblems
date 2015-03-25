@@ -271,9 +271,9 @@ $(document).ready(function () {
             }
             else {
                 $('#pretermSwitch').hide();
-                GFR = 0.55 * $("#height").val() / $("#scr").val();
+                GFR = 0.413 * $("#height").val() / $("#scr").val();
                 GFR = Math.round(GFR * 10) / 10;
-                EquationResult = "\\[    " + GFR + " \\approx ClCr =  \\frac{" + 0.55 + "\\times " + $("#height").val() + "}{" + $("#scr").val() + "}    \\]";
+                EquationResult = "\\[    " + GFR + " \\approx ClCr =  \\frac{" + 0.413 + "\\times " + $("#height").val() + "}{" + $("#scr").val() + "}    \\]";
             }
         }
 

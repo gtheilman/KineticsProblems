@@ -58,8 +58,8 @@
             <div class="row">
                 <div class="col-md-6" style="height: 300px">
 
-                    <div ng-if="adultpatient.gender=='male'" ng-include="'mdrd/stickmale.svg'"></div>
-                    <div ng-if="adultpatient.gender=='female'" ng-include="'mdrd/stickfemale.svg'"></div>
+                    <div ng-if="adultpatient.gender=='male'" ng-include="'ckdepi/stickmale.svg'"></div>
+                    <div ng-if="adultpatient.gender=='female'" ng-include="'ckdepi/stickfemale.svg'"></div>
                 </div>
                 <div class="col-md-6">
                     <p>
@@ -255,11 +255,6 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <div mathjax-bind="mdrdFourFactorPatient"></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
 
                     <p>
                         The patient is {{ adultpatient.age }} years old and has a serum creatinine of
@@ -367,7 +362,7 @@
                                 account
                                 patient weight. Instead, it provides a result that is already normalized to a body
                                 surface area of 1.73 m<sup>2</sup>. The precision of the equation is less in obese
-                                patients than in patients with normal weight.  
+                                patients than in patients with normal weight.
                             </p>
                         </div>
                     </div>
