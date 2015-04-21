@@ -298,9 +298,11 @@ angular.module('kinetics-problems', [
 
 
             if (!angular.isNumber(age)) {
-                age = "\\times Age ^{-0.176}";
+                // age = "\\times Age ^{-0.176}";
+                  age = "\\times 0.993 ^{age}";
             } else {
-                age = "\\times" + age + "^{-0.176}";
+              //  age = "\\times" + age + "^{-0.176}";
+                age = "\\times" + 0.993 + "^{" + age + "}";
             }
 
             if (race != 'African-American') {
@@ -418,7 +420,7 @@ angular.module('kinetics-problems', [
             }
             var GFR = 141 * Math.pow(mincreat, alpha) * Math.pow(maxcreat, -1.209) * Math.pow(0.993, age);
             if (gender == 'female') {
-                GFR = GFR * 1.108;
+                GFR = GFR * 1.018;
             }
             if (race == 'African-American') {
                 GFR = GFR * 1.159;

@@ -42,7 +42,7 @@ angular.module('kinetics-problems.ckdepi', ['ngRoute', 'n3-line-chart'])
         $scope.PMH = AddDisease.PMH();
 
         $scope.ckdepiEquation = LatexService.ckdepi("Cl", "creat", "age", "gender", "race");
-        $scope.ckdepi = SolverService.mdrd($scope.adultpatient.creatinine, $scope.adultpatient.age, $scope.adultpatient.gender, $scope.adultpatient.race);
+        $scope.ckdepi = SolverService.ckdepi($scope.adultpatient.creatinine, $scope.adultpatient.age, $scope.adultpatient.gender, $scope.adultpatient.race);
 
         $scope.ckdepiEquationPatient = LatexService.ckdepi($scope.ckdepi, $scope.adultpatient.creatinine, $scope.adultpatient.age, $scope.adultpatient.gender, $scope.adultpatient.race);
 
