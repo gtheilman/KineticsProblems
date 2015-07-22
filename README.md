@@ -16,7 +16,7 @@ She looked at me like I slapped her mother.
 
 The problem is that students sometimes work backwards.   They look at what information is presented in the problem and then try to find an equation that has those elements.    This often works for them because *writing word problems is hard*.   There's a tendency on the part of the faculty member to include just enough information to solve the problem.   Making up a bunch of details about the patient that aren't necessary takes time and effort.
 
-So, one thing this tool does is it creates random patient cases.   Every time the student clicks "refresh" on their browser, the case is different.   What I am trying to do is teach them to figure out what information they need *first*.   It also helps first-year students (who haven't yet been on experiential rotations) learn where they might find that information in the medical record.
+So, one thing this tool does is it creates random patient cases and problems.   Every time the student clicks "refresh" on their browser, the case is different.   What I am trying to do is teach the students to figure out what information they need *first*.   It also helps first-year students (who haven't yet been on experiential rotations) learn where they might find that information in the medical record.
 
 The second thing the tool tries to do is teach a structured approach to solving the problems.    The basic steps I stress are
 
@@ -25,9 +25,9 @@ The second thing the tool tries to do is teach a structured approach to solving 
 *   Do the math
 *   Go back and ask "Does the answer I got make sense?"
    
-While I was putting this together, I also incorporated some online calculators I put together a few years ago (these are the "Sandbox" tools).   
+While I was putting this together, I also incorporated some online calculators I put together a few years ago (these are the "Sandbox" tools.   The idea behind these was to give students an opportunity to play with equations and see how changing on variable affected the answers.     It's also a quick way for students to double-check their math.
 
-This was my first attempt at a project using Angular JS.   The source code is not pretty...
+This was my first attempt at a project using Angular JS.   The source code is not pretty...    I also never really got the hang of writing software tests.
 
 I got caught up in some other projects and only finished a few of the tutorials I planned.  I may work on this again at some later date.
 
