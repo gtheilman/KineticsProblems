@@ -33,5 +33,7 @@ This was also my first attempt at a project using Angular JS.   The source code 
 
 There is no database associated with this application.   It's just JavaScript and can be run locally in a browser without deploying it to a website.
 
-It is based on the [angular-seed](https://github.com/angular/angular-seed) project.   Rather than repeat the instructions from that project, I'd suggest you just take a look there.   Basically, you need to have NPM and Bower installed.  Then you run <code>npm install</code> and <code>npm start</code>.   Point your web browser at <code>http://http://localhost:8000/app/index.html#/menu</code>
+It is based on the [angular-seed](https://github.com/angular/angular-seed) project.   Rather than repeat the instructions from that project, I'd suggest you just take a look there.   Basically, you need to have NPM and Bower installed.  Then you run <code>npm install</code> and <code>npm start</code>.   Point your web browser at <code>http://localhost:8000/app/index.html#/menu</code>.
+
+
 
