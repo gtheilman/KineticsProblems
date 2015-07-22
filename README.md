@@ -25,9 +25,11 @@ The second thing the tool tries to do is teach a structured approach to solving 
 *   Do the math
 *   Go back and ask "Does the answer I got make sense?"
    
-While I was putting this together, I also threw in some online calculators I put together a few years ago (these are the "Sandbox" tools).   
+While I was putting this together, I also incorporated some online calculators I put together a few years ago (these are the "Sandbox" tools).   
 
 This was also my first attempt at a project using Angular JS.   The source code is not pretty...
+
+I also got caught up in some other projects and only finished a few of the tutorials I planned.
 
 ### Installation
 
@@ -35,5 +37,14 @@ There is no database associated with this application.   It's just JavaScript an
 
 It is based on the [angular-seed](https://github.com/angular/angular-seed) project.   Rather than repeat the instructions from that project, I'd suggest you just take a look there.   Basically, you need to have NPM and Bower installed.  Then you run <code>npm install</code> and <code>npm start</code>.   Point your web browser at <code>http://localhost:8000/app/index.html#/menu</code>.
 
+The patient cases are assembled in a kind-of [Mad Lib](https://en.wikipedia.org/wiki/Mad_Libs) process where various phrases are thrown together to come up with a "new" patient case.   Sometimes the cases may not be internally consistent.   But the idea is more to teach students where in the patient case to find the information they need rather than teaching pathophysiology.
 
+
+###Notification of Use
+
+**If you use this software for a class, please send me an email letting me know.**  This is just so I can include some information on my faculty activity report regarding how the software is being used.
+
+### More Disclaimers
+
+Again, this is not a clinical tool.   Do not use this to treat patients.   It's a tool for teaching pharmacokinetic principles, not for patient care.
 
