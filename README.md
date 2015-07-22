@@ -27,7 +27,11 @@ The second thing the tool tries to do is teach a structured approach to solving 
    
 While I was putting this together, I also threw in some online calculators I put together a few years ago (these are the "Sandbox" tools).   
 
+This was also my first attempt at a project using Angular JS.   The source code is not pretty...
 
+### Installation
 
+There is no database associated with this application.   It's just JavaScript and can be run locally in a browser without deploying it to a website.
 
+It is based on the [angular-seed](https://github.com/angular/angular-seed) project.   Rather than repeat the instructions from that project, I'd suggest you just take a look there.   Basically, you need to have NPM and Bower installed.  Then you run <code>npm install</code> and <code>npm start</code>.   Point your web browser at <code>http://http://localhost:8000/app/index.html#/menu</code>
 
