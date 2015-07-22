@@ -6,7 +6,7 @@ strictly for non-therapeutic demonstration of pharmacokinetic principles**
 
 This is a series of online tools that I use when teaching pharmacy students pharmacokinetics.   You can see a demo [here](http://bitly.com/theilmankinetics).   
 
-*Note:  Please don't send your students to my demo.   I'm paying for the traffic it gets.  If you want to use the software, please deploy a copy on your own server*
+*Note:  Please don't send your students to my demo.   I'm paying for the traffic it gets.  If you want your students to use the software, please deploy a copy on your own server*
 
 I noticed that first year pharmacy students had difficulty with word problems that contained more information than was needed.  For example, I once included a molecular weight in a pharmacokinetic problem in a homework assignment.   The next day, a student came up to me and asked how to work the molecular weight into the equations.   I told her that the molecular weight wasn't needed to answer the question.
 
